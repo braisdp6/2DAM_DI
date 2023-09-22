@@ -18,28 +18,35 @@ def main():
     loteria()
 
 def loteria ():
-    combinacion_num = []
-    num_complementario = []
+    # combinacion_num = []
+    # num_complementario = []
     opcion = menu()
-    if opcion is 1:
+    if opcion == 1:
         combinacion_num = random.sample(range(1, 50), 6)
         num_complementario = random.randint(1, 9)
-    elif opcion is 2:
+        print("Combinacion generada: ", combinacion_num)
+        print("Numero complementario: ", num_complementario)
+    elif opcion == 2:
         combinacion_num = random.sample(range(1, 51), 5)
         num_complementario = random.sample(range(1, 13), 2)
-    elif opcion is 3:
-        combinacion_num = random.sample(range(1, 3), 15)
+        print("Combinacion generada: ", combinacion_num)
+        print("Numeros estrella: ", num_complementario)
+    elif opcion == 3:
+        combinacion_num = random.choices(["1", "X", "2"], k=15)
         num_complementario = random.sample(range(1, 13), 2)
-        print(combinacion_num)
-
-
+        print("Combinacion generada: ", combinacion_num)
+    elif opcion == 4:
+        combinacion_num = random.randint(0, 99999)
+        combinacion_num = str(combinacion_num).zfill(5)
+        print("Combinacion generada: ", combinacion_num)
 
 def menu():
     while True:
-        opcion = int(input("Introduce un numero:\n(1. Primitiva)\n(2. Euromillones)\n(3. Quiniela futbol)\n(4. Loteria nacional)"))
+        opcion = int(input("Introduce un numero:\n(1. Primitiva)\n(2. Euromillones)\n(3. Quiniela futbol)\n(4. Loteria nacional)\n"))
         if opcion >= 1 and opcion <= 4:
             break
     return opcion
 
 # Ejecutador
 main()
+
