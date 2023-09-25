@@ -48,5 +48,6 @@ def menu():
     return opcion
 
 # Ejecutador
-main()
+if __name__ == "__main__":
+    main()
 
