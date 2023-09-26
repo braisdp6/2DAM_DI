@@ -1,12 +1,3 @@
-# Nombre archivo
-nombre_archivo = input("Introduce el nombre del archivo .txt a crear:")
-# Contenido archivo
-contenido_archivo = input("Introduce por teclado el texto a guardar:")
-# Contar vocales
-# Leer archivo
-# Añadir al archivo manteniendo datos
-
-
 def crear_archivo():
     nombre_archivo = input("Introduce el nombre del archivo .txt a crear: ")
     archivo = open(nombre_archivo, "w")
