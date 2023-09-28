@@ -3,5 +3,3 @@ class Contacto:
         self.nombre = nombre
         self.correo = correo
         self.telefono = telefono
-
-

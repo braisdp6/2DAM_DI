@@ -15,29 +15,47 @@ class Agenda:
         with open("datos.txt", "w") as archivo:
             for linea in lineas:
                 datos = linea.strip().split()
-                if datos[2] != telefono:
+                if datos[2] != str(telefono):
                     archivo.write(linea)
+
+    def buscar_contacto(self, telefono):
+        with open("datos.txt", "r") as archivo:
+            lineas = archivo.readlines()
+
+        for linea in lineas:
+            datos = linea.strip().split()
+            if datos[2] == str(telefono):
+                print(datos)
 
 
 def main():
     salir = False
     while not salir:
-        agenda = Agenda()
-        nombre = input("Dame el nombre:")
-        agenda.lista_contactos.append(nombre)
-
-        correo = input("Dame el correo:")
-        agenda.lista_contactos.append(correo)
-
-        telefono = input("Dame el telefono:")
-        agenda.lista_contactos.append(telefono)
-        nuevo = agenda.lista_contactos
-
-        agenda.agregar_contacto(nuevo)
-        # Salida bucle
-        aux = int(input("Deseas crear otro contacto?\n(1. Si)\n(0. Salir)"))
+        aux = int(input("Elige una opcion:\n(1. Agregar contacto)\n(2. Eliminar contacto)\n(3. Buscar contacto)\n(0. Salir)"))
         if aux == 1:
-            salir = False
+            agenda = Agenda()
+            nombre = input("Introduce el nombre:")
+            agenda.lista_contactos.append(nombre)
+
+            correo = input("Introduce el correo:")
+            agenda.lista_contactos.append(correo)
+
+            telefono = input("Introduce el telefono:")
+            agenda.lista_contactos.append(telefono)
+            nuevo = agenda.lista_contactos
+
+            agenda.agregar_contacto(nuevo)
+
+        elif aux == 2:
+            agenda = Agenda()
+            telefono = int(input("Introduce el telefono:"))
+            agenda.eliminar_contacto(telefono)
+
+        elif aux == 3:
+            agenda = Agenda()
+            telefono = int(input("Introduce el telefono:"))
+            agenda.buscar_contacto(telefono)
+
         elif aux == 0:
             salir = True
         else:
