@@ -5,3 +5,10 @@ def Enemigo():
         self.telefono = telefono
 
     def choice(enemigos):
+
+
+    ene
+
+
+    def esta_vivo():
+        return estado
