@@ -13,8 +13,8 @@ class Eventos():
         except Exception as error:
             print("Error en abrir calendar", error)
 
- def acerdade():
-     try:
-         pass
-     except Exception as error:
-         print("Error abrir ventana acerca de", error)
+    def acerdade(self):
+        try:
+            pass
+        except Exception as error:
+            print("Error abrir ventana acerca de", error)
