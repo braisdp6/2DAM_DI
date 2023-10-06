@@ -20,7 +20,7 @@ class Ui_MainWindow(object):
         MainWindow.setSizePolicy(sizePolicy)
         MainWindow.setMinimumSize(QtCore.QSize(1024, 768))
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("img/taxi.ico"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon.addPixmap(QtGui.QPixmap("C:/Users/a19braisdp/.designer/backup/img/taxi.ico"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         MainWindow.setWindowIcon(icon)
         MainWindow.setIconSize(QtCore.QSize(24, 24))
         self.centralwidget = QtWidgets.QWidget(parent=MainWindow)

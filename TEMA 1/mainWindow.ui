@@ -46,7 +46,7 @@
        </size>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tabConductores">
        <attribute name="title">
@@ -304,7 +304,7 @@
          </property>
          <property name="icon">
           <iconset>
-           <normaloff>C:/Users/a19braisdp/.designer/backup/img/calendar.ico</normaloff>C:/Users/a19braisdp/.designer/backup/img/calendar.ico</iconset>
+           <normaloff>img/calendar.ico</normaloff>img/calendar.ico</iconset>
          </property>
         </widget>
        </widget>
