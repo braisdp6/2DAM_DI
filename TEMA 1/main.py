@@ -1,4 +1,6 @@
 from datetime import datetime
+
+import Drivers
 from VentanaCalendario import Ui_ventanaCalendario
 from VentanaSalir import Ui_ventanaDeseaSalir
 from MainWindow import *
@@ -47,7 +49,10 @@ class Main(QtWidgets.QMainWindow):
         zona de eventos del menubar
         '''
         Var.ui.actionSalir.triggered.connect(Eventos.Eventos.abrirVentanaSalir)
-
+        '''
+        zona de eventos de las cajas de texto
+        '''
+        Var.ui.txtDni.editingFinished.connect(Drivers.Drivers.validarDNI)
 
 if __name__ == "__main__": # evita que haya dos funciones iguales que se lanzen
     app = QtWidgets.QApplication([])
