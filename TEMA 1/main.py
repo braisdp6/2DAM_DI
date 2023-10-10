@@ -6,8 +6,6 @@ from VentanaSalir import Ui_ventanaDeseaSalir
 from MainWindow import *
 import sys,Var,Eventos
 
-
-
 class Calendar(QtWidgets.QDialog):
     def __init__(self):
         super(Calendar, self).__init__()
@@ -16,6 +14,8 @@ class Calendar(QtWidgets.QDialog):
         dia = datetime.now().day
         mes = datetime.now().month
         ano = datetime.now().year
+        Var.calendar.calendario.setSelectedDate(QtCore.QDate(ano, mes, dia))
+        Var.calendar.calendario.clicked.connect(Drivers.Drivers.cargaFecha)
 class VentanaSalir(QtWidgets.QDialog):
     def __init__(self):
         super(VentanaSalir, self).__init__()
@@ -53,6 +53,11 @@ class Main(QtWidgets.QMainWindow):
         zona de eventos de las cajas de texto
         '''
         Var.ui.txtDni.editingFinished.connect(Drivers.Drivers.validarDNI)
+        '''
+        zona de eventos del toolbar
+        '''
+        Var.ui.actionBarSalir.triggered.connect(Eventos.Eventos.abrirVentanaSalir)
+        Var.ui.actionLimpiarPanel.triggered.connect(Drivers.Drivers.limpiarPanel)
 
 if __name__ == "__main__": # evita que haya dos funciones iguales que se lanzen
     app = QtWidgets.QApplication([])
