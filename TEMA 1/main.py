@@ -4,43 +4,25 @@ import Drivers
 from VentanaCalendario import Ui_ventanaCalendario
 from VentanaSalir import Ui_ventanaDeseaSalir
 from MainWindow import *
-import sys,Var,Eventos
+import sys, Var, Eventos
 
-class Calendar(QtWidgets.QDialog):
-    def __init__(self):
-        super(Calendar, self).__init__()
-        Var.calendar = Ui_ventanaCalendario()
-        Var.calendar.setupUi(self)
-        dia = datetime.now().day
-        mes = datetime.now().month
-        ano = datetime.now().year
-        Var.calendar.calendario.setSelectedDate(QtCore.QDate(ano, mes, dia))
-        Var.calendar.calendario.clicked.connect(Drivers.Drivers.cargaFecha)
-class VentanaSalir(QtWidgets.QDialog):
-    def __init__(self):
-        super(VentanaSalir, self).__init__()
-        Var.ventanaSalir = Ui_ventanaDeseaSalir()
-        Var.ventanaSalir.setupUi(self)
-        Var.ventanaSalir.btnAceptar.clicked.connect(self.on_btnAceptar_clicked)
-        Var.ventanaSalir.btnCancelar.clicked.connect(self.on_btnCancelar_clicked)
+from WindowAux import *
 
-    def on_btnAceptar_clicked(self):
-        # Acción para el botón Aceptar
-        sys.exit()
-
-    def on_btnCancelar_clicked(self):
-        # Acción para el botón Cancelar
-        self.hide()
 
 class Main(QtWidgets.QMainWindow):
     def __init__(self):
         super(Main, self).__init__()
         Var.ui = Ui_MainWindow()
-        Var.ui.setupUi(self) # encargado de generar la interfaz
+        Var.ui.setupUi(self)  # encargado de generar la interfaz
         Var.calendar = Calendar()
         Var.ventanaSalir = VentanaSalir()
 
+        '''
+        STATUS BAR
+        '''
+        fechaActual = str(datetime.now())
 
+        Var.ui.statusbar.showMessage(f"{fechaActual}")
         '''
         zona de eventos de botones
         '''
@@ -59,8 +41,19 @@ class Main(QtWidgets.QMainWindow):
         Var.ui.actionBarSalir.triggered.connect(Eventos.Eventos.abrirVentanaSalir)
         Var.ui.actionLimpiarPanel.triggered.connect(Drivers.Drivers.limpiarPanel)
 
-if __name__ == "__main__": # evita que haya dos funciones iguales que se lanzen
+    def closeEvent(self, event):
+        mbox = QtWidgets.QMessageBox.information(self, "Salir", "¿Estás seguro de que quieres salir?",
+                                                 QtWidgets.QMessageBox.StandardButton.Yes | QtWidgets.QMessageBox.StandardButton.No)
+
+        if mbox == QtWidgets.QMessageBox.StandardButton.Yes:
+            app.quit()
+        if mbox == QtWidgets.QMessageBox.StandardButton.No:
+            event.ignore()
+
+
+if __name__ == "__main__":  # evita que haya dos funciones iguales que se lanzen
     app = QtWidgets.QApplication([])
     window = Main()
     window.showMaximized()
     sys.exit(app.exec())
+
