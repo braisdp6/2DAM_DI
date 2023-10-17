@@ -1,3 +1,4 @@
+import locale
 from datetime import datetime
 
 import Drivers
@@ -8,21 +9,43 @@ import sys, Var, Eventos
 
 from WindowAux import *
 
-
 class Main(QtWidgets.QMainWindow):
     def __init__(self):
         super(Main, self).__init__()
+        locale.setlocale(locale.LC_TIME, 'es_ES.UTF-8')
         Var.ui = Ui_MainWindow()
         Var.ui.setupUi(self)  # encargado de generar la interfaz
         Var.calendar = Calendar()
         Var.ventanaSalir = VentanaSalir()
+        Eventos.Eventos.cargaProv(self)
+        rbtDriver = [Var.ui.rbtTodos, Var.ui.rbtAlta, Var.ui.rbtBaja]
+        for i in rbtDriver:
+            i.toogled.connect(Eventos.Eventos.selEstado)
+
+        '''
+        ejecucion de diferentes al ejecutar la aplicacion
+        '''
+
 
         '''
         STATUS BAR
         '''
-        fechaActual = str(datetime.now())
+        #formateamos la fecha
+        fechaActual = datetime.now()
+        fechaFormateada = fechaActual.strftime('%A - %d/%m/%Y')
 
-        Var.ui.statusbar.showMessage(f"{fechaActual}")
+        #añadimos la fecha al status bar
+        self.labelStatus = QtWidgets.QLabel(fechaFormateada, self)
+        self.labelStatus.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        Var.ui.statusbar.addPermanentWidget(self.labelStatus, 1)
+
+        #añadimos la version al status bar
+        self.labelStatusVersion = QtWidgets.QLabel("Version: " + Var.version, self)
+        self.labelStatusVersion.setAlignment(QtCore.Qt.AlignmentFlag.AlignRight)
+        Var.ui.statusbar.addPermanentWidget(self.labelStatusVersion, 0)
+
+
+
         '''
         zona de eventos de botones
         '''
