@@ -1,23 +1,33 @@
 import Var
+from PyQt6 import QtWidgets
+
+
 class Drivers():
 
     def limpiarPanel(self):
         try:
-            listaWidgets = [Var.ui.txtDni, Var.ui.txtFechaAlta, Var.ui.txtApel, Var.ui.txtNombre, Var.ui.txtDireccion, Var.ui.txtMovil, Var.ui.txtSalario, Var.ui.lblValidarDni]
+            listaWidgets = [Var.ui.txtDni, Var.ui.txtFechaAlta, Var.ui.txtApel, Var.ui.txtNombre, Var.ui.txtDireccion,
+                            Var.ui.txtMovil, Var.ui.txtSalario, Var.ui.lblValidarDni]
             for i in listaWidgets:
                 i.setText(None)
+
+            chkLicencia = [Var.ui.chkA, Var.ui.chkB, Var.ui.chkC, Var.ui.chkD]
+            for i in chkLicencia:
+                i.setChecked(False)
+            Var.ui.cmbProvincia.setCurrentText("")
+            Var.ui.cmbLocalidad.setCurrentText("")
         except Exception as error:
             print("error limpiar panel driver: ", error)
 
-
     def cargaFecha(qDate):
         try:
-            #data = ("{0}/{1}/{2}".format(qDate.day(), qDate.month(), qDate.year()))
+            # data = ("{0}/{1}/{2}".format(qDate.day(), qDate.month(), qDate.year()))
             data = ("{:02d}/{:02d}/{:4d}".format(qDate.day(), qDate.month(), qDate.year()))
             Var.ui.txtFechaAlta.setText(str(data))
             Var.calendar.hide()
         except Exception as error:
             print("error en cargar fecha: ", error)
+
     def validarDNI(self=None):
         try:
             dni = Var.ui.txtDni.text()
@@ -52,3 +62,30 @@ class Drivers():
                 Var.ui.txtDni.setFocus()
         except Exception as error:
             print("error en validar dni: ", error)
+
+    def altaDriver(self):
+        try:
+            driver = [Var.ui.txtApel, Var.ui.txtNombre, Var.ui.txtMovil]
+            newDriver = []
+            newDriver.append(1)
+            for i in driver:
+                newDriver.append(i.text().title())
+
+            licencias = []
+            chkLicencia = [Var.ui.chkA, Var.ui.chkB, Var.ui.chkC, Var.ui.chkD]
+            for i in chkLicencia:
+                if i.isChecked():
+                    licencias.append(i.text())
+            newDriver.append("-".join(licencias))
+
+            index = 0
+            Var.ui.tabDrivers.setRowCount(index + 1)
+            Var.ui.tabDrivers.setItem(index, 0, QtWidgets.QTableWidgetItem(str(newDriver[0])))
+            Var.ui.tabDrivers.setItem(index, 1, QtWidgets.QTableWidgetItem(str(newDriver[1])))
+            Var.ui.tabDrivers.setItem(index, 2, QtWidgets.QTableWidgetItem(str(newDriver[2])))
+            Var.ui.tabDrivers.setItem(index, 3, QtWidgets.QTableWidgetItem(str(newDriver[3])))
+            Var.ui.tabDrivers.setItem(index, 4, QtWidgets.QTableWidgetItem(str(newDriver[4])))
+
+            print(newDriver)
+        except Exception as error:
+            print("Error alta cliente ", error)

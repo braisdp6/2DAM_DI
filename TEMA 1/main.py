@@ -20,7 +20,7 @@ class Main(QtWidgets.QMainWindow):
         Eventos.Eventos.cargaProv(self)
         rbtDriver = [Var.ui.rbtTodos, Var.ui.rbtAlta, Var.ui.rbtBaja]
         for i in rbtDriver:
-            i.toogled.connect(Eventos.Eventos.selEstado)
+            i.toggled.connect(Eventos.Eventos.selEstado)
 
         '''
         ejecucion de diferentes al ejecutar la aplicacion
@@ -47,9 +47,14 @@ class Main(QtWidgets.QMainWindow):
 
 
         '''
+        zona de eventos de tablas
+        '''
+        Var.ui.tabDrivers
+        '''
         zona de eventos de botones
         '''
         Var.ui.btnCalendar.clicked.connect(Eventos.Eventos.abrirCalendar)
+        Var.ui.btnAltaDriver.clicked.connect(Drivers.Drivers.altaDriver)
         '''
         zona de eventos del menubar
         '''
