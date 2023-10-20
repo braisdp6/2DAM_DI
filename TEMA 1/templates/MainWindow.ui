@@ -304,7 +304,7 @@
          </property>
          <property name="icon">
           <iconset>
-           <normaloff>C:/Users/a19braisdp/.designer/backup/img/calendar.ico</normaloff>C:/Users/a19braisdp/.designer/backup/img/calendar.ico</iconset>
+           <normaloff>../img/calendar.ico</normaloff>../img/calendar.ico</iconset>
          </property>
         </widget>
         <widget class="QLabel" name="lblValidarDni">
@@ -898,7 +898,7 @@
   <action name="actionBarSalir">
    <property name="icon">
     <iconset>
-     <normaloff>C:/Users/a19braisdp/.designer/backup/img/salir.ico</normaloff>C:/Users/a19braisdp/.designer/backup/img/salir.ico</iconset>
+     <normaloff>../img/salir.ico</normaloff>../img/salir.ico</iconset>
    </property>
    <property name="text">
     <string>Salir</string>
@@ -907,8 +907,7 @@
   <action name="actionLimpiarPanel">
    <property name="icon">
     <iconset>
-     <normalon>C:/Users/a19braisdp/.designer/backup/img/limpiar.ico</normalon>
-    </iconset>
+     <normaloff>../img/limpiar.ico</normaloff>../img/limpiar.ico</iconset>
    </property>
    <property name="text">
     <string>limpiarPanel</string>

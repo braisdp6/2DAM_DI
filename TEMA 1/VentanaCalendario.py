@@ -1,4 +1,4 @@
-# Form implementation generated from reading ui file 'VentanaCalendario.ui'
+# Form implementation generated from reading ui file '.\templates\VentanaCalendario.ui'
 #
 # Created by: PyQt6 UI code generator 6.5.3
 #
@@ -22,7 +22,7 @@ class Ui_ventanaCalendario(object):
         ventanaCalendario.setMinimumSize(QtCore.QSize(400, 300))
         ventanaCalendario.setMaximumSize(QtCore.QSize(400, 300))
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("img/calendar.ico"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon.addPixmap(QtGui.QPixmap(".\\templates\\img/calendar.ico"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         ventanaCalendario.setWindowIcon(icon)
         ventanaCalendario.setModal(True)
         self.calendario = QtWidgets.QCalendarWidget(parent=ventanaCalendario)
