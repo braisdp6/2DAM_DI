@@ -6,26 +6,26 @@ from VentanaCalendario import Ui_ventanaCalendario
 from VentanaSalir import Ui_ventanaDeseaSalir
 from MainWindow import *
 import sys, Var, Eventos
+locale.setlocale(locale.LC_TIME, "es_ES.UTF-8")
+locale.setlocale(locale.LC_MONETARY, "es_ES.UTF-8")
 
 from WindowAux import *
 
 class Main(QtWidgets.QMainWindow):
     def __init__(self):
         super(Main, self).__init__()
-        locale.setlocale(locale.LC_TIME, 'es_ES.UTF-8')
         Var.ui = Ui_MainWindow()
         Var.ui.setupUi(self)  # encargado de generar la interfaz
         Var.calendar = Calendar()
         Var.ventanaSalir = VentanaSalir()
-        Eventos.Eventos.cargaProv(self)
-        rbtDriver = [Var.ui.rbtTodos, Var.ui.rbtAlta, Var.ui.rbtBaja]
-        for i in rbtDriver:
-            i.toggled.connect(Eventos.Eventos.selEstado)
 
         '''
         ejecucion de diferentes al ejecutar la aplicacion
         '''
-
+        Eventos.Eventos.cargaProv(self)
+        rbtDriver = [Var.ui.rbtTodos, Var.ui.rbtAlta, Var.ui.rbtBaja]
+        for i in rbtDriver:
+            i.toggled.connect(Eventos.Eventos.selEstado)
 
         '''
         STATUS BAR
@@ -44,12 +44,10 @@ class Main(QtWidgets.QMainWindow):
         self.labelStatusVersion.setAlignment(QtCore.Qt.AlignmentFlag.AlignRight)
         Var.ui.statusbar.addPermanentWidget(self.labelStatusVersion, 0)
 
-
-
         '''
         zona de eventos de tablas
         '''
-        Var.ui.tabDrivers
+        Eventos.Eventos.resizeTabDrivers(self)
         '''
         zona de eventos de botones
         '''
@@ -63,6 +61,9 @@ class Main(QtWidgets.QMainWindow):
         zona de eventos de las cajas de texto
         '''
         Var.ui.txtDni.editingFinished.connect(Drivers.Drivers.validarDNI)
+        Var.ui.txtNombre.editingFinished.connect(Eventos.Eventos.formatCajaTexto)
+        Var.ui.txtApel.editingFinished.connect(Eventos.Eventos.formatCajaTexto)
+        Var.ui.txtSalario.editingFinished.connect(Eventos.Eventos.formatCajaTexto)
         '''
         zona de eventos del toolbar
         '''
