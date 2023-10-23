@@ -42,7 +42,7 @@ class Eventos():
         except Exception as error:
             print("Error en la carga del combo prov: ", error)
 
-    def selEstado(self):
+    def selHistorico(self):
         if Var.ui.rbtTodos.isChecked():
             print("Pulsaste todos.")
         elif Var.ui.rbtAlta.isChecked():

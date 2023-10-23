@@ -25,7 +25,7 @@ class Main(QtWidgets.QMainWindow):
         Eventos.Eventos.cargaProv(self)
         rbtDriver = [Var.ui.rbtTodos, Var.ui.rbtAlta, Var.ui.rbtBaja]
         for i in rbtDriver:
-            i.toggled.connect(Eventos.Eventos.selEstado)
+            i.toggled.connect(Eventos.Eventos.selHistorico)
 
         '''
         STATUS BAR
