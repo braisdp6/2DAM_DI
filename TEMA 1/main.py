@@ -2,6 +2,7 @@ import locale
 from datetime import datetime
 
 import Drivers
+import Conexion
 from VentanaCalendario import Ui_ventanaCalendario
 from VentanaSalir import Ui_ventanaDeseaSalir
 from MainWindow import *
@@ -18,11 +19,13 @@ class Main(QtWidgets.QMainWindow):
         Var.ui.setupUi(self)  # encargado de generar la interfaz
         Var.calendar = Calendar()
         Var.ventanaSalir = VentanaSalir()
+        Conexion.Conexion.conexion()
+        Conexion.Conexion.cargaProv()
+        Conexion.Conexion.cargaLocalidad()
 
         '''
         ejecucion de diferentes al ejecutar la aplicacion
         '''
-        Eventos.Eventos.cargaProv(self)
         rbtDriver = [Var.ui.rbtTodos, Var.ui.rbtAlta, Var.ui.rbtBaja]
         for i in rbtDriver:
             i.toggled.connect(Eventos.Eventos.selHistorico)

@@ -32,15 +32,6 @@ class Eventos():
         except Exception as error:
             print("Error abrir ventana acerca de: ", error)
 
-    def cargaProv(self=None):
-        try:
-            prov = ["A Coruña", "Lugo", "Vigo", "Ferrol", "Santiago de Compostela", "Ourense", "Pontevedra"]
-            Var.ui.cmbProvincia.clear()
-            Var.ui.cmbProvincia.addItem("")
-            for i, m in enumerate(prov):
-                Var.ui.cmbProvincia.addItem(str(m))
-        except Exception as error:
-            print("Error en la carga del combo prov: ", error)
 
     def selHistorico(self):
         if Var.ui.rbtTodos.isChecked():
