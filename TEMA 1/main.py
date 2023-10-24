@@ -1,5 +1,7 @@
 import locale
 from datetime import datetime
+from PyQt5 import QtWidgets
+from PyQt5 import QtCore
 
 import Drivers
 import Conexion
@@ -7,10 +9,12 @@ from VentanaCalendario import Ui_ventanaCalendario
 from VentanaSalir import Ui_ventanaDeseaSalir
 from MainWindow import *
 import sys, Var, Eventos
+
 locale.setlocale(locale.LC_TIME, "es_ES.UTF-8")
 locale.setlocale(locale.LC_MONETARY, "es_ES.UTF-8")
 
 from WindowAux import *
+
 
 class Main(QtWidgets.QMainWindow):
     def __init__(self):
@@ -33,16 +37,16 @@ class Main(QtWidgets.QMainWindow):
         '''
         STATUS BAR
         '''
-        #formateamos la fecha
+        # formateamos la fecha
         fechaActual = datetime.now()
         fechaFormateada = fechaActual.strftime('%A - %d/%m/%Y')
 
-        #añadimos la fecha al status bar
+        # añadimos la fecha al status bar
         self.labelStatus = QtWidgets.QLabel(fechaFormateada, self)
         self.labelStatus.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         Var.ui.statusbar.addPermanentWidget(self.labelStatus, 1)
 
-        #añadimos la version al status bar
+        # añadimos la version al status bar
         self.labelStatusVersion = QtWidgets.QLabel("Version: " + Var.version, self)
         self.labelStatusVersion.setAlignment(QtCore.Qt.AlignmentFlag.AlignRight)
         Var.ui.statusbar.addPermanentWidget(self.labelStatusVersion, 0)
@@ -59,7 +63,7 @@ class Main(QtWidgets.QMainWindow):
         '''
         zona de eventos del menubar
         '''
-        Var.ui.actionSalir.triggered.connect(Eventos.Eventos.abrirVentanaSalir)
+        Var.ui.actionBarSalir.triggered.connect(Eventos.Eventos.abrirVentanaSalir)
         '''
         zona de eventos de las cajas de texto
         '''
@@ -88,4 +92,3 @@ if __name__ == "__main__":  # evita que haya dos funciones iguales que se lanzen
     window = Main()
     window.showMaximized()
     sys.exit(app.exec())
-
