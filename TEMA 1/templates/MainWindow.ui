@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>992</width>
-    <height>856</height>
+    <width>988</width>
+    <height>865</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -26,32 +26,20 @@
      <verstretch>0</verstretch>
     </sizepolicy>
    </property>
-   <property name="minimumSize">
-    <size>
-     <width>992</width>
-     <height>781</height>
-    </size>
-   </property>
    <widget class="QWidget" name="gridLayoutWidget">
     <property name="geometry">
      <rect>
       <x>40</x>
       <y>20</y>
       <width>911</width>
-      <height>731</height>
+      <height>741</height>
      </rect>
     </property>
-    <layout class="QHBoxLayout" name="horizontalLayout">
+    <layout class="QHBoxLayout" name="hLayoutVentana">
      <item>
       <layout class="QVBoxLayout" name="vLayoutDentroVentana">
        <item>
         <widget class="QTabWidget" name="panelPrincipal">
-         <property name="minimumSize">
-          <size>
-           <width>907</width>
-           <height>727</height>
-          </size>
-         </property>
          <property name="currentIndex">
           <number>0</number>
          </property>
@@ -61,12 +49,6 @@
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
-          </property>
-          <property name="minimumSize">
-           <size>
-            <width>1</width>
-            <height>0</height>
-           </size>
           </property>
           <property name="font">
            <font>
@@ -81,9 +63,9 @@
            <property name="geometry">
             <rect>
              <x>10</x>
-             <y>30</y>
+             <y>10</y>
              <width>881</width>
-             <height>361</height>
+             <height>381</height>
             </rect>
            </property>
            <property name="sizePolicy">
@@ -91,12 +73,6 @@
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
-           </property>
-           <property name="minimumSize">
-            <size>
-             <width>881</width>
-             <height>361</height>
-            </size>
            </property>
            <property name="frameShape">
             <enum>QFrame::StyledPanel</enum>
@@ -224,7 +200,7 @@
             <widget class="QLabel" name="lblFechaAlta">
              <property name="geometry">
               <rect>
-               <x>510</x>
+               <x>522</x>
                <y>1</y>
                <width>81</width>
                <height>41</height>
@@ -247,7 +223,7 @@
             <widget class="QLineEdit" name="txtFechaAlta">
              <property name="geometry">
               <rect>
-               <x>580</x>
+               <x>598</x>
                <y>12</y>
                <width>141</width>
                <height>21</height>
@@ -263,7 +239,7 @@
             <widget class="QPushButton" name="btnCalendar">
              <property name="geometry">
               <rect>
-               <x>730</x>
+               <x>750</x>
                <y>10</y>
                <width>24</width>
                <height>24</height>
@@ -274,7 +250,7 @@
              </property>
              <property name="icon">
               <iconset>
-               <normaloff>../img/calendar.ico</normaloff>../img/calendar.ico</iconset>
+               <normaloff>C:/Users/DesdeCeroDEV/.designer/img/calendar.ico</normaloff>C:/Users/DesdeCeroDEV/.designer/img/calendar.ico</iconset>
              </property>
             </widget>
             <widget class="QLabel" name="lblValidarDni">
@@ -953,7 +929,7 @@
              <x>10</x>
              <y>400</y>
              <width>881</width>
-             <height>291</height>
+             <height>281</height>
             </rect>
            </property>
            <property name="sizePolicy">
@@ -974,7 +950,7 @@
               <x>0</x>
               <y>0</y>
               <width>881</width>
-              <height>291</height>
+              <height>281</height>
              </rect>
             </property>
             <property name="font">
@@ -1048,8 +1024,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>992</width>
-     <height>21</height>
+     <width>988</width>
+     <height>26</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuArchivo">
@@ -1094,7 +1070,7 @@
   <action name="actionBarSalir">
    <property name="icon">
     <iconset>
-     <normaloff>../img/salir.ico</normaloff>../img/salir.ico</iconset>
+     <normaloff>C:/Users/DesdeCeroDEV/.designer/img/salir.ico</normaloff>C:/Users/DesdeCeroDEV/.designer/img/salir.ico</iconset>
    </property>
    <property name="text">
     <string>Salir</string>
@@ -1103,7 +1079,7 @@
   <action name="actionAcerca_de">
    <property name="icon">
     <iconset>
-     <normaloff>../img/acercade.png</normaloff>../img/acercade.png</iconset>
+     <normaloff>C:/Users/DesdeCeroDEV/.designer/img/acercade.png</normaloff>C:/Users/DesdeCeroDEV/.designer/img/acercade.png</iconset>
    </property>
    <property name="text">
     <string>Acerca de...</string>
@@ -1112,7 +1088,7 @@
   <action name="actionLimpiarPanel">
    <property name="icon">
     <iconset>
-     <normaloff>../img/limpiar.ico</normaloff>../img/limpiar.ico</iconset>
+     <normaloff>C:/Users/DesdeCeroDEV/.designer/img/limpiar.ico</normaloff>C:/Users/DesdeCeroDEV/.designer/img/limpiar.ico</iconset>
    </property>
    <property name="text">
     <string>limpiarPanel</string>
