@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>988</width>
+    <width>1037</width>
     <height>865</height>
    </rect>
   </property>
@@ -26,48 +26,40 @@
      <verstretch>0</verstretch>
     </sizepolicy>
    </property>
-   <widget class="QWidget" name="gridLayoutWidget">
+   <widget class="QWidget" name="">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>20</y>
-      <width>911</width>
-      <height>741</height>
+      <x>41</x>
+      <y>21</y>
+      <width>921</width>
+      <height>711</height>
      </rect>
     </property>
-    <layout class="QHBoxLayout" name="hLayoutVentana">
+    <layout class="QHBoxLayout" name="horizontalLayout_7">
      <item>
-      <layout class="QVBoxLayout" name="vLayoutDentroVentana">
-       <item>
-        <widget class="QTabWidget" name="panelPrincipal">
-         <property name="currentIndex">
-          <number>0</number>
-         </property>
-         <widget class="QWidget" name="panelDrivers">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="font">
-           <font>
-            <weight>50</weight>
-            <bold>false</bold>
-           </font>
-          </property>
-          <attribute name="title">
-           <string>DRIVERS</string>
-          </attribute>
+      <widget class="QTabWidget" name="panelPrincipal">
+       <property name="currentIndex">
+        <number>0</number>
+       </property>
+       <widget class="QWidget" name="panelDrivers">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="font">
+         <font>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <attribute name="title">
+         <string>DRIVERS</string>
+        </attribute>
+        <layout class="QVBoxLayout" name="verticalLayout">
+         <item>
           <widget class="QFrame" name="frameInsertarDatos">
-           <property name="geometry">
-            <rect>
-             <x>10</x>
-             <y>10</y>
-             <width>881</width>
-             <height>381</height>
-            </rect>
-           </property>
            <property name="sizePolicy">
             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
              <horstretch>0</horstretch>
@@ -80,858 +72,624 @@
            <property name="frameShadow">
             <enum>QFrame::Plain</enum>
            </property>
-           <widget class="QFrame" name="frame">
-            <property name="geometry">
-             <rect>
-              <x>0</x>
-              <y>20</y>
-              <width>881</width>
-              <height>41</height>
-             </rect>
-            </property>
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="frameShape">
-             <enum>QFrame::StyledPanel</enum>
-            </property>
-            <property name="frameShadow">
-             <enum>QFrame::Raised</enum>
-            </property>
-            <widget class="QLabel" name="lblCod">
-             <property name="geometry">
-              <rect>
-               <x>14</x>
-               <y>5</y>
-               <width>51</width>
-               <height>31</height>
-              </rect>
-             </property>
-             <property name="font">
-              <font>
-               <family>Segoe UI</family>
-               <weight>75</weight>
-               <bold>true</bold>
-              </font>
-             </property>
-             <property name="text">
-              <string>Código:</string>
-             </property>
-            </widget>
-            <widget class="QLabel" name="lblCodbd">
-             <property name="geometry">
-              <rect>
-               <x>70</x>
-               <y>11</y>
-               <width>101</width>
-               <height>21</height>
-              </rect>
-             </property>
-             <property name="minimumSize">
-              <size>
-               <width>100</width>
-               <height>0</height>
-              </size>
-             </property>
-             <property name="font">
-              <font>
-               <weight>75</weight>
-               <bold>true</bold>
-              </font>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">background-color: rgb(255, 253, 167);</string>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignCenter</set>
-             </property>
-            </widget>
-            <widget class="QLabel" name="lblDni">
-             <property name="geometry">
-              <rect>
-               <x>210</x>
-               <y>-1</y>
-               <width>41</width>
-               <height>41</height>
-              </rect>
-             </property>
-             <property name="minimumSize">
-              <size>
-               <width>0</width>
-               <height>20</height>
-              </size>
-             </property>
-             <property name="font">
-              <font>
-               <family>Segoe UI</family>
-               <weight>75</weight>
-               <bold>true</bold>
-              </font>
-             </property>
-             <property name="text">
-              <string>DNI:</string>
-             </property>
-            </widget>
-            <widget class="QLineEdit" name="txtDni">
-             <property name="geometry">
-              <rect>
-               <x>240</x>
-               <y>10</y>
-               <width>151</width>
-               <height>21</height>
-              </rect>
-             </property>
-             <property name="minimumSize">
-              <size>
-               <width>120</width>
-               <height>20</height>
-              </size>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignCenter</set>
-             </property>
-            </widget>
-            <widget class="QLabel" name="lblFechaAlta">
-             <property name="geometry">
-              <rect>
-               <x>522</x>
-               <y>1</y>
-               <width>81</width>
-               <height>41</height>
-              </rect>
-             </property>
-             <property name="font">
-              <font>
-               <family>Segoe UI</family>
-               <weight>75</weight>
-               <bold>true</bold>
-              </font>
-             </property>
-             <property name="styleSheet">
-              <string notr="true"/>
-             </property>
-             <property name="text">
-              <string>Fecha Alta:</string>
-             </property>
-            </widget>
-            <widget class="QLineEdit" name="txtFechaAlta">
-             <property name="geometry">
-              <rect>
-               <x>598</x>
-               <y>12</y>
-               <width>141</width>
-               <height>21</height>
-              </rect>
-             </property>
-             <property name="minimumSize">
-              <size>
-               <width>120</width>
-               <height>20</height>
-              </size>
-             </property>
-            </widget>
-            <widget class="QPushButton" name="btnCalendar">
-             <property name="geometry">
-              <rect>
-               <x>750</x>
-               <y>10</y>
-               <width>24</width>
-               <height>24</height>
-              </rect>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-             <property name="icon">
-              <iconset>
-               <normaloff>C:/Users/DesdeCeroDEV/.designer/img/calendar.ico</normaloff>C:/Users/DesdeCeroDEV/.designer/img/calendar.ico</iconset>
-             </property>
-            </widget>
-            <widget class="QLabel" name="lblValidarDni">
-             <property name="geometry">
-              <rect>
-               <x>400</x>
-               <y>0</y>
-               <width>50</width>
-               <height>41</height>
-              </rect>
-             </property>
-             <property name="minimumSize">
-              <size>
-               <width>50</width>
-               <height>30</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>100</width>
-               <height>100</height>
-              </size>
-             </property>
-             <property name="font">
-              <font>
-               <family>Ravie</family>
-               <pointsize>10</pointsize>
-              </font>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-             </property>
-            </widget>
-           </widget>
-           <widget class="QFrame" name="frame_2">
-            <property name="geometry">
-             <rect>
-              <x>0</x>
-              <y>80</y>
-              <width>881</width>
-              <height>41</height>
-             </rect>
-            </property>
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="frameShape">
-             <enum>QFrame::StyledPanel</enum>
-            </property>
-            <property name="frameShadow">
-             <enum>QFrame::Raised</enum>
-            </property>
-            <widget class="QLabel" name="lblApel">
-             <property name="geometry">
-              <rect>
-               <x>10</x>
-               <y>-1</y>
-               <width>71</width>
-               <height>41</height>
-              </rect>
-             </property>
-             <property name="minimumSize">
-              <size>
-               <width>60</width>
-               <height>20</height>
-              </size>
-             </property>
-             <property name="font">
-              <font>
-               <family>Segoe UI</family>
-               <weight>75</weight>
-               <bold>true</bold>
-              </font>
-             </property>
-             <property name="text">
-              <string>Apellidos:</string>
-             </property>
-            </widget>
-            <widget class="QLineEdit" name="txtApel">
-             <property name="geometry">
-              <rect>
-               <x>80</x>
-               <y>10</y>
-               <width>311</width>
-               <height>21</height>
-              </rect>
-             </property>
-             <property name="minimumSize">
-              <size>
-               <width>0</width>
-               <height>0</height>
-              </size>
-             </property>
-            </widget>
-            <widget class="QLabel" name="lblNombre">
-             <property name="geometry">
-              <rect>
-               <x>520</x>
-               <y>0</y>
-               <width>61</width>
-               <height>41</height>
-              </rect>
-             </property>
-             <property name="font">
-              <font>
-               <family>Segoe UI</family>
-               <weight>75</weight>
-               <bold>true</bold>
-              </font>
-             </property>
-             <property name="styleSheet">
-              <string notr="true"/>
-             </property>
-             <property name="text">
-              <string>Nombre:</string>
-             </property>
-            </widget>
-            <widget class="QLineEdit" name="txtNombre">
-             <property name="geometry">
-              <rect>
-               <x>580</x>
-               <y>10</y>
-               <width>291</width>
-               <height>21</height>
-              </rect>
-             </property>
-             <property name="minimumSize">
-              <size>
-               <width>120</width>
-               <height>20</height>
-              </size>
-             </property>
-            </widget>
-           </widget>
-           <widget class="QFrame" name="frame_3">
-            <property name="geometry">
-             <rect>
-              <x>0</x>
-              <y>140</y>
-              <width>881</width>
-              <height>41</height>
-             </rect>
-            </property>
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="frameShape">
-             <enum>QFrame::StyledPanel</enum>
-            </property>
-            <property name="frameShadow">
-             <enum>QFrame::Raised</enum>
-            </property>
-            <widget class="QLabel" name="lblDireccion">
-             <property name="geometry">
-              <rect>
-               <x>10</x>
-               <y>-1</y>
-               <width>71</width>
-               <height>41</height>
-              </rect>
-             </property>
-             <property name="minimumSize">
-              <size>
-               <width>60</width>
-               <height>20</height>
-              </size>
-             </property>
-             <property name="font">
-              <font>
-               <family>Segoe UI</family>
-               <weight>75</weight>
-               <bold>true</bold>
-              </font>
-             </property>
-             <property name="text">
-              <string>Dirección:</string>
-             </property>
-            </widget>
-            <widget class="QLineEdit" name="txtDireccion">
-             <property name="geometry">
-              <rect>
-               <x>80</x>
-               <y>10</y>
-               <width>311</width>
-               <height>21</height>
-              </rect>
-             </property>
-             <property name="minimumSize">
-              <size>
-               <width>0</width>
-               <height>0</height>
-              </size>
-             </property>
-            </widget>
-            <widget class="QLabel" name="lblProvincia">
-             <property name="geometry">
-              <rect>
-               <x>420</x>
-               <y>-1</y>
-               <width>71</width>
-               <height>41</height>
-              </rect>
-             </property>
-             <property name="minimumSize">
-              <size>
-               <width>50</width>
-               <height>20</height>
-              </size>
-             </property>
-             <property name="font">
-              <font>
-               <family>Segoe UI</family>
-               <weight>75</weight>
-               <bold>true</bold>
-              </font>
-             </property>
-             <property name="text">
-              <string>Provincia:</string>
-             </property>
-            </widget>
-            <widget class="QComboBox" name="cmbProvincia">
-             <property name="geometry">
-              <rect>
-               <x>490</x>
-               <y>10</y>
-               <width>151</width>
-               <height>21</height>
-              </rect>
-             </property>
-            </widget>
-            <widget class="QLabel" name="lblLocalidad">
-             <property name="geometry">
-              <rect>
-               <x>650</x>
-               <y>0</y>
-               <width>81</width>
-               <height>41</height>
-              </rect>
-             </property>
-             <property name="minimumSize">
-              <size>
-               <width>50</width>
-               <height>20</height>
-              </size>
-             </property>
-             <property name="font">
-              <font>
-               <family>Segoe UI</family>
-               <weight>75</weight>
-               <bold>true</bold>
-              </font>
-             </property>
-             <property name="text">
-              <string>Localidad:</string>
-             </property>
-            </widget>
-            <widget class="QComboBox" name="cmbLocalidad">
-             <property name="geometry">
-              <rect>
-               <x>720</x>
-               <y>10</y>
-               <width>151</width>
-               <height>21</height>
-              </rect>
-             </property>
-            </widget>
-           </widget>
-           <widget class="QFrame" name="frame_4">
-            <property name="geometry">
-             <rect>
-              <x>0</x>
-              <y>200</y>
-              <width>881</width>
-              <height>41</height>
-             </rect>
-            </property>
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="frameShape">
-             <enum>QFrame::StyledPanel</enum>
-            </property>
-            <property name="frameShadow">
-             <enum>QFrame::Raised</enum>
-            </property>
-            <widget class="QLabel" name="lblMovil">
-             <property name="geometry">
-              <rect>
-               <x>10</x>
-               <y>0</y>
-               <width>61</width>
-               <height>41</height>
-              </rect>
-             </property>
-             <property name="minimumSize">
-              <size>
-               <width>60</width>
-               <height>20</height>
-              </size>
-             </property>
-             <property name="font">
-              <font>
-               <family>Segoe UI</family>
-               <weight>75</weight>
-               <bold>true</bold>
-              </font>
-             </property>
-             <property name="styleSheet">
-              <string notr="true"/>
-             </property>
-             <property name="text">
-              <string>Móvil:</string>
-             </property>
-            </widget>
-            <widget class="QLineEdit" name="txtMovil">
-             <property name="geometry">
-              <rect>
-               <x>59</x>
-               <y>10</y>
-               <width>171</width>
-               <height>21</height>
-              </rect>
-             </property>
-             <property name="minimumSize">
-              <size>
-               <width>120</width>
-               <height>20</height>
-              </size>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignCenter</set>
-             </property>
-            </widget>
-            <widget class="QLabel" name="lblSalario">
-             <property name="geometry">
-              <rect>
-               <x>259</x>
-               <y>-1</y>
-               <width>61</width>
-               <height>41</height>
-              </rect>
-             </property>
-             <property name="minimumSize">
-              <size>
-               <width>60</width>
-               <height>20</height>
-              </size>
-             </property>
-             <property name="font">
-              <font>
-               <family>Segoe UI</family>
-               <weight>75</weight>
-               <bold>true</bold>
-              </font>
-             </property>
-             <property name="styleSheet">
-              <string notr="true"/>
-             </property>
-             <property name="text">
-              <string>Salario:</string>
-             </property>
-            </widget>
-            <widget class="QLineEdit" name="txtSalario">
-             <property name="geometry">
-              <rect>
-               <x>310</x>
-               <y>10</y>
-               <width>181</width>
-               <height>21</height>
-              </rect>
-             </property>
-             <property name="minimumSize">
-              <size>
-               <width>120</width>
-               <height>20</height>
-              </size>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-             </property>
-            </widget>
-            <widget class="QLabel" name="lblHistorico">
-             <property name="geometry">
-              <rect>
-               <x>620</x>
-               <y>0</y>
-               <width>71</width>
-               <height>41</height>
-              </rect>
-             </property>
-             <property name="minimumSize">
-              <size>
-               <width>0</width>
-               <height>20</height>
-              </size>
-             </property>
-             <property name="font">
-              <font>
-               <family>Segoe UI</family>
-               <weight>75</weight>
-               <bold>true</bold>
-              </font>
-             </property>
-             <property name="styleSheet">
-              <string notr="true"/>
-             </property>
-             <property name="text">
-              <string>Histórico:</string>
-             </property>
-            </widget>
-            <widget class="QRadioButton" name="rbtTodos">
-             <property name="geometry">
-              <rect>
-               <x>690</x>
-               <y>10</y>
-               <width>71</width>
-               <height>20</height>
-              </rect>
-             </property>
-             <property name="minimumSize">
-              <size>
-               <width>0</width>
-               <height>20</height>
-              </size>
-             </property>
-             <property name="text">
-              <string>Todos</string>
-             </property>
-             <property name="checked">
-              <bool>true</bool>
-             </property>
-            </widget>
-            <widget class="QRadioButton" name="rbtBaja">
-             <property name="geometry">
-              <rect>
-               <x>820</x>
-               <y>10</y>
-               <width>51</width>
-               <height>20</height>
-              </rect>
-             </property>
-             <property name="minimumSize">
-              <size>
-               <width>0</width>
-               <height>20</height>
-              </size>
-             </property>
-             <property name="text">
-              <string>Baja</string>
-             </property>
-            </widget>
-            <widget class="QRadioButton" name="rbtAlta">
-             <property name="geometry">
-              <rect>
-               <x>760</x>
-               <y>10</y>
-               <width>51</width>
-               <height>20</height>
-              </rect>
-             </property>
-             <property name="minimumSize">
-              <size>
-               <width>0</width>
-               <height>20</height>
-              </size>
-             </property>
-             <property name="text">
-              <string>Alta</string>
-             </property>
-            </widget>
-           </widget>
-           <widget class="QFrame" name="frame_5">
-            <property name="geometry">
-             <rect>
-              <x>0</x>
-              <y>260</y>
-              <width>881</width>
-              <height>41</height>
-             </rect>
-            </property>
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="frameShape">
-             <enum>QFrame::StyledPanel</enum>
-            </property>
-            <property name="frameShadow">
-             <enum>QFrame::Raised</enum>
-            </property>
-            <widget class="QLabel" name="lblCarnet">
-             <property name="geometry">
-              <rect>
-               <x>10</x>
-               <y>-1</y>
-               <width>101</width>
-               <height>41</height>
-              </rect>
-             </property>
-             <property name="minimumSize">
-              <size>
-               <width>60</width>
-               <height>20</height>
-              </size>
-             </property>
-             <property name="font">
-              <font>
-               <family>Segoe UI</family>
-               <weight>75</weight>
-               <bold>true</bold>
-              </font>
-             </property>
-             <property name="styleSheet">
-              <string notr="true"/>
-             </property>
-             <property name="text">
-              <string>Tipo de Carnet:</string>
-             </property>
-            </widget>
-            <widget class="QCheckBox" name="chkB">
-             <property name="geometry">
-              <rect>
-               <x>151</x>
-               <y>11</y>
-               <width>31</width>
-               <height>21</height>
-              </rect>
-             </property>
-             <property name="minimumSize">
-              <size>
-               <width>0</width>
-               <height>20</height>
-              </size>
-             </property>
-             <property name="text">
-              <string>B</string>
-             </property>
-            </widget>
-            <widget class="QCheckBox" name="chkD">
-             <property name="geometry">
-              <rect>
-               <x>231</x>
-               <y>11</y>
-               <width>31</width>
-               <height>21</height>
-              </rect>
-             </property>
-             <property name="minimumSize">
-              <size>
-               <width>0</width>
-               <height>20</height>
-              </size>
-             </property>
-             <property name="text">
-              <string>D</string>
-             </property>
-            </widget>
-            <widget class="QCheckBox" name="chkC">
-             <property name="geometry">
-              <rect>
-               <x>191</x>
-               <y>11</y>
-               <width>31</width>
-               <height>21</height>
-              </rect>
-             </property>
-             <property name="minimumSize">
-              <size>
-               <width>0</width>
-               <height>20</height>
-              </size>
-             </property>
-             <property name="text">
-              <string>C</string>
-             </property>
-            </widget>
-            <widget class="QCheckBox" name="chkA">
-             <property name="geometry">
-              <rect>
-               <x>111</x>
-               <y>11</y>
-               <width>31</width>
-               <height>21</height>
-              </rect>
-             </property>
-             <property name="minimumSize">
-              <size>
-               <width>0</width>
-               <height>20</height>
-              </size>
-             </property>
-             <property name="text">
-              <string>A</string>
-             </property>
-            </widget>
-           </widget>
-           <widget class="QFrame" name="frame_6">
-            <property name="geometry">
-             <rect>
-              <x>0</x>
-              <y>320</y>
-              <width>881</width>
-              <height>41</height>
-             </rect>
-            </property>
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="frameShape">
-             <enum>QFrame::StyledPanel</enum>
-            </property>
-            <property name="frameShadow">
-             <enum>QFrame::Raised</enum>
-            </property>
-            <widget class="QPushButton" name="btnBajaDriver">
-             <property name="geometry">
-              <rect>
-               <x>500</x>
-               <y>10</y>
-               <width>71</width>
-               <height>23</height>
-              </rect>
-             </property>
-             <property name="text">
-              <string>Baja</string>
-             </property>
-            </widget>
-            <widget class="QPushButton" name="btnModificarDriver">
-             <property name="geometry">
-              <rect>
-               <x>400</x>
-               <y>10</y>
-               <width>71</width>
-               <height>23</height>
-              </rect>
-             </property>
-             <property name="text">
-              <string>Modificar</string>
-             </property>
-            </widget>
-            <widget class="QPushButton" name="btnAltaDriver">
-             <property name="geometry">
-              <rect>
-               <x>300</x>
-               <y>10</y>
-               <width>71</width>
-               <height>23</height>
-              </rect>
-             </property>
-             <property name="text">
-              <string>Alta</string>
-             </property>
-            </widget>
-           </widget>
+           <layout class="QVBoxLayout" name="verticalLayout_2">
+            <item>
+             <widget class="QFrame" name="frame">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="frameShape">
+               <enum>QFrame::StyledPanel</enum>
+              </property>
+              <property name="frameShadow">
+               <enum>QFrame::Raised</enum>
+              </property>
+              <layout class="QHBoxLayout" name="horizontalLayout">
+               <item>
+                <widget class="QLabel" name="lblCod">
+                 <property name="font">
+                  <font>
+                   <family>Segoe UI</family>
+                   <weight>75</weight>
+                   <bold>true</bold>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>Código:</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="lblCodbd">
+                 <property name="minimumSize">
+                  <size>
+                   <width>100</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <weight>75</weight>
+                   <bold>true</bold>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">background-color: rgb(255, 253, 167);</string>
+                 </property>
+                 <property name="text">
+                  <string/>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="lblDni">
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Segoe UI</family>
+                   <weight>75</weight>
+                   <bold>true</bold>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>DNI:</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLineEdit" name="txtDni">
+                 <property name="minimumSize">
+                  <size>
+                   <width>120</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="lblValidarDni">
+                 <property name="minimumSize">
+                  <size>
+                   <width>50</width>
+                   <height>30</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>100</width>
+                   <height>100</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Ravie</family>
+                   <pointsize>10</pointsize>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string/>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="lblFechaAlta">
+                 <property name="font">
+                  <font>
+                   <family>Segoe UI</family>
+                   <weight>75</weight>
+                   <bold>true</bold>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true"/>
+                 </property>
+                 <property name="text">
+                  <string>Fecha Alta:</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLineEdit" name="txtFechaAlta">
+                 <property name="minimumSize">
+                  <size>
+                   <width>120</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="btnCalendar">
+                 <property name="text">
+                  <string/>
+                 </property>
+                 <property name="icon">
+                  <iconset>
+                   <normaloff>C:/Users/DesdeCeroDEV/.designer/img/calendar.ico</normaloff>C:/Users/DesdeCeroDEV/.designer/img/calendar.ico</iconset>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <widget class="QFrame" name="frame_2">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="frameShape">
+               <enum>QFrame::StyledPanel</enum>
+              </property>
+              <property name="frameShadow">
+               <enum>QFrame::Raised</enum>
+              </property>
+              <layout class="QHBoxLayout" name="horizontalLayout_2">
+               <item>
+                <widget class="QLabel" name="lblApel">
+                 <property name="minimumSize">
+                  <size>
+                   <width>60</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Segoe UI</family>
+                   <weight>75</weight>
+                   <bold>true</bold>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>Apellidos:</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLineEdit" name="txtApel">
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="lblNombre">
+                 <property name="font">
+                  <font>
+                   <family>Segoe UI</family>
+                   <weight>75</weight>
+                   <bold>true</bold>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true"/>
+                 </property>
+                 <property name="text">
+                  <string>Nombre:</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLineEdit" name="txtNombre">
+                 <property name="minimumSize">
+                  <size>
+                   <width>120</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <widget class="QFrame" name="frame_3">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="frameShape">
+               <enum>QFrame::StyledPanel</enum>
+              </property>
+              <property name="frameShadow">
+               <enum>QFrame::Raised</enum>
+              </property>
+              <layout class="QHBoxLayout" name="horizontalLayout_3">
+               <item>
+                <widget class="QLabel" name="lblDireccion">
+                 <property name="minimumSize">
+                  <size>
+                   <width>60</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Segoe UI</family>
+                   <weight>75</weight>
+                   <bold>true</bold>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>Dirección:</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLineEdit" name="txtDireccion">
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="lblProvincia">
+                 <property name="minimumSize">
+                  <size>
+                   <width>50</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Segoe UI</family>
+                   <weight>75</weight>
+                   <bold>true</bold>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>Provincia:</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QComboBox" name="cmbProvincia"/>
+               </item>
+               <item>
+                <widget class="QLabel" name="lblLocalidad">
+                 <property name="minimumSize">
+                  <size>
+                   <width>50</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Segoe UI</family>
+                   <weight>75</weight>
+                   <bold>true</bold>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>Localidad:</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QComboBox" name="cmbLocalidad"/>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <widget class="QFrame" name="frame_4">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="frameShape">
+               <enum>QFrame::StyledPanel</enum>
+              </property>
+              <property name="frameShadow">
+               <enum>QFrame::Raised</enum>
+              </property>
+              <layout class="QHBoxLayout" name="horizontalLayout_4">
+               <item>
+                <widget class="QLabel" name="lblMovil">
+                 <property name="minimumSize">
+                  <size>
+                   <width>60</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Segoe UI</family>
+                   <weight>75</weight>
+                   <bold>true</bold>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true"/>
+                 </property>
+                 <property name="text">
+                  <string>Móvil:</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLineEdit" name="txtMovil">
+                 <property name="minimumSize">
+                  <size>
+                   <width>120</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="lblSalario">
+                 <property name="minimumSize">
+                  <size>
+                   <width>60</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Segoe UI</family>
+                   <weight>75</weight>
+                   <bold>true</bold>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true"/>
+                 </property>
+                 <property name="text">
+                  <string>Salario:</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLineEdit" name="txtSalario">
+                 <property name="minimumSize">
+                  <size>
+                   <width>120</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="lblHistorico">
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Segoe UI</family>
+                   <weight>75</weight>
+                   <bold>true</bold>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true"/>
+                 </property>
+                 <property name="text">
+                  <string>Histórico:</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QRadioButton" name="rbtTodos">
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                 <property name="text">
+                  <string>Todos</string>
+                 </property>
+                 <property name="checked">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QRadioButton" name="rbtAlta">
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                 <property name="text">
+                  <string>Alta</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QRadioButton" name="rbtBaja">
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                 <property name="text">
+                  <string>Baja</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <widget class="QFrame" name="frame_5">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="frameShape">
+               <enum>QFrame::StyledPanel</enum>
+              </property>
+              <property name="frameShadow">
+               <enum>QFrame::Raised</enum>
+              </property>
+              <layout class="QHBoxLayout" name="horizontalLayout_5">
+               <item>
+                <widget class="QLabel" name="lblCarnet">
+                 <property name="minimumSize">
+                  <size>
+                   <width>60</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Segoe UI</family>
+                   <weight>75</weight>
+                   <bold>true</bold>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true"/>
+                 </property>
+                 <property name="text">
+                  <string>Tipo de Carnet:</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QCheckBox" name="chkA">
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                 <property name="text">
+                  <string>A</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QCheckBox" name="chkB">
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                 <property name="text">
+                  <string>B</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QCheckBox" name="chkC">
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                 <property name="text">
+                  <string>C</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QCheckBox" name="chkD">
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                 <property name="text">
+                  <string>D</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <widget class="QFrame" name="frame_6">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="frameShape">
+               <enum>QFrame::StyledPanel</enum>
+              </property>
+              <property name="frameShadow">
+               <enum>QFrame::Raised</enum>
+              </property>
+              <layout class="QHBoxLayout" name="horizontalLayout_6">
+               <item>
+                <widget class="QPushButton" name="btnAltaDriver">
+                 <property name="text">
+                  <string>Alta</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="btnModificarDriver">
+                 <property name="text">
+                  <string>Modificar</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="btnBajaDriver">
+                 <property name="text">
+                  <string>Baja</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+           </layout>
           </widget>
+         </item>
+         <item>
           <widget class="QFrame" name="frameMostrarDatos">
-           <property name="geometry">
-            <rect>
-             <x>10</x>
-             <y>400</y>
-             <width>881</width>
-             <height>281</height>
-            </rect>
-           </property>
            <property name="sizePolicy">
             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
              <horstretch>0</horstretch>
@@ -944,77 +702,79 @@
            <property name="frameShadow">
             <enum>QFrame::Plain</enum>
            </property>
-           <widget class="QTableWidget" name="tabDrivers">
-            <property name="geometry">
-             <rect>
-              <x>0</x>
-              <y>0</y>
-              <width>881</width>
-              <height>281</height>
-             </rect>
-            </property>
-            <property name="font">
-             <font>
-              <weight>50</weight>
-              <bold>false</bold>
-             </font>
-            </property>
-            <property name="alternatingRowColors">
-             <bool>true</bool>
-            </property>
-            <property name="selectionBehavior">
-             <enum>QAbstractItemView::SelectRows</enum>
-            </property>
-            <property name="showGrid">
-             <bool>true</bool>
-            </property>
-            <property name="gridStyle">
-             <enum>Qt::SolidLine</enum>
-            </property>
-            <attribute name="verticalHeaderCascadingSectionResizes">
-             <bool>false</bool>
-            </attribute>
-            <column>
-             <property name="text">
-              <string>Código</string>
-             </property>
-            </column>
-            <column>
-             <property name="text">
-              <string>Apellidos</string>
-             </property>
-            </column>
-            <column>
-             <property name="text">
-              <string>Nombre</string>
-             </property>
-            </column>
-            <column>
-             <property name="text">
-              <string>Móvil</string>
-             </property>
-            </column>
-            <column>
-             <property name="text">
-              <string>Licencias</string>
-             </property>
-            </column>
-            <column>
-             <property name="text">
-              <string>Fecha Baja</string>
-             </property>
-            </column>
-           </widget>
+           <layout class="QVBoxLayout" name="verticalLayout_3">
+            <item>
+             <widget class="QTableWidget" name="tabDrivers">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="font">
+               <font>
+                <weight>50</weight>
+                <bold>false</bold>
+               </font>
+              </property>
+              <property name="alternatingRowColors">
+               <bool>true</bool>
+              </property>
+              <property name="selectionBehavior">
+               <enum>QAbstractItemView::SelectRows</enum>
+              </property>
+              <property name="showGrid">
+               <bool>true</bool>
+              </property>
+              <property name="gridStyle">
+               <enum>Qt::SolidLine</enum>
+              </property>
+              <attribute name="verticalHeaderCascadingSectionResizes">
+               <bool>false</bool>
+              </attribute>
+              <column>
+               <property name="text">
+                <string>Código</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>Apellidos</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>Nombre</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>Móvil</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>Licencias</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>Fecha Baja</string>
+               </property>
+              </column>
+             </widget>
+            </item>
+           </layout>
           </widget>
-         </widget>
-         <widget class="QWidget" name="tab_2">
-          <attribute name="title">
-           <string>Tab 2</string>
-          </attribute>
-         </widget>
-        </widget>
-       </item>
-      </layout>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="tab_2">
+        <attribute name="title">
+         <string>Tab 2</string>
+        </attribute>
+       </widget>
+      </widget>
      </item>
     </layout>
    </widget>
@@ -1024,7 +784,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>988</width>
+     <width>1037</width>
      <height>26</height>
     </rect>
    </property>
