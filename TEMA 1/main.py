@@ -1,7 +1,7 @@
 import locale
 from datetime import datetime
-from PyQt5 import QtWidgets
-from PyQt5 import QtCore
+from PyQt6 import QtWidgets
+from PyQt6 import QtCore
 
 import Drivers
 import Conexion
@@ -68,6 +68,7 @@ class Main(QtWidgets.QMainWindow):
         zona de eventos de las cajas de texto
         '''
         Var.ui.txtDni.editingFinished.connect(Drivers.Drivers.validarDNI)
+        Var.ui.txtMovil.editingFinished.connect(Drivers.Drivers.validarMovil)
         Var.ui.txtNombre.editingFinished.connect(Eventos.Eventos.formatCajaTexto)
         Var.ui.txtApel.editingFinished.connect(Eventos.Eventos.formatCajaTexto)
         Var.ui.txtSalario.editingFinished.connect(Eventos.Eventos.formatCajaTexto)

@@ -1,3 +1,5 @@
+import re
+
 import Var
 from PyQt6 import QtWidgets, QtCore
 
@@ -90,5 +92,23 @@ class Drivers():
             Var.ui.tabDrivers.item(index, 4).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
 
             print(newDriver)
+        except Exception as error:
+            print("Error alta cliente ", error)
+
+    def validarMovil(self=None):
+        try:
+            regex = r'^\d{9}$'
+            numTelefono = Var.ui.txtMovil.text()
+
+            if not re.match(regex, numTelefono):
+                msg = QtWidgets.QMessageBox()
+                msg.setWindowTitle('Aviso')
+                msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+                msg.setText('Valor de movil incorrecto (123456789)')
+                msg.exec()
+                Var.ui.txtMovil.setText("")
+                Var.ui.txtMovil.setFocus()
+            else:
+                Var.ui.txtMovil.setText(numTelefono)
         except Exception as error:
             print("Error alta cliente ", error)
