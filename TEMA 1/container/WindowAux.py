@@ -2,8 +2,9 @@ from datetime import datetime
 from VentanaCalendario import Ui_ventanaCalendario
 from VentanaSalir import Ui_ventanaDeseaSalir
 from MainWindow import *
-import sys,Var,Eventos
-import Drivers
+import sys
+from container import Var, Drivers
+
 
 class Calendar(QtWidgets.QDialog):
     def __init__(self):

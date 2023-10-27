@@ -1,14 +1,7 @@
 import locale
-from datetime import datetime
-from PyQt6 import QtWidgets
-from PyQt6 import QtCore
 
-import Drivers
 import Conexion
-from VentanaCalendario import Ui_ventanaCalendario
-from VentanaSalir import Ui_ventanaDeseaSalir
-from MainWindow import *
-import sys, Var, Eventos
+import Eventos
 
 locale.setlocale(locale.LC_TIME, "es_ES.UTF-8")
 locale.setlocale(locale.LC_MONETARY, "es_ES.UTF-8")
@@ -64,6 +57,7 @@ class Main(QtWidgets.QMainWindow):
         zona de eventos del menubar
         '''
         Var.ui.actionBarSalir.triggered.connect(Eventos.Eventos.abrirVentanaSalir)
+        Var.ui.actionAcercaDe.triggered.connect(Eventos.Eventos.acercaDe)
         '''
         zona de eventos de las cajas de texto
         '''

@@ -1,5 +1,4 @@
-from PyQt6 import QtWidgets, QtCore
-from datetime import datetime
+from PyQt6 import QtWidgets
 
 import Var, sys, locale
 
@@ -27,8 +26,9 @@ class Eventos():
         except Exception as error:
             print("Error en abrir ventana salir: ", error)
 
-    def acerdade(self):
+    def acercaDe(self):
         try:
+            Var.acercaDe.show()
             pass
         except Exception as error:
             print("Error abrir ventana acerca de: ", error)

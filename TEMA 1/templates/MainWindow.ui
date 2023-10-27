@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>916</width>
-    <height>771</height>
+    <width>760</width>
+    <height>630</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -16,8 +16,17 @@
     <verstretch>0</verstretch>
    </sizepolicy>
   </property>
+  <property name="maximumSize">
+   <size>
+    <width>16777215</width>
+    <height>16777215</height>
+   </size>
+  </property>
   <property name="windowTitle">
    <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true"/>
   </property>
   <widget class="QWidget" name="centralwidget">
    <property name="sizePolicy">
@@ -26,11 +35,39 @@
      <verstretch>0</verstretch>
     </sizepolicy>
    </property>
-   <layout class="QVBoxLayout" name="verticalLayout_4">
+   <property name="maximumSize">
+    <size>
+     <width>1300</width>
+     <height>16777215</height>
+    </size>
+   </property>
+   <property name="layoutDirection">
+    <enum>Qt::LeftToRight</enum>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout_8">
+    <item>
+     <spacer name="horizontalSpacer_12">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>40</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout_7">
       <item>
        <widget class="QTabWidget" name="panelPrincipal">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <property name="currentIndex">
          <number>0</number>
         </property>
@@ -424,7 +461,14 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QComboBox" name="cmbProvincia"/>
+                 <widget class="QComboBox" name="cmbProvincia">
+                  <property name="minimumSize">
+                   <size>
+                    <width>120</width>
+                    <height>0</height>
+                   </size>
+                  </property>
+                 </widget>
                 </item>
                 <item>
                  <widget class="QLabel" name="lblLocalidad">
@@ -447,7 +491,14 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QComboBox" name="cmbLocalidad"/>
+                 <widget class="QComboBox" name="cmbLocalidad">
+                  <property name="minimumSize">
+                   <size>
+                    <width>120</width>
+                    <height>0</height>
+                   </size>
+                  </property>
+                 </widget>
                 </item>
                </layout>
               </widget>
@@ -935,6 +986,19 @@
       </item>
      </layout>
     </item>
+    <item>
+     <spacer name="horizontalSpacer_13">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>40</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
    </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -942,8 +1006,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>916</width>
-     <height>21</height>
+     <width>760</width>
+     <height>26</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuArchivo">
@@ -956,7 +1020,7 @@
     <property name="title">
      <string>Ayuda</string>
     </property>
-    <addaction name="actionAcerca_de"/>
+    <addaction name="actionAcercaDe"/>
    </widget>
    <addaction name="menuArchivo"/>
    <addaction name="menuAyuda"/>
@@ -988,16 +1052,16 @@
   <action name="actionBarSalir">
    <property name="icon">
     <iconset>
-     <normaloff>C:/Users/DesdeCeroDEV/.designer/img/salir.ico</normaloff>C:/Users/DesdeCeroDEV/.designer/img/salir.ico</iconset>
+     <normaloff>../img/salir.ico</normaloff>../img/salir.ico</iconset>
    </property>
    <property name="text">
     <string>Salir</string>
    </property>
   </action>
-  <action name="actionAcerca_de">
+  <action name="actionAcercaDe">
    <property name="icon">
     <iconset>
-     <normaloff>C:/Users/DesdeCeroDEV/.designer/img/acercade.png</normaloff>C:/Users/DesdeCeroDEV/.designer/img/acercade.png</iconset>
+     <normaloff>../img/acercade.png</normaloff>../img/acercade.png</iconset>
    </property>
    <property name="text">
     <string>Acerca de...</string>
@@ -1006,7 +1070,7 @@
   <action name="actionLimpiarPanel">
    <property name="icon">
     <iconset>
-     <normaloff>C:/Users/DesdeCeroDEV/.designer/img/limpiar.ico</normaloff>C:/Users/DesdeCeroDEV/.designer/img/limpiar.ico</iconset>
+     <normaloff>../img/limpiar.ico</normaloff>../img/limpiar.ico</iconset>
    </property>
    <property name="text">
     <string>limpiarPanel</string>

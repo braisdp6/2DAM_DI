@@ -1,5 +1,5 @@
-from PyQt6 import QtWidgets, QtSql, QtCore
-import Var
+from PyQt6 import QtSql
+from container import Var
 
 
 class Conexion():
