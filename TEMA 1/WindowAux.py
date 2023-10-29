@@ -3,7 +3,8 @@ from VentanaCalendario import Ui_ventanaCalendario
 from VentanaSalir import Ui_ventanaDeseaSalir
 from MainWindow import *
 import sys
-from container import Var, Drivers
+import Var
+import Drivers
 
 
 class Calendar(QtWidgets.QDialog):
@@ -16,6 +17,8 @@ class Calendar(QtWidgets.QDialog):
         ano = datetime.now().year
         Var.calendar.calendario.setSelectedDate(QtCore.QDate(ano, mes, dia))
         Var.calendar.calendario.clicked.connect(Drivers.Drivers.cargaFecha)
+
+
 class VentanaSalir(QtWidgets.QDialog):
     def __init__(self):
         super(VentanaSalir, self).__init__()
@@ -23,7 +26,6 @@ class VentanaSalir(QtWidgets.QDialog):
         Var.ventanaSalir.setupUi(self)
         Var.ventanaSalir.btnAceptar.clicked.connect(self.on_btnAceptar_clicked)
         Var.ventanaSalir.btnCancelar.clicked.connect(self.on_btnCancelar_clicked)
-
     def on_btnAceptar_clicked(self):
         # Acción para el botón Aceptar
         sys.exit()
@@ -31,3 +33,15 @@ class VentanaSalir(QtWidgets.QDialog):
     def on_btnCancelar_clicked(self):
         # Acción para el botón Cancelar
         self.hide()
+
+
+class AcecaDe(QtWidgets.QDialog):
+    def __init__(self):
+        super(AcecaDe, self).__init__()
+        Var.acercaDe = Ui_MainWindow()
+        Var.acercaDe.setupUi(self)
+        Var.acercaDe.btnAceptar.clicked.connect(self.on_btnAceptar_clicked)
+
+    def on_btnAceptar_clicked(self):
+        # Acción para el botón Aceptar
+        sys.exit()

@@ -1,0 +1,2 @@
+- Meter aqui las clases principales para separarlas de las .ui
+El problema es que no se hacer las importaciones necesarias para que el programa luego funcione correctamente.

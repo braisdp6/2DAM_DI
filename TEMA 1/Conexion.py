@@ -1,5 +1,5 @@
 from PyQt6 import QtSql
-from container import Var
+import Var
 
 
 class Conexion():

@@ -57,7 +57,7 @@ class Main(QtWidgets.QMainWindow):
         zona de eventos del menubar
         '''
         Var.ui.actionBarSalir.triggered.connect(Eventos.Eventos.abrirVentanaSalir)
-        Var.ui.actionAcercaDe.triggered.connect(Eventos.Eventos.acercaDe)
+        Var.ui.actionAcercaDe.triggered.connect(Eventos.Eventos.abrirAcercaDe)
         '''
         zona de eventos de las cajas de texto
         '''

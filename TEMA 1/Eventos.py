@@ -26,7 +26,7 @@ class Eventos():
         except Exception as error:
             print("Error en abrir ventana salir: ", error)
 
-    def acercaDe(self):
+    def abrirAcercaDe(self):
         try:
             Var.acercaDe.show()
             pass
