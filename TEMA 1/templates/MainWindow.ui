@@ -1046,7 +1046,7 @@
   <action name="actionBarSalir">
    <property name="icon">
     <iconset>
-     <normaloff>C:/Users/DesdeCeroDEV/.designer/img/salir.ico</normaloff>C:/Users/DesdeCeroDEV/.designer/img/salir.ico</iconset>
+     <normaloff>../img/salir.ico</normaloff>../img/salir.ico</iconset>
    </property>
    <property name="text">
     <string>Salir</string>
@@ -1055,7 +1055,7 @@
   <action name="actionAcercaDe">
    <property name="icon">
     <iconset>
-     <normaloff>C:/Users/DesdeCeroDEV/.designer/img/acercade.png</normaloff>C:/Users/DesdeCeroDEV/.designer/img/acercade.png</iconset>
+     <normaloff>../img/acercade.png</normaloff>../img/acercade.png</iconset>
    </property>
    <property name="text">
     <string>Acerca de...</string>
@@ -1064,7 +1064,7 @@
   <action name="actionLimpiarPanel">
    <property name="icon">
     <iconset>
-     <normaloff>C:/Users/DesdeCeroDEV/.designer/img/limpiar.ico</normaloff>C:/Users/DesdeCeroDEV/.designer/img/limpiar.ico</iconset>
+     <normaloff>../img/limpiar.ico</normaloff>../img/limpiar.ico</iconset>
    </property>
    <property name="text">
     <string>limpiarPanel</string>

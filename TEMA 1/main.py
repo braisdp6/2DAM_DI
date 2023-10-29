@@ -16,6 +16,7 @@ class Main(QtWidgets.QMainWindow):
         Var.ui.setupUi(self)  # encargado de generar la interfaz
         Var.calendar = Calendar()
         Var.ventanaSalir = VentanaSalir()
+        Var.acercaDe = AcercaDe()
         Conexion.Conexion.conexion()
         Conexion.Conexion.cargaProv()
         Conexion.Conexion.cargaLocalidad()

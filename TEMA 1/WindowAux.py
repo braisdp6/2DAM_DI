@@ -1,4 +1,6 @@
 from datetime import datetime
+
+from AcercaDe import Ui_ventanaAcercaDe
 from VentanaCalendario import Ui_ventanaCalendario
 from VentanaSalir import Ui_ventanaDeseaSalir
 from MainWindow import *
@@ -26,6 +28,7 @@ class VentanaSalir(QtWidgets.QDialog):
         Var.ventanaSalir.setupUi(self)
         Var.ventanaSalir.btnAceptar.clicked.connect(self.on_btnAceptar_clicked)
         Var.ventanaSalir.btnCancelar.clicked.connect(self.on_btnCancelar_clicked)
+
     def on_btnAceptar_clicked(self):
         # Acción para el botón Aceptar
         sys.exit()
@@ -35,13 +38,19 @@ class VentanaSalir(QtWidgets.QDialog):
         self.hide()
 
 
-class AcecaDe(QtWidgets.QDialog):
+class AcercaDe(QtWidgets.QDialog):
     def __init__(self):
-        super(AcecaDe, self).__init__()
-        Var.acercaDe = Ui_MainWindow()
+        super(AcercaDe, self).__init__()
+        dia = datetime.now().day
+        mes = datetime.now().month
+        ano = datetime.now().year
+
+        Var.acercaDe = Ui_ventanaAcercaDe()
         Var.acercaDe.setupUi(self)
         Var.acercaDe.btnAceptar.clicked.connect(self.on_btnAceptar_clicked)
+        Var.acercaDe.lblVersion.setText("Version: " + Var.version)
+        Var.acercaDe.lblFecha.setText(str(dia) + "/" + str(mes) + "/" + str(ano) + " - Brais Dominguez Puga")
 
     def on_btnAceptar_clicked(self):
         # Acción para el botón Aceptar
-        sys.exit()
+        self.hide()

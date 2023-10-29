@@ -20,6 +20,7 @@ class Ui_ventanaDeseaSalir(object):
         ventanaDeseaSalir.setSizePolicy(sizePolicy)
         ventanaDeseaSalir.setMinimumSize(QtCore.QSize(310, 116))
         ventanaDeseaSalir.setMaximumSize(QtCore.QSize(310, 116))
+        ventanaDeseaSalir.setStyleSheet("background-color: white;")
         self.verticalLayout = QtWidgets.QVBoxLayout(ventanaDeseaSalir)
         self.verticalLayout.setObjectName("verticalLayout")
         self.widget = QtWidgets.QWidget(parent=ventanaDeseaSalir)
