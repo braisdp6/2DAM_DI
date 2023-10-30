@@ -70,7 +70,7 @@ class Ui_ventanaDeseaSalir(object):
 
     def retranslateUi(self, ventanaDeseaSalir):
         _translate = QtCore.QCoreApplication.translate
-        ventanaDeseaSalir.setWindowTitle(_translate("ventanaDeseaSalir", "Dialog"))
+        ventanaDeseaSalir.setWindowTitle(_translate("ventanaDeseaSalir", "Ventana Salir"))
         self.lblDeseaSalir.setText(_translate("ventanaDeseaSalir", "¿Desea Salir?"))
         self.btnAceptar.setText(_translate("ventanaDeseaSalir", "Aceptar"))
         self.btnCancelar.setText(_translate("ventanaDeseaSalir", "Cancelar"))

@@ -141,7 +141,7 @@ class Ui_ventanaAcercaDe(object):
 
     def retranslateUi(self, ventanaAcercaDe):
         _translate = QtCore.QCoreApplication.translate
-        ventanaAcercaDe.setWindowTitle(_translate("ventanaAcercaDe", "Dialog"))
+        ventanaAcercaDe.setWindowTitle(_translate("ventanaAcercaDe", "Acerca de..."))
         self.lblCt.setText(_translate("ventanaAcercaDe", "CT"))
         self.lblCarTeis.setText(_translate("ventanaAcercaDe", "CAR TEIS"))
         self.lblVersion.setText(_translate("ventanaAcercaDe", "Version: "))

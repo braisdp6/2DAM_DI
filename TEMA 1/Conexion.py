@@ -3,7 +3,7 @@ import Var
 
 
 class Conexion():
-    def conexion(self = None):
+    def conexion(self=None):
         db = QtSql.QSqlDatabase.addDatabase("QSQLITE")
         db.setDatabaseName("bbdd.sqlite")
         if not db.open():
@@ -21,20 +21,32 @@ class Conexion():
             if query.exec():
                 Var.ui.cmbProvincia.addItem("")
                 while query.next():
-                    #print(str(query.value(0)))
+                    # print(str(query.value(0)))
                     Var.ui.cmbProvincia.addItem(query.value(0))
         except Exception as error:
             print("Error en la carga del combo prov: ", error)
 
-    def cargaLocalidad(self=None):
+    def selMuni(self=None):
         try:
             Var.ui.cmbLocalidad.clear()
+            id = 0
+            prov = Var.ui.cmbProvincia.currentText()
             query = QtSql.QSqlQuery()
-            query.prepare("select municipio from municipios")
+            query.prepare("select idprov from provincias where provincia = :prov")
+            query.bindValue(":prov", prov)
             if query.exec():
-                Var.ui.cmbLocalidad.addItem("")
                 while query.next():
-                    #print(str(query.value(0)))
-                    Var.ui.cmbLocalidad.addItem(query.value(0))
+                    id = query.value(0)
+
+            query1 = QtSql.QSqlQuery()
+            query1.prepare("select municipio from municipios where idprov = :id")
+            query1.bindValue(":id", int(id))
+            if query1.exec():
+                Var.ui.cmbLocalidad.addItem("")
+                while query1.next():
+                    Var.ui.cmbLocalidad.addItem(query1.value(0))
+
+
         except Exception as error:
-            print("Error en la carga del combo prov: ", error)
+            print("Error en la seleccion de municipios: ", error)
+

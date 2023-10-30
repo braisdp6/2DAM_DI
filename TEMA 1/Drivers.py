@@ -1,5 +1,6 @@
 import re
 
+import Conexion
 import Var
 from PyQt6 import QtWidgets, QtCore
 
@@ -67,19 +68,23 @@ class Drivers():
 
     def altaDriver(self):
         try:
-            driver = [Var.ui.txtApel, Var.ui.txtNombre, Var.ui.txtMovil]
+            driver = [Var.ui.txtDni, Var.ui.txtFechaAlta, Var.ui.txtApel, Var.ui.txtNombre, Var.ui.txtDireccion, Var.ui.txtMovil, Var.ui.txtSalario]
             newDriver = []
-            newDriver.append(1)
             for i in driver:
                 newDriver.append(i.text().title())
-
+            prov = Var.ui.cmbProvincia.currentText()
+            newDriver.insert(5, prov)
+            muni = Var.ui.cmbLocalidad.currentText()
+            newDriver.insert(6, muni)
             licencias = []
             chkLicencia = [Var.ui.chkA, Var.ui.chkB, Var.ui.chkC, Var.ui.chkD]
             for i in chkLicencia:
                 if i.isChecked():
                     licencias.append(i.text())
             newDriver.append("-".join(licencias))
-
+            print(newDriver)
+            #Conexion.Conexion.guardarClick(newDriver)
+            '''
             index = 0
             Var.ui.tabDrivers.setRowCount(index + 1)
             Var.ui.tabDrivers.setItem(index, 0, QtWidgets.QTableWidgetItem(str(newDriver[0])))
@@ -90,8 +95,7 @@ class Drivers():
             Var.ui.tabDrivers.item(index, 0).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
             Var.ui.tabDrivers.item(index, 3).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
             Var.ui.tabDrivers.item(index, 4).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-
-            print(newDriver)
+            '''
         except Exception as error:
             print("Error alta cliente ", error)
 

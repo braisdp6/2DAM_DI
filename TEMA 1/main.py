@@ -19,7 +19,6 @@ class Main(QtWidgets.QMainWindow):
         Var.acercaDe = AcercaDe()
         Conexion.Conexion.conexion()
         Conexion.Conexion.cargaProv()
-        Conexion.Conexion.cargaLocalidad()
 
         '''
         ejecucion de diferentes al ejecutar la aplicacion
@@ -49,16 +48,24 @@ class Main(QtWidgets.QMainWindow):
         zona de eventos de tablas
         '''
         Eventos.Eventos.resizeTabDrivers(self)
+
+        '''
+        zona de eventos de comboBox
+        '''
+        Var.ui.cmbProvincia.currentIndexChanged.connect(Conexion.Conexion.selMuni)
+
         '''
         zona de eventos de botones
         '''
         Var.ui.btnCalendar.clicked.connect(Eventos.Eventos.abrirCalendar)
         Var.ui.btnAltaDriver.clicked.connect(Drivers.Drivers.altaDriver)
+
         '''
         zona de eventos del menubar
         '''
         Var.ui.actionBarSalir.triggered.connect(Eventos.Eventos.abrirVentanaSalir)
         Var.ui.actionAcercaDe.triggered.connect(Eventos.Eventos.abrirAcercaDe)
+
         '''
         zona de eventos de las cajas de texto
         '''
@@ -67,6 +74,7 @@ class Main(QtWidgets.QMainWindow):
         Var.ui.txtNombre.editingFinished.connect(Eventos.Eventos.formatCajaTexto)
         Var.ui.txtApel.editingFinished.connect(Eventos.Eventos.formatCajaTexto)
         Var.ui.txtSalario.editingFinished.connect(Eventos.Eventos.formatCajaTexto)
+
         '''
         zona de eventos del toolbar
         '''
