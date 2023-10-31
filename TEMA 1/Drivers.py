@@ -68,7 +68,8 @@ class Drivers():
 
     def altaDriver(self):
         try:
-            driver = [Var.ui.txtDni, Var.ui.txtFechaAlta, Var.ui.txtApel, Var.ui.txtNombre, Var.ui.txtDireccion, Var.ui.txtMovil, Var.ui.txtSalario]
+            driver = [Var.ui.txtDni.text(), Var.ui.txtFechaAlta.text(), Var.ui.txtApel.text(), Var.ui.txtNombre.text(), Var.ui.txtDireccion.text(), Var.ui.cmbProvincia.currentText(), Var.ui.cmbLocalidad.currentText(), Var.ui.txtMovil.text(), Var.ui.txtSalario.text()]
+            '''
             newDriver = []
             for i in driver:
                 newDriver.append(i.text().title())
@@ -76,14 +77,15 @@ class Drivers():
             newDriver.insert(5, prov)
             muni = Var.ui.cmbLocalidad.currentText()
             newDriver.insert(6, muni)
+            '''
             licencias = []
             chkLicencia = [Var.ui.chkA, Var.ui.chkB, Var.ui.chkC, Var.ui.chkD]
             for i in chkLicencia:
                 if i.isChecked():
                     licencias.append(i.text())
-            newDriver.append("-".join(licencias))
-            print(newDriver)
-            #Conexion.Conexion.guardarClick(newDriver)
+            driver.append("-".join(licencias))
+            print(driver)
+            Conexion.Conexion.guardarDri(driver)
             '''
             index = 0
             Var.ui.tabDrivers.setRowCount(index + 1)

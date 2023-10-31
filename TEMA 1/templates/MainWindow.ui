@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>871</width>
-    <height>681</height>
+    <width>876</width>
+    <height>689</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -31,6 +31,12 @@
      <layout class="QHBoxLayout" name="horizontalLayout_7">
       <item>
        <widget class="QTabWidget" name="panelPrincipal">
+        <property name="maximumSize">
+         <size>
+          <width>822</width>
+          <height>16777215</height>
+         </size>
+        </property>
         <property name="currentIndex">
          <number>0</number>
         </property>
@@ -67,18 +73,12 @@
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_2">
              <item>
-              <widget class="QFrame" name="frame">
+              <widget class="QWidget" name="widget" native="true">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
                  <horstretch>0</horstretch>
                  <verstretch>0</verstretch>
                 </sizepolicy>
-               </property>
-               <property name="frameShape">
-                <enum>QFrame::StyledPanel</enum>
-               </property>
-               <property name="frameShadow">
-                <enum>QFrame::Raised</enum>
                </property>
                <layout class="QHBoxLayout" name="horizontalLayout">
                 <item>
@@ -258,18 +258,12 @@
               </widget>
              </item>
              <item>
-              <widget class="QFrame" name="frame_2">
+              <widget class="QWidget" name="widget_2" native="true">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
                  <horstretch>0</horstretch>
                  <verstretch>0</verstretch>
                 </sizepolicy>
-               </property>
-               <property name="frameShape">
-                <enum>QFrame::StyledPanel</enum>
-               </property>
-               <property name="frameShadow">
-                <enum>QFrame::Raised</enum>
                </property>
                <layout class="QHBoxLayout" name="horizontalLayout_2">
                 <item>
@@ -346,18 +340,12 @@
               </widget>
              </item>
              <item>
-              <widget class="QFrame" name="frame_3">
+              <widget class="QWidget" name="widget_3" native="true">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
                  <horstretch>0</horstretch>
                  <verstretch>0</verstretch>
                 </sizepolicy>
-               </property>
-               <property name="frameShape">
-                <enum>QFrame::StyledPanel</enum>
-               </property>
-               <property name="frameShadow">
-                <enum>QFrame::Raised</enum>
                </property>
                <layout class="QHBoxLayout" name="horizontalLayout_3">
                 <item>
@@ -424,7 +412,20 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QComboBox" name="cmbProvincia"/>
+                 <widget class="QComboBox" name="cmbProvincia">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="minimumSize">
+                   <size>
+                    <width>100</width>
+                    <height>0</height>
+                   </size>
+                  </property>
+                 </widget>
                 </item>
                 <item>
                  <widget class="QLabel" name="lblLocalidad">
@@ -447,32 +448,39 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QComboBox" name="cmbLocalidad"/>
+                 <widget class="QComboBox" name="cmbLocalidad">
+                  <property name="minimumSize">
+                   <size>
+                    <width>120</width>
+                    <height>0</height>
+                   </size>
+                  </property>
+                 </widget>
                 </item>
                </layout>
               </widget>
              </item>
              <item>
-              <widget class="QFrame" name="frame_4">
+              <widget class="QWidget" name="widget_4" native="true">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
                  <horstretch>0</horstretch>
                  <verstretch>0</verstretch>
                 </sizepolicy>
                </property>
-               <property name="frameShape">
-                <enum>QFrame::StyledPanel</enum>
-               </property>
-               <property name="frameShadow">
-                <enum>QFrame::Raised</enum>
-               </property>
                <layout class="QHBoxLayout" name="horizontalLayout_4">
                 <item>
                  <widget class="QLabel" name="lblMovil">
                   <property name="minimumSize">
                    <size>
-                    <width>60</width>
+                    <width>40</width>
                     <height>20</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>40</width>
+                    <height>16777215</height>
                    </size>
                   </property>
                   <property name="font">
@@ -520,13 +528,13 @@
                  <widget class="QLabel" name="lblSalario">
                   <property name="minimumSize">
                    <size>
-                    <width>60</width>
+                    <width>40</width>
                     <height>20</height>
                    </size>
                   </property>
                   <property name="maximumSize">
                    <size>
-                    <width>16777215</width>
+                    <width>40</width>
                     <height>16777215</height>
                    </size>
                   </property>
@@ -640,18 +648,12 @@
               </widget>
              </item>
              <item>
-              <widget class="QFrame" name="frame_5">
+              <widget class="QWidget" name="widget_5" native="true">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
                  <horstretch>0</horstretch>
                  <verstretch>0</verstretch>
                 </sizepolicy>
-               </property>
-               <property name="frameShape">
-                <enum>QFrame::StyledPanel</enum>
-               </property>
-               <property name="frameShadow">
-                <enum>QFrame::Raised</enum>
                </property>
                <layout class="QHBoxLayout" name="horizontalLayout_5">
                 <item>
@@ -746,18 +748,12 @@
               </widget>
              </item>
              <item>
-              <widget class="QFrame" name="frame_6">
+              <widget class="QWidget" name="widget_6" native="true">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
                  <horstretch>0</horstretch>
                  <verstretch>0</verstretch>
                 </sizepolicy>
-               </property>
-               <property name="frameShape">
-                <enum>QFrame::StyledPanel</enum>
-               </property>
-               <property name="frameShadow">
-                <enum>QFrame::Raised</enum>
                </property>
                <layout class="QHBoxLayout" name="horizontalLayout_6">
                 <item>
@@ -846,18 +842,12 @@
            </widget>
           </item>
           <item>
-           <widget class="QFrame" name="frameMostrarDatos">
+           <widget class="QWidget" name="widgetMostrarDatos" native="true">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
-            </property>
-            <property name="frameShape">
-             <enum>QFrame::StyledPanel</enum>
-            </property>
-            <property name="frameShadow">
-             <enum>QFrame::Plain</enum>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_3">
              <item>
@@ -942,7 +932,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>871</width>
+     <width>876</width>
      <height>21</height>
     </rect>
    </property>
@@ -1013,6 +1003,30 @@
    </property>
   </action>
  </widget>
+ <tabstops>
+  <tabstop>panelPrincipal</tabstop>
+  <tabstop>txtDni</tabstop>
+  <tabstop>txtFechaAlta</tabstop>
+  <tabstop>btnCalendar</tabstop>
+  <tabstop>txtApel</tabstop>
+  <tabstop>txtNombre</tabstop>
+  <tabstop>txtDireccion</tabstop>
+  <tabstop>cmbProvincia</tabstop>
+  <tabstop>cmbLocalidad</tabstop>
+  <tabstop>txtMovil</tabstop>
+  <tabstop>txtSalario</tabstop>
+  <tabstop>chkA</tabstop>
+  <tabstop>chkB</tabstop>
+  <tabstop>chkC</tabstop>
+  <tabstop>chkD</tabstop>
+  <tabstop>btnAltaDriver</tabstop>
+  <tabstop>btnModificarDriver</tabstop>
+  <tabstop>btnBajaDriver</tabstop>
+  <tabstop>rbtTodos</tabstop>
+  <tabstop>rbtAlta</tabstop>
+  <tabstop>rbtBaja</tabstop>
+  <tabstop>tabDrivers</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
