@@ -19,6 +19,7 @@ class Main(QtWidgets.QMainWindow):
         Var.acercaDe = AcercaDe()
         Conexion.Conexion.conexion()
         Conexion.Conexion.cargaProv()
+        Conexion.Conexion.mostrarDrivers()
 
         '''
         ejecucion de diferentes al ejecutar la aplicacion

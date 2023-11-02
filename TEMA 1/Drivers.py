@@ -2,7 +2,7 @@ import re
 
 import Conexion
 import Var
-from PyQt6 import QtWidgets, QtCore
+from PyQt6 import QtWidgets, QtCore, QtSql
 
 
 class Drivers():
@@ -69,15 +69,6 @@ class Drivers():
     def altaDriver(self):
         try:
             driver = [Var.ui.txtDni.text(), Var.ui.txtFechaAlta.text(), Var.ui.txtApel.text(), Var.ui.txtNombre.text(), Var.ui.txtDireccion.text(), Var.ui.cmbProvincia.currentText(), Var.ui.cmbLocalidad.currentText(), Var.ui.txtMovil.text(), Var.ui.txtSalario.text()]
-            '''
-            newDriver = []
-            for i in driver:
-                newDriver.append(i.text().title())
-            prov = Var.ui.cmbProvincia.currentText()
-            newDriver.insert(5, prov)
-            muni = Var.ui.cmbLocalidad.currentText()
-            newDriver.insert(6, muni)
-            '''
             licencias = []
             chkLicencia = [Var.ui.chkA, Var.ui.chkB, Var.ui.chkC, Var.ui.chkD]
             for i in chkLicencia:
@@ -86,18 +77,6 @@ class Drivers():
             driver.append("-".join(licencias))
             print(driver)
             Conexion.Conexion.guardarDri(driver)
-            '''
-            index = 0
-            Var.ui.tabDrivers.setRowCount(index + 1)
-            Var.ui.tabDrivers.setItem(index, 0, QtWidgets.QTableWidgetItem(str(newDriver[0])))
-            Var.ui.tabDrivers.setItem(index, 1, QtWidgets.QTableWidgetItem(str(newDriver[1])))
-            Var.ui.tabDrivers.setItem(index, 2, QtWidgets.QTableWidgetItem(str(newDriver[2])))
-            Var.ui.tabDrivers.setItem(index, 3, QtWidgets.QTableWidgetItem(str(newDriver[3])))
-            Var.ui.tabDrivers.setItem(index, 4, QtWidgets.QTableWidgetItem(str(newDriver[4])))
-            Var.ui.tabDrivers.item(index, 0).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-            Var.ui.tabDrivers.item(index, 3).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-            Var.ui.tabDrivers.item(index, 4).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-            '''
         except Exception as error:
             print("Error alta cliente ", error)
 
@@ -118,3 +97,22 @@ class Drivers():
                 Var.ui.txtMovil.setText(numTelefono)
         except Exception as error:
             print("Error alta cliente ", error)
+
+
+
+    def cargarTablaDri(registros):
+        try:
+            index = 0
+            for registro in registros:
+                Var.ui.tabDrivers.setRowCount(index + 1)
+                Var.ui.tabDrivers.setItem(index, 0, QtWidgets.QTableWidgetItem(str(registro[0])))
+                Var.ui.tabDrivers.setItem(index, 1, QtWidgets.QTableWidgetItem(str(registro[1])))
+                Var.ui.tabDrivers.setItem(index, 2, QtWidgets.QTableWidgetItem(str(registro[2])))
+                Var.ui.tabDrivers.setItem(index, 3, QtWidgets.QTableWidgetItem(str(registro[3])))
+                Var.ui.tabDrivers.setItem(index, 4, QtWidgets.QTableWidgetItem(str(registro[4])))
+                Var.ui.tabDrivers.item(index, 0).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+                Var.ui.tabDrivers.item(index, 3).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+                Var.ui.tabDrivers.item(index, 4).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+                index += 1
+        except Exception as error:
+            print("Error carga tabla drivers: ", error)
