@@ -1,6 +1,7 @@
 import locale
 
 import Conexion
+import Drivers
 import Eventos
 
 locale.setlocale(locale.LC_TIME, "es_ES.UTF-8")
@@ -49,6 +50,7 @@ class Main(QtWidgets.QMainWindow):
         zona de eventos de tablas
         '''
         Eventos.Eventos.resizeTabDrivers(self)
+        Var.ui.tabDrivers.clicked.connect(Drivers.Drivers.cargaDriver)
 
         '''
         zona de eventos de comboBox
@@ -81,6 +83,7 @@ class Main(QtWidgets.QMainWindow):
         '''
         Var.ui.actionBarSalir.triggered.connect(Eventos.Eventos.abrirVentanaSalir)
         Var.ui.actionLimpiarPanel.triggered.connect(Drivers.Drivers.limpiarPanel)
+
 
     def closeEvent(self, event):
         mbox = QtWidgets.QMessageBox.information(self, "Salir", "¿Estás seguro de que quieres salir?",

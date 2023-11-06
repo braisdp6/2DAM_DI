@@ -106,3 +106,17 @@ class Conexion():
             print(registros)
         except Exception as error:
             print("Error mostrar drivers: ", error)
+
+    def oneDriver(codigo):
+        try:
+            registro = []
+            query = QtSql.QSqlQuery()
+            query.prepare("SELECT * FROM drivers WHERE codigo = :codigo")
+            query.bindValue(":codigo", int(codigo))
+            if query.exec():
+                while query.next():
+                    for i in range(12):
+                        registro.append(str(query.value(i)))
+            return registro
+        except Exception as error:
+            print("Error en fichero conexion datos de 1 driver: ", error)

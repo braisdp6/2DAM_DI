@@ -68,7 +68,9 @@ class Drivers():
 
     def altaDriver(self):
         try:
-            driver = [Var.ui.txtDni.text(), Var.ui.txtFechaAlta.text(), Var.ui.txtApel.text(), Var.ui.txtNombre.text(), Var.ui.txtDireccion.text(), Var.ui.cmbProvincia.currentText(), Var.ui.cmbLocalidad.currentText(), Var.ui.txtMovil.text(), Var.ui.txtSalario.text()]
+            driver = [Var.ui.txtDni.text(), Var.ui.txtFechaAlta.text(), Var.ui.txtApel.text(), Var.ui.txtNombre.text(),
+                      Var.ui.txtDireccion.text(), Var.ui.cmbProvincia.currentText(), Var.ui.cmbLocalidad.currentText(),
+                      Var.ui.txtMovil.text(), Var.ui.txtSalario.text()]
             licencias = []
             chkLicencia = [Var.ui.chkA, Var.ui.chkB, Var.ui.chkC, Var.ui.chkD]
             for i in chkLicencia:
@@ -98,8 +100,6 @@ class Drivers():
         except Exception as error:
             print("Error alta cliente ", error)
 
-
-
     def cargarTablaDri(registros):
         try:
             index = 0
@@ -116,3 +116,25 @@ class Drivers():
                 index += 1
         except Exception as error:
             print("Error carga tabla drivers: ", error)
+
+    def cargaDriver(self):
+        try:
+            Drivers.limpiarPanel(self)
+            row = Var.ui.tabDrivers.selectedItems()
+            fila = [dato.text() for dato in row]
+            registro = Conexion.Conexion.oneDriver(fila[0])
+            datos = [Var.ui.lblCodbd, Var.ui.ape, Var.ui.txtFechaAlta, Var.ui.txtApel, Var.ui.txtDireccion,
+                     Var.ui.cmbProvincia, Var.ui.cmbLocalidad, Var.ui.txtMovil, Var.ui.txtSalario]
+
+            j = 0
+            for i in datos:
+                i.setText(str(registro[j]))
+                j = j + 1
+                # if j == 5:
+                #     i.setCurrentText(registro[j])
+                # if j == 6:
+                #     i.setCurrentText(registro[j])
+
+            print(fila)
+        except Exception as error:
+            print("Error cargar datos de un cliente marcando en la tabla: ", error)
