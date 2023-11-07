@@ -86,7 +86,7 @@ class Conexion():
                     mbox = QtWidgets.QMessageBox()
                     mbox.setWindowTitle("Aviso")
                     mbox.setIcon(QtWidgets.QMessageBox.Icon.Warning)
-                    mbox.setText(query.lastError().text())
+                    mbox.setText("Asegúrese que el NIF no exista en la base de datos.")
                     mbox.exec()
             # select datos de conductores de la base de datos
             Conexion.mostrarDrivers()
@@ -120,3 +120,18 @@ class Conexion():
             return registro
         except Exception as error:
             print("Error en fichero conexion datos de 1 driver: ", error)
+
+    def codDri(dni):
+        try:
+            query = QtSql.QSqlQuery()
+            query.prepare("SELECT codigo FROM drivers WHERE dnidri =:dnidri")
+            query.bindValue(":dnidri", str(dni))
+            if query.exec():
+                while query.next():
+                    codigo = query.value(0)
+            registro = Conexion.oneDriver(codigo)
+            return registro
+
+        except Exception as error:
+            print("Error en busca de codigo de un conductor: ", error)
+

@@ -10,7 +10,7 @@ class Drivers():
     def limpiarPanel(self):
         try:
             listaWidgets = [Var.ui.txtDni, Var.ui.txtFechaAlta, Var.ui.txtApel, Var.ui.txtNombre, Var.ui.txtDireccion,
-                            Var.ui.txtMovil, Var.ui.txtSalario, Var.ui.lblValidarDni]
+                            Var.ui.txtMovil, Var.ui.txtSalario, Var.ui.lblValidarDni, Var.ui.lblCodbd]
             for i in listaWidgets:
                 i.setText(None)
 
@@ -123,18 +123,51 @@ class Drivers():
             row = Var.ui.tabDrivers.selectedItems()
             fila = [dato.text() for dato in row]
             registro = Conexion.Conexion.oneDriver(fila[0])
-            datos = [Var.ui.lblCodbd, Var.ui.ape, Var.ui.txtFechaAlta, Var.ui.txtApel, Var.ui.txtDireccion,
-                     Var.ui.cmbProvincia, Var.ui.cmbLocalidad, Var.ui.txtMovil, Var.ui.txtSalario]
+            datos = [Var.ui.lblCodbd, Var.ui.txtDni, Var.ui.txtFechaAlta, Var.ui.txtApel, Var.ui.txtNombre,
+                     Var.ui.txtDireccion, Var.ui.cmbProvincia, Var.ui.cmbLocalidad, Var.ui.txtMovil, Var.ui.txtSalario]
 
-            j = 0
-            for i in datos:
-                i.setText(str(registro[j]))
-                j = j + 1
-                # if j == 5:
-                #     i.setCurrentText(registro[j])
-                # if j == 6:
-                #     i.setCurrentText(registro[j])
-
+            for i, dato in enumerate(datos): # i es la posicion y dato es el contenido de datos
+                if i == 6 or i == 7:
+                    dato.setCurrentText(str(registro[i]))
+                else:
+                    dato.setText(str(registro[i]))
+            if "A" in registro[10]:
+                Var.ui.chkA.setChecked(True)
+            if "B" in registro[10]:
+                Var.ui.chkB.setChecked(True)
+            if "C" in registro[10]:
+                Var.ui.chkC.setChecked(True)
+            if "D" in registro[10]:
+                Var.ui.chkD.setChecked(True)
             print(fila)
         except Exception as error:
             print("Error cargar datos de un cliente marcando en la tabla: ", error)
+
+    def buscarDni(self):
+        try:
+            dni = Var.ui.txtDni.text()
+            registro = Conexion.Conexion.codDri(dni)
+            Drivers.cargarDatos(registro)
+        except Exception as error:
+            print("Error al buscar por DNI: ", error)
+
+    def cargarDatos(registro):
+        try:
+            datos = [Var.ui.lblCodbd, Var.ui.txtDni, Var.ui.txtFechaAlta, Var.ui.txtApel, Var.ui.txtNombre,
+                     Var.ui.txtDireccion, Var.ui.cmbProvincia, Var.ui.cmbLocalidad, Var.ui.txtMovil, Var.ui.txtSalario]
+
+            for i, dato in enumerate(datos): # i es la posicion y dato es el contenido de datos
+                if i == 6 or i == 7:
+                    dato.setCurrentText(str(registro[i]))
+                else:
+                    dato.setText(str(registro[i]))
+            if "A" in registro[10]:
+                Var.ui.chkA.setChecked(True)
+            if "B" in registro[10]:
+                Var.ui.chkB.setChecked(True)
+            if "C" in registro[10]:
+                Var.ui.chkC.setChecked(True)
+            if "D" in registro[10]:
+                Var.ui.chkD.setChecked(True)
+        except Exception as error:
+            print("Error al cargar datos: ", error)
