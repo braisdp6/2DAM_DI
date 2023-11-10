@@ -997,9 +997,9 @@ background-color:rgb(100,100,100);
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
-   <addaction name="actionBarSalir"/>
-   <addaction name="separator"/>
    <addaction name="actionLimpiarPanel"/>
+   <addaction name="separator"/>
+   <addaction name="actionBarSalir"/>
   </widget>
   <action name="actionBarSalir">
    <property name="icon">

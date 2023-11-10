@@ -129,9 +129,14 @@ class Conexion():
             if query.exec():
                 while query.next():
                     codigo = query.value(0)
-            registro = Conexion.oneDriver(codigo)
-            return registro
+                    registro = Conexion.oneDriver(codigo)
+                    return registro
 
+                mbox = QtWidgets.QMessageBox()
+                mbox.setWindowTitle("Aviso")
+                mbox.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+                mbox.setText("El conductor no existe.")
+                mbox.exec()
         except Exception as error:
             print("Error en busca de codigo de un conductor: ", error)
 

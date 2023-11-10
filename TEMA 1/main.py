@@ -1,7 +1,6 @@
 import locale
 
 import Conexion
-import Drivers
 import Eventos
 
 locale.setlocale(locale.LC_TIME, "es_ES.UTF-8")
@@ -51,6 +50,7 @@ class Main(QtWidgets.QMainWindow):
         '''
         Eventos.Eventos.resizeTabDrivers(self)
         Var.ui.tabDrivers.clicked.connect(Drivers.Drivers.cargaDriver)
+        Var.ui.tabDrivers.clicked.connect(Drivers.Drivers.buscarDriverTabla)# TODO: NO FUNCIONA
 
         '''
         zona de eventos de comboBox

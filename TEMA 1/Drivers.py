@@ -1,8 +1,9 @@
 import re
 
+from PyQt6 import QtWidgets, QtCore
+
 import Conexion
 import Var
-from PyQt6 import QtWidgets, QtCore, QtSql
 
 
 class Drivers():
@@ -117,16 +118,17 @@ class Drivers():
         except Exception as error:
             print("Error carga tabla drivers: ", error)
 
+    # Metodo para cargar driver cuando se haga click en el "tabDriver"
     def cargaDriver(self):
         try:
             Drivers.limpiarPanel(self)
-            row = Var.ui.tabDrivers.selectedItems()
+            row = Var.ui.tabDrivers.selectedItems()  # Recoge la fila donde se haga click
             fila = [dato.text() for dato in row]
             registro = Conexion.Conexion.oneDriver(fila[0])
             datos = [Var.ui.lblCodbd, Var.ui.txtDni, Var.ui.txtFechaAlta, Var.ui.txtApel, Var.ui.txtNombre,
                      Var.ui.txtDireccion, Var.ui.cmbProvincia, Var.ui.cmbLocalidad, Var.ui.txtMovil, Var.ui.txtSalario]
 
-            for i, dato in enumerate(datos): # i es la posicion y dato es el contenido de datos
+            for i, dato in enumerate(datos):  # i es la posicion y dato es el contenido de datos
                 if i == 6 or i == 7:
                     dato.setCurrentText(str(registro[i]))
                 else:
@@ -156,7 +158,7 @@ class Drivers():
             datos = [Var.ui.lblCodbd, Var.ui.txtDni, Var.ui.txtFechaAlta, Var.ui.txtApel, Var.ui.txtNombre,
                      Var.ui.txtDireccion, Var.ui.cmbProvincia, Var.ui.cmbLocalidad, Var.ui.txtMovil, Var.ui.txtSalario]
 
-            for i, dato in enumerate(datos): # i es la posicion y dato es el contenido de datos
+            for i, dato in enumerate(datos):  # i es la posicion y dato es el contenido de datos
                 if i == 6 or i == 7:
                     dato.setCurrentText(str(registro[i]))
                 else:
@@ -171,3 +173,18 @@ class Drivers():
                 Var.ui.chkD.setChecked(True)
         except Exception as error:
             print("Error al cargar datos: ", error)
+
+
+    # metodo para que te haga focus en la tabla que busques
+    # TODO: NO FUNCIONA
+    def buscarDriverTabla(codigo):
+        try:
+            tabla = Var.ui.tabDrivers
+            for fila in range(tabla.rowCount()):
+                item = tabla.item(fila, 0)
+                valorCelda = item.text()
+                if valorCelda == str(codigo):
+                    tabla.selectRow(fila)
+                    tabla.scrollToItem(item)
+        except Exception as error:
+            print('No se ha podido seleccionar al driver en la tabla', error)
