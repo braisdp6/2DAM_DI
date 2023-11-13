@@ -92,7 +92,7 @@ class Conexion():
             Conexion.mostrarDrivers()
         except Exception as error:
             print("Error en alta conductor: ", error)
-
+    # Metodo para mostrar los Drivers en la tabla
     def mostrarDrivers(self = None):
         try:
             registros = []
@@ -140,3 +140,34 @@ class Conexion():
         except Exception as error:
             print("Error en busca de codigo de un conductor: ", error)
 
+    def modifDriver(modifDriver):
+        try:
+            query = QtSql.QSqlQuery()
+            query.prepare("UPDATE drivers SET dnidri = :dni, altadri= :alta, apeldri = :apel, nombredri = :nombre, direcciondri = :direccion, provdri = :provincia, munidri = :municipio, movildri = :movil, salariodri = :salario, carnetdri = :carnet where codigo = :codigo")
+
+            query.bindValue(":codigo", int(modifDriver[0]))
+            query.bindValue(":dni", str(modifDriver[1]))
+            query.bindValue(":alta", str(modifDriver[2]))
+            query.bindValue(":apel", str(modifDriver[3]))
+            query.bindValue(":nombre", str(modifDriver[4]))
+            query.bindValue(":direccion", str(modifDriver[5]))
+            query.bindValue(":prov", str(modifDriver[6]))
+            query.bindValue(":muni", str(modifDriver[7]))
+            query.bindValue(":movil", str(modifDriver[8]))
+            query.bindValue(":salario", str(modifDriver[9]))
+            query.bindValue(":carnet", str(modifDriver[10]))
+
+            if query.exec():
+                msg = QtWidgets.QMessageBox()
+                msg.setWindowTitle("Aviso")
+                msg.setIcon(QtWidgets.QMessageBox.Icon.Information)
+                msg.setText("Datos Conductor Modificados")
+                msg.exec()
+            else:
+                msg = QtWidgets.QMessageBox()
+                msg.setWindowTitle("Aviso")
+                msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+                msg.setText(query.lastError().text())
+                msg.exec()
+        except Exception as error:
+            print("Error en metodo modifDriver: ", error)

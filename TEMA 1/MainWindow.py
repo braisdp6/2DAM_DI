@@ -465,9 +465,9 @@ class Ui_MainWindow(object):
         self.menuAyuda.addAction(self.actionAcercaDe)
         self.menubar.addAction(self.menuArchivo.menuAction())
         self.menubar.addAction(self.menuAyuda.menuAction())
-        self.toolBar.addAction(self.actionBarSalir)
-        self.toolBar.addSeparator()
         self.toolBar.addAction(self.actionLimpiarPanel)
+        self.toolBar.addSeparator()
+        self.toolBar.addAction(self.actionBarSalir)
 
         self.retranslateUi(MainWindow)
         self.panelPrincipal.setCurrentIndex(0)
