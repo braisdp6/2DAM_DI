@@ -1,4 +1,5 @@
 import re
+from idlelib import query
 
 from PyQt6 import QtWidgets, QtCore, QtGui
 
@@ -124,7 +125,7 @@ class Drivers():
     def cargaDriver(self):
         try:
             Drivers.limpiarPanel(self)
-            row = Var.ui.tabDrivers.selectedItems()  # Recoge la fila donde se haga click
+            row = Var.ui.tabDrivers.selectedItems() # Recoge la fila donde se haga click
             fila = [dato.text() for dato in row]
             registro = Conexion.Conexion.oneDriver(fila[0])
             datos = [Var.ui.lblCodbd, Var.ui.txtDni, Var.ui.txtFechaAlta, Var.ui.txtApel, Var.ui.txtNombre,
@@ -135,6 +136,7 @@ class Drivers():
                     dato.setCurrentText(str(registro[i]))
                 else:
                     dato.setText(str(registro[i]))
+
             if "A" in registro[10]:
                 Var.ui.chkA.setChecked(True)
             if "B" in registro[10]:
@@ -147,7 +149,7 @@ class Drivers():
         except Exception as error:
             print("Error cargar datos de un cliente marcando en la tabla: ", error)
 
-    def buscarDni(self):
+    def buscarDni(self):# TODO: buscar utilidad
         try:
             dni = Var.ui.txtDni.text()
             registro = Conexion.Conexion.codDri(dni)
@@ -177,14 +179,13 @@ class Drivers():
             print("Error al cargar datos: ", error)
 
     # metodo para que te haga focus en la tabla que busques
-    # TODO: NO FUNCIONA
     def buscarDriverTabla(self):
         try:
             dni = Var.ui.txtDni.text()
             registro = Conexion.Conexion.codDri(dni)
             Drivers.cargarDatos(registro)
             registros = Conexion.Conexion.mostrarDrivers()
-            Drivers.cargarTablaDri(registros)
+            # Drivers.cargarTablaDri(registros)
             codigo = Var.ui.lblCodbd.text()
             for fila in range(Var.ui.tabDrivers.rowCount()):
                 if Var.ui.tabDrivers.item(fila, 0).text() == str(codigo):
@@ -223,12 +224,26 @@ class Drivers():
             modifDriver.insert(7, muni)
             licencias = []
             chkLicencia = [Var.ui.chkA, Var.ui.chkB, Var.ui.chkC, Var.ui.chkD]
+
             for i in chkLicencia:
                 if i.isChecked():
                     licencias.append(i.text())
+
             modifDriver.append("-".join(licencias))
             Conexion.Conexion.modifDriver(modifDriver)
-
-            driver.append("-".join(modifDriver))
         except Exception as error:
             print('Error en modificar driver: ', error)
+
+
+    def borraDriv(self):
+        try:
+            dni = Var.ui.txtDni.text()
+            Conexion.Conexion.borraDriv(dni)
+            Drivers.cargarTablaDri(self)
+
+        except Exception as error:
+                msg = QtWidgets.QMessageBox()
+                msg.setWindowTitle("Aviso")
+                msg.setIcon(QtWidgets.QMessageBox.Icon.Information)
+                msg.setText("El conductor no existe o no se puede borrar")
+                msg.exec()

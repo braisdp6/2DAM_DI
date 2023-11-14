@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from PyQt6 import QtSql, QtWidgets, QtCore, QtGui
 
 import Drivers
@@ -106,7 +108,7 @@ class Conexion():
             print(registros)
         except Exception as error:
             print("Error mostrar drivers: ", error)
-
+    # buscamos un conductor segun su codigo en la BBDD
     def oneDriver(codigo):
         try:
             registro = []
@@ -115,7 +117,7 @@ class Conexion():
             query.bindValue(":codigo", int(codigo))
             if query.exec():
                 while query.next():
-                    for i in range(12):
+                    for i in range(12):# recorremos las columnas de la BBDD
                         registro.append(str(query.value(i)))
             return registro
         except Exception as error:
@@ -171,3 +173,27 @@ class Conexion():
                 msg.exec()
         except Exception as error:
             print("Error en metodo modifDriver: ", error)
+
+    def borraDriv(dni):
+        try:
+            fecha = datetime.today()
+            fecha = fecha.strftime("%d.%m.%Y")
+            query = QtSql.QSqlQuery()
+            query.prepare("UPDATE drivers SET bajadri = :fechabaja WHERE dnidri = :dni")
+            query.bindValue(":fechabaja", str(fecha))
+            query.bindValue(":dni", str(dni))
+
+            if query.exec():
+                msg = QtWidgets.QMessageBox()
+                msg.setWindowTitle("Aviso")
+                msg.setIcon(QtWidgets.QMessageBox.Icon.Information)
+                msg.setText("Conductor dado de baja.")
+                msg.exec()
+            else:
+                msg = QtWidgets.QMessageBox()
+                msg.setWindowTitle("Aviso")
+                msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+                msg.setText(query.lastError().text() + " Error baja conductor.")
+                msg.exec()
+        except Exception as error:
+            print("Error en baja driver en conexion: ", error)

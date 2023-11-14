@@ -50,7 +50,7 @@ class Main(QtWidgets.QMainWindow):
         '''
         Eventos.Eventos.resizeTabDrivers(self)
         Var.ui.tabDrivers.clicked.connect(Drivers.Drivers.cargaDriver)
-        Var.ui.tabDrivers.clicked.connect(Drivers.Drivers.buscarDriverTabla)# TODO: NO FUNCIONA
+        Var.ui.tabDrivers.clicked.connect(Drivers.Drivers.buscarDriverTabla)
 
         '''
         zona de eventos de comboBox
@@ -62,8 +62,9 @@ class Main(QtWidgets.QMainWindow):
         '''
         Var.ui.btnCalendar.clicked.connect(Eventos.Eventos.abrirCalendar)
         Var.ui.btnAltaDriver.clicked.connect(Drivers.Drivers.altaDriver)
-        Var.ui.btnBuscarDni.clicked.connect(Drivers.Drivers.buscarDni)
+        Var.ui.btnBuscarDni.clicked.connect(Drivers.Drivers.buscarDriverTabla)
         Var.ui.btnModificarDriver.clicked.connect(Drivers.Drivers.modifDri)
+        Var.ui.btnBajaDriver.clicked.connect(Drivers.Drivers.borraDriv)
 
         '''
         zona de eventos del menubar
