@@ -103,7 +103,7 @@ class Drivers():
             print("Error alta cliente ", error)
 
     # Metodo para mostrar los datos en la tabla
-    def cargarTablaDri(registros):
+    def cargarTablaDri(registros): #TODO: error: 'NoneType' object is not iterable
         try:
             index = 0
             for registro in registros:
@@ -113,10 +113,12 @@ class Drivers():
                 Var.ui.tabDrivers.setItem(index, 2, QtWidgets.QTableWidgetItem(str(registro[2])))
                 Var.ui.tabDrivers.setItem(index, 3, QtWidgets.QTableWidgetItem(str(registro[3])))
                 Var.ui.tabDrivers.setItem(index, 4, QtWidgets.QTableWidgetItem(str(registro[4])))
+                Var.ui.tabDrivers.setItem(index, 5, QtWidgets.QTableWidgetItem(str(registro[5])))
 
                 Var.ui.tabDrivers.item(index, 0).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
                 Var.ui.tabDrivers.item(index, 3).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
                 Var.ui.tabDrivers.item(index, 4).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+                Var.ui.tabDrivers.item(index, 5).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
                 index += 1
         except Exception as error:
             print("Error carga tabla drivers: ", error)
@@ -185,7 +187,7 @@ class Drivers():
             registro = Conexion.Conexion.codDri(dni)
             Drivers.cargarDatos(registro)
             registros = Conexion.Conexion.mostrarDrivers()
-            # Drivers.cargarTablaDri(registros)
+            Drivers.cargarTablaDri(registros)
             codigo = Var.ui.lblCodbd.text()
             for fila in range(Var.ui.tabDrivers.rowCount()):
                 if Var.ui.tabDrivers.item(fila, 0).text() == str(codigo):
@@ -200,6 +202,7 @@ class Drivers():
                     Var.ui.tabDrivers.item(fila, 0).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
                     Var.ui.tabDrivers.item(fila, 3).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
                     Var.ui.tabDrivers.item(fila, 4).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+                    Var.ui.tabDrivers.item(fila, 5).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
                     Var.ui.tabDrivers.item(fila, 0).setBackground(QtGui.QColor(255, 241, 150))
                     Var.ui.tabDrivers.item(fila, 1).setBackground(QtGui.QColor(255, 241, 150))
                     Var.ui.tabDrivers.item(fila, 2).setBackground(QtGui.QColor(255, 241, 150))

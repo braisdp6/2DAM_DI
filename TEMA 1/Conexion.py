@@ -108,6 +108,7 @@ class Conexion():
             print(registros)
         except Exception as error:
             print("Error mostrar drivers: ", error)
+
     # buscamos un conductor segun su codigo en la BBDD
     def oneDriver(codigo):
         try:
@@ -176,24 +177,35 @@ class Conexion():
 
     def borraDriv(dni):
         try:
-            fecha = datetime.today()
-            fecha = fecha.strftime("%d.%m.%Y")
-            query = QtSql.QSqlQuery()
-            query.prepare("UPDATE drivers SET bajadri = :fechabaja WHERE dnidri = :dni")
-            query.bindValue(":fechabaja", str(fecha))
-            query.bindValue(":dni", str(dni))
+            query1 = QtSql.QSqlQuery()
+            query1.prepare("SELECT bajadri FROM drivers WHERE dnidri = :dni")
+            query1.bindValue(":dni", str(dni))
 
-            if query.exec():
-                msg = QtWidgets.QMessageBox()
-                msg.setWindowTitle("Aviso")
-                msg.setIcon(QtWidgets.QMessageBox.Icon.Information)
-                msg.setText("Conductor dado de baja.")
-                msg.exec()
+            if query1.exec():
+                while query1.next():
+                    valor = query1.value(0)
+
+            if valor == "":
+                # comprobar fecha
+                fecha = datetime.today()
+                fecha = fecha.strftime("%d/%m/%Y")
+
+                query = QtSql.QSqlQuery()
+                query.prepare("UPDATE drivers SET bajadri = :fechabaja WHERE dnidri = :dni")
+                query.bindValue(":fechabaja", str(fecha))
+                query.bindValue(":dni", str(dni))
+
+                if query.exec():
+                    msg = QtWidgets.QMessageBox()
+                    msg.setWindowTitle("Aviso")
+                    msg.setIcon(QtWidgets.QMessageBox.Icon.Information)
+                    msg.setText("Conductor dado de baja.")
+                    msg.exec()
             else:
                 msg = QtWidgets.QMessageBox()
                 msg.setWindowTitle("Aviso")
                 msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
-                msg.setText(query.lastError().text() + " Error baja conductor.")
+                msg.setText("No existe conductor o conductor dado de baja anteriormente.")
                 msg.exec()
         except Exception as error:
             print("Error en baja driver en conexion: ", error)
