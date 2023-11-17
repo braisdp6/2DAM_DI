@@ -106,6 +106,7 @@ class Conexion():
                     registros.append(row)
             Drivers.Drivers.cargarTablaDri(registros)
             print(registros)
+            return registros
         except Exception as error:
             print("Error mostrar drivers: ", error)
 
@@ -145,6 +146,8 @@ class Conexion():
 
     def modifDriver(modifDriver):
         try:
+            print("MOSTRAR DATOS !!!!!!!!!!!!!!:")
+            print(modifDriver)
             query = QtSql.QSqlQuery()
             query.prepare("UPDATE drivers SET dnidri = :dni, altadri= :alta, apeldri = :apel, nombredri = :nombre, direcciondri = :direccion, provdri = :provincia, munidri = :municipio, movildri = :movil, salariodri = :salario, carnetdri = :carnet where codigo = :codigo")
 
@@ -166,6 +169,7 @@ class Conexion():
                 msg.setIcon(QtWidgets.QMessageBox.Icon.Information)
                 msg.setText("Datos Conductor Modificados")
                 msg.exec()
+                Conexion.mostrarDrivers(self=None)
             else:
                 msg = QtWidgets.QMessageBox()
                 msg.setWindowTitle("Aviso")
@@ -209,3 +213,27 @@ class Conexion():
                 msg.exec()
         except Exception as error:
             print("Error en baja driver en conexion: ", error)
+
+
+    def selectDrivers(fechaBaja):
+        try:
+            registros = []
+            query1 = QtSql.QSqlQuery()
+
+            if fechaBaja == 2:
+                query1.prepare("select codigo, apellidos,nombre,telefono, carnet, fechaBaja from drivers")
+            elif fechaBaja == 1:
+                query1.prepare(
+                    "select codigo, apellidos,nombre,telefono, carnet, fechaBaja from drivers where fechaBaja is null")
+            elif fechaBaja == 0:
+                query1.prepare(
+                    "select codigo, apellidos,nombre,telefono, carnet, fechaBaja from drivers where fechaBaja is not null")
+
+            if query1.exec():
+                while query1.next():
+                    row = [query1.value(i) for i in range(query1.record().count())]
+                    registros.append(row)
+            return registros
+
+        except Exception as error:
+            print('Error en selectDrivers: ', error)

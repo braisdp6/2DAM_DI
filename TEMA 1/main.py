@@ -1,6 +1,7 @@
 import locale
 
 import Conexion
+import Drivers
 import Eventos
 
 locale.setlocale(locale.LC_TIME, "es_ES.UTF-8")
@@ -56,6 +57,7 @@ class Main(QtWidgets.QMainWindow):
         zona de eventos de comboBox
         '''
         Var.ui.cmbProvincia.currentIndexChanged.connect(Conexion.Conexion.selMuni)
+        Var.ui.rbtGroup.buttonClicked.connect(Drivers.Drivers.selEstado)
 
         '''
         zona de eventos de botones
@@ -63,7 +65,7 @@ class Main(QtWidgets.QMainWindow):
         Var.ui.btnCalendar.clicked.connect(Eventos.Eventos.abrirCalendar)
         Var.ui.btnAltaDriver.clicked.connect(Drivers.Drivers.altaDriver)
         Var.ui.btnBuscarDni.clicked.connect(Drivers.Drivers.buscarDriverTabla)
-        Var.ui.btnModificarDriver.clicked.connect(Drivers.Drivers.modifDri)
+        Var.ui.btnModificarDriver.clicked.connect(Drivers.Drivers.modifDri) # TODO: arreglar metodo
         Var.ui.btnBajaDriver.clicked.connect(Drivers.Drivers.borraDriv)
 
         '''

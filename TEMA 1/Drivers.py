@@ -103,7 +103,7 @@ class Drivers():
             print("Error alta cliente ", error)
 
     # Metodo para mostrar los datos en la tabla
-    def cargarTablaDri(registros): #TODO: error: 'NoneType' object is not iterable
+    def cargarTablaDri(registros):
         try:
             index = 0
             for registro in registros:
@@ -216,14 +216,20 @@ class Drivers():
     def modifDri(self):
         try:
             driver = [Var.ui.lblCodbd, Var.ui.txtDni, Var.ui.txtFechaAlta, Var.ui.txtApel, Var.ui.txtNombre,
-                      Var.ui.txtDireccion, Var.ui.cmbProvincia, Var.ui.cmbLocalidad,
-                      Var.ui.txtMovil, Var.ui.txtSalario]
+                      Var.ui.txtDireccion, Var.ui.txtMovil, Var.ui.txtSalario]
+
             modifDriver = []
             for i in driver:
-                modifDriver.append(i.text().title())
+                 modifDriver.append(i.text().title()) # TODO: ERROR AQUI EN MODFIF
+            # for i in driver:
+            #     if isinstance(i, QtWidgets.QComboBox):
+            #         modifDriver.append(i.currentText())  # Usar currentText() para QComboBox
+            #     else:
+            #         modifDriver.append(i.text().title())
+
             prov = Var.ui.cmbProvincia.currentText()
             modifDriver.insert(6, prov)
-            muni = Var.ui.cmbProvincia.currentText()
+            muni = Var.ui.cmbLocalidad.currentText()
             modifDriver.insert(7, muni)
             licencias = []
             chkLicencia = [Var.ui.chkA, Var.ui.chkB, Var.ui.chkC, Var.ui.chkD]
@@ -250,3 +256,16 @@ class Drivers():
                 msg.setIcon(QtWidgets.QMessageBox.Icon.Information)
                 msg.setText("El conductor no existe o no se puede borrar")
                 msg.exec()
+
+    # metodo para que cambie los datos segun los radio buttons de la tabla
+    # TODO: NO FUNCIONA TAMPOCO
+    def selEstado(self):
+        if Var.ui.rbtTodos.isChecked():
+            estado = 0
+            Conexion.Conexion.selectDrivers(estado)
+        elif Var.ui.rbtAlta.isChecked():
+            estado = 1
+            Conexion.Conexion.selectDrivers(estado)
+        elif Var.ui.rbtBaja.isChecked():
+            estado = 2
+            Conexion.Conexion.selectDrivers(estado)
