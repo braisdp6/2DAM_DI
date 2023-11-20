@@ -8,8 +8,9 @@ import Var
 
 class Conexion():
     def conexion(self=None):
+        Var.bbdd = "bbdd.sqlite"
         db = QtSql.QSqlDatabase.addDatabase("QSQLITE")
-        db.setDatabaseName("bbdd.sqlite")
+        db.setDatabaseName(Var.bbdd)
         if not db.open():
             print("Error de conexion")
             return False
@@ -215,25 +216,35 @@ class Conexion():
             print("Error en baja driver en conexion: ", error)
 
 
-    def selectDrivers(fechaBaja):
+    def selectDrivers(estado):# TODO: NO FUNCIONA
         try:
-            registros = []
-            query1 = QtSql.QSqlQuery()
-
-            if fechaBaja == 2:
-                query1.prepare("select codigo, apellidos,nombre,telefono, carnet, fechaBaja from drivers")
-            elif fechaBaja == 1:
-                query1.prepare(
-                    "select codigo, apellidos,nombre,telefono, carnet, fechaBaja from drivers where fechaBaja is null")
-            elif fechaBaja == 0:
-                query1.prepare(
-                    "select codigo, apellidos,nombre,telefono, carnet, fechaBaja from drivers where fechaBaja is not null")
-
-            if query1.exec():
-                while query1.next():
-                    row = [query1.value(i) for i in range(query1.record().count())]
-                    registros.append(row)
-            return registros
-
+            registros=[]
+            if estado == 0:
+                query = QtSql.QSqlQuery()
+                query.prepare("select codigo, apeldri, nombredri, movildri, "
+                               "carnetdri, bajadri from drivers")
+                if query.exec():
+                    while query.next():
+                        row = [query.value(i) for i in range(query.record().count())]
+                        registros.append(row)
+                Drivers.Drivers.cargarTablaDriver(registros)
+            elif estado == 1:
+                query = QtSql.QSqlQuery()
+                query.prepare("select codigo, apeldri, nombredri, movildri, "
+                              "carnetdri, bajadri from drivers where bajadri is null")
+                if query.exec():
+                    while query.next():
+                        row = [query.value(i) for i in range(query.record().count())]
+                        registros.append(row)
+                Drivers.Drivers.cargarTablaDriver(registros)
+            elif estado == 2:
+                query = QtSql.QSqlQuery()
+                query.prepare("select codigo, apeldri, nombredri, movildri, "
+                              "carnetdri, bajadri from drivers where bajadriver is not null")
+                if query.exec():
+                    while query.next():
+                        row = [query.value(i) for i in range(query.record().count())]
+                        registros.append(row)
+                Drivers.Drivers.cargarTablaDriver(registros)
         except Exception as error:
-            print('Error en selectDrivers: ', error)
+            print("Error al seleccionar los drivers", error)

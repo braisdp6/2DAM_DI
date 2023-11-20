@@ -54,3 +54,8 @@ class AcercaDe(QtWidgets.QDialog):
     def on_btnAceptar_clicked(self):
         # Acción para el botón Aceptar
         self.hide()
+
+# Nota: cogemos la ventana de abrir de windows
+class FileDialogAbrir(QtWidgets.QFileDialog):
+    def __init__(self):
+        super(FileDialogAbrir, self).__init__()

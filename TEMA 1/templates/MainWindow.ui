@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>876</width>
-    <height>689</height>
+    <width>955</width>
+    <height>607</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -18,6 +18,10 @@
   </property>
   <property name="windowTitle">
    <string>CarTeis</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>../img/taxi.ico</normaloff>../img/taxi.ico</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
    <property name="sizePolicy">
@@ -519,7 +523,7 @@
                   </property>
                   <property name="sizeHint" stdset="0">
                    <size>
-                    <width>14</width>
+                    <width>20</width>
                     <height>20</height>
                    </size>
                   </property>
@@ -986,7 +990,7 @@ background-color:rgb(100,100,100);
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>876</width>
+     <width>955</width>
      <height>21</height>
     </rect>
    </property>
@@ -1002,7 +1006,15 @@ background-color:rgb(100,100,100);
     </property>
     <addaction name="actionAcercaDe"/>
    </widget>
+   <widget class="QMenu" name="menuHerramientas">
+    <property name="title">
+     <string>Herramientas</string>
+    </property>
+    <addaction name="actionCrear_Copia_Seguridad"/>
+    <addaction name="actionRestaurar_Copia_Seguridad"/>
+   </widget>
    <addaction name="menuArchivo"/>
+   <addaction name="menuHerramientas"/>
    <addaction name="menuAyuda"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
@@ -1025,6 +1037,10 @@ background-color:rgb(100,100,100);
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
+   <addaction name="actionCrear_Copia_Seguridad"/>
+   <addaction name="separator"/>
+   <addaction name="actionRestaurar_Copia_Seguridad"/>
+   <addaction name="separator"/>
    <addaction name="actionLimpiarPanel"/>
    <addaction name="separator"/>
    <addaction name="actionBarSalir"/>
@@ -1032,7 +1048,7 @@ background-color:rgb(100,100,100);
   <action name="actionBarSalir">
    <property name="icon">
     <iconset>
-     <normaloff>C:/Users/a19braisdp/.designer/img/salir.ico</normaloff>C:/Users/a19braisdp/.designer/img/salir.ico</iconset>
+     <normaloff>../img/salir.ico</normaloff>../img/salir.ico</iconset>
    </property>
    <property name="text">
     <string>Salir</string>
@@ -1041,7 +1057,8 @@ background-color:rgb(100,100,100);
   <action name="actionAcercaDe">
    <property name="icon">
     <iconset>
-     <normaloff>C:/Users/a19braisdp/.designer/img/acercade.png</normaloff>C:/Users/a19braisdp/.designer/img/acercade.png</iconset>
+     <normaloff>C:/Users/a19braisdp/.designer/img/acercade.png</normaloff>
+     <normalon>../img/acercade.png</normalon>C:/Users/a19braisdp/.designer/img/acercade.png</iconset>
    </property>
    <property name="text">
     <string>Acerca de...</string>
@@ -1050,10 +1067,34 @@ background-color:rgb(100,100,100);
   <action name="actionLimpiarPanel">
    <property name="icon">
     <iconset>
-     <normaloff>C:/Users/a19braisdp/.designer/img/limpiar.ico</normaloff>C:/Users/a19braisdp/.designer/img/limpiar.ico</iconset>
+     <normaloff>../img/limpiar.ico</normaloff>../img/limpiar.ico</iconset>
    </property>
    <property name="text">
     <string>limpiarPanel</string>
+   </property>
+  </action>
+  <action name="actionCrear_Copia_Seguridad">
+   <property name="icon">
+    <iconset>
+     <normaloff>../img/add-backup.png</normaloff>../img/add-backup.png</iconset>
+   </property>
+   <property name="text">
+    <string>Crear Copia Seguridad</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+S</string>
+   </property>
+  </action>
+  <action name="actionRestaurar_Copia_Seguridad">
+   <property name="icon">
+    <iconset>
+     <normaloff>../img/restaurar-backup.png</normaloff>../img/restaurar-backup.png</iconset>
+   </property>
+   <property name="text">
+    <string>Restaurar Copia Seguridad</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+R</string>
    </property>
   </action>
  </widget>

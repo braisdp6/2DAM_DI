@@ -18,9 +18,12 @@ class Main(QtWidgets.QMainWindow):
         Var.calendar = Calendar()
         Var.ventanaSalir = VentanaSalir()
         Var.acercaDe = AcercaDe()
+        Var.dlgAbrir = FileDialogAbrir()
         Conexion.Conexion.conexion()
         Conexion.Conexion.cargaProv()
         Conexion.Conexion.mostrarDrivers()
+        estado = 1
+        Conexion.Conexion.selectDrivers(estado)# TODO: NO FUNCIONA
 
         '''
         ejecucion de diferentes al ejecutar la aplicacion
@@ -73,6 +76,7 @@ class Main(QtWidgets.QMainWindow):
         '''
         Var.ui.actionBarSalir.triggered.connect(Eventos.Eventos.abrirVentanaSalir)
         Var.ui.actionAcercaDe.triggered.connect(Eventos.Eventos.abrirAcercaDe)
+        Var.ui.actionCrear_Copia_Seguridad.triggered.connect(Eventos.Eventos.crearBackup)
 
         '''
         zona de eventos de las cajas de texto
