@@ -227,7 +227,7 @@ class Conexion():
                     while query.next():
                         row = [query.value(i) for i in range(query.record().count())]
                         registros.append(row)
-                Drivers.Drivers.cargarTablaDriver(registros)
+                Drivers.Drivers.cargarTablaDri(registros)
             elif estado == 1:
                 query = QtSql.QSqlQuery()
                 query.prepare("select codigo, apeldri, nombredri, movildri, "
@@ -236,15 +236,15 @@ class Conexion():
                     while query.next():
                         row = [query.value(i) for i in range(query.record().count())]
                         registros.append(row)
-                Drivers.Drivers.cargarTablaDriver(registros)
+                Drivers.Drivers.cargarTablaDri(registros)
             elif estado == 2:
                 query = QtSql.QSqlQuery()
                 query.prepare("select codigo, apeldri, nombredri, movildri, "
-                              "carnetdri, bajadri from drivers where bajadriver is not null")
+                              "carnetdri, bajadri from drivers where bajadri is not null")
                 if query.exec():
                     while query.next():
                         row = [query.value(i) for i in range(query.record().count())]
                         registros.append(row)
-                Drivers.Drivers.cargarTablaDriver(registros)
+                Drivers.Drivers.cargarTablaDri(registros)
         except Exception as error:
             print("Error al seleccionar los drivers", error)
