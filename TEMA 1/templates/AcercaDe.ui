@@ -2,6 +2,9 @@
 <ui version="4.0">
  <class>ventanaAcercaDe</class>
  <widget class="QDialog" name="ventanaAcercaDe">
+  <property name="windowModality">
+   <enum>Qt::ApplicationModal</enum>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -33,6 +36,9 @@
   </property>
   <property name="styleSheet">
    <string notr="true">background-color: white;</string>
+  </property>
+  <property name="modal">
+   <bool>true</bool>
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout">
    <item>

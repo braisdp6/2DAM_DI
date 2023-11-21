@@ -12,7 +12,7 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 class Ui_ventanaCalendario(object):
     def setupUi(self, ventanaCalendario):
         ventanaCalendario.setObjectName("ventanaCalendario")
-        ventanaCalendario.setWindowModality(QtCore.Qt.WindowModality.WindowModal)
+        ventanaCalendario.setWindowModality(QtCore.Qt.WindowModality.ApplicationModal)
         ventanaCalendario.resize(400, 300)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Fixed, QtWidgets.QSizePolicy.Policy.Fixed)
         sizePolicy.setHorizontalStretch(0)

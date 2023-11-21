@@ -183,7 +183,7 @@
                   </property>
                   <property name="icon">
                    <iconset>
-                    <normaloff>C:/Users/a19braisdp/.designer/img/lupa.png</normaloff>C:/Users/a19braisdp/.designer/img/lupa.png</iconset>
+                    <normaloff>../img/lupa.png</normaloff>../img/lupa.png</iconset>
                   </property>
                  </widget>
                 </item>
@@ -265,7 +265,7 @@
                   </property>
                   <property name="icon">
                    <iconset>
-                    <normaloff>C:/Users/DesdeCeroDEV/.designer/img/calendar.ico</normaloff>C:/Users/DesdeCeroDEV/.designer/img/calendar.ico</iconset>
+                    <normaloff>../img/calendar.ico</normaloff>../img/calendar.ico</iconset>
                   </property>
                  </widget>
                 </item>

@@ -12,6 +12,7 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 class Ui_ventanaDeseaSalir(object):
     def setupUi(self, ventanaDeseaSalir):
         ventanaDeseaSalir.setObjectName("ventanaDeseaSalir")
+        ventanaDeseaSalir.setWindowModality(QtCore.Qt.WindowModality.ApplicationModal)
         ventanaDeseaSalir.resize(310, 116)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Fixed, QtWidgets.QSizePolicy.Policy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -21,6 +22,7 @@ class Ui_ventanaDeseaSalir(object):
         ventanaDeseaSalir.setMinimumSize(QtCore.QSize(310, 116))
         ventanaDeseaSalir.setMaximumSize(QtCore.QSize(310, 116))
         ventanaDeseaSalir.setStyleSheet("background-color: white;")
+        ventanaDeseaSalir.setModal(True)
         self.verticalLayout = QtWidgets.QVBoxLayout(ventanaDeseaSalir)
         self.verticalLayout.setObjectName("verticalLayout")
         self.widget = QtWidgets.QWidget(parent=ventanaDeseaSalir)

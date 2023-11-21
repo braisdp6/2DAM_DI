@@ -216,7 +216,7 @@ class Conexion():
             print("Error en baja driver en conexion: ", error)
 
 
-    def selectDrivers(estado):# TODO: NO FUNCIONA
+    def selectDrivers(estado):
         try:
             registros=[]
             if estado == 0:

@@ -23,7 +23,7 @@ class Main(QtWidgets.QMainWindow):
         Conexion.Conexion.cargaProv()
         Conexion.Conexion.mostrarDrivers()
         estado = 1
-        Conexion.Conexion.selectDrivers(estado)# TODO: NO FUNCIONA
+        Conexion.Conexion.selectDrivers(estado) # funcionamiento mostrar Histórico
 
         '''
         ejecucion de diferentes al ejecutar la aplicacion

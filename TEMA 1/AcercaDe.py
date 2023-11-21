@@ -12,6 +12,7 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 class Ui_ventanaAcercaDe(object):
     def setupUi(self, ventanaAcercaDe):
         ventanaAcercaDe.setObjectName("ventanaAcercaDe")
+        ventanaAcercaDe.setWindowModality(QtCore.Qt.WindowModality.ApplicationModal)
         ventanaAcercaDe.resize(518, 403)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Preferred, QtWidgets.QSizePolicy.Policy.Preferred)
         sizePolicy.setHorizontalStretch(0)
@@ -21,6 +22,7 @@ class Ui_ventanaAcercaDe(object):
         ventanaAcercaDe.setMinimumSize(QtCore.QSize(518, 403))
         ventanaAcercaDe.setMaximumSize(QtCore.QSize(518, 403))
         ventanaAcercaDe.setStyleSheet("background-color: white;")
+        ventanaAcercaDe.setModal(True)
         self.horizontalLayout = QtWidgets.QHBoxLayout(ventanaAcercaDe)
         self.horizontalLayout.setObjectName("horizontalLayout")
         self.frame = QtWidgets.QFrame(parent=ventanaAcercaDe)
