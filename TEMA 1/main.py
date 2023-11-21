@@ -10,6 +10,8 @@ locale.setlocale(locale.LC_MONETARY, "es_ES.UTF-8")
 from WindowAux import *
 
 
+# TODO ALL: error al modificar empleados // error(no importante) cuando clickeo no resalta en amarillo
+
 class Main(QtWidgets.QMainWindow):
     def __init__(self):
         super(Main, self).__init__()
@@ -23,7 +25,7 @@ class Main(QtWidgets.QMainWindow):
         Conexion.Conexion.cargaProv()
         Conexion.Conexion.mostrarDrivers()
         estado = 1
-        Conexion.Conexion.selectDrivers(estado) # funcionamiento mostrar Histórico
+        Conexion.Conexion.selectDrivers(estado)  # funcionamiento mostrar Histórico
 
         '''
         ejecucion de diferentes al ejecutar la aplicacion
@@ -33,7 +35,7 @@ class Main(QtWidgets.QMainWindow):
             i.toggled.connect(Eventos.Eventos.selHistorico)
 
         '''
-        STATUS BAR
+        STATUS BAR      nota: parte de abajo de la ventana
         '''
         # formateamos la fecha
         fechaActual = datetime.now()
@@ -53,11 +55,11 @@ class Main(QtWidgets.QMainWindow):
         zona de eventos de tablas
         '''
         Eventos.Eventos.resizeTabDrivers(self)
-        Var.ui.tabDrivers.clicked.connect(Drivers.Drivers.cargaDriver)
-        Var.ui.tabDrivers.clicked.connect(Drivers.Drivers.buscarDriverTabla)
+        Var.ui.tabDrivers.clicked.connect(Drivers.Drivers.cargaDriver)  # nota: Metodo para cargar driver en la tabla cuando se haga click en el "tabDriver"
+        # TODO: que quede el color amarillo guardado
 
         '''
-        zona de eventos de comboBox
+        zona de eventos de comboBox       nota: sirve para que cargue los datos en el comboBox
         '''
         Var.ui.cmbProvincia.currentIndexChanged.connect(Conexion.Conexion.selMuni)
         Var.ui.rbtGroup.buttonClicked.connect(Drivers.Drivers.selEstado)
@@ -67,16 +69,9 @@ class Main(QtWidgets.QMainWindow):
         '''
         Var.ui.btnCalendar.clicked.connect(Eventos.Eventos.abrirCalendar)
         Var.ui.btnAltaDriver.clicked.connect(Drivers.Drivers.altaDriver)
-        Var.ui.btnBuscarDni.clicked.connect(Drivers.Drivers.buscarDriverTabla)
-        Var.ui.btnModificarDriver.clicked.connect(Drivers.Drivers.modifDri)
-        Var.ui.btnBajaDriver.clicked.connect(Drivers.Drivers.borraDriv) # metodo borrar driver
-
-        '''
-        zona de eventos del menubar
-        '''
-        Var.ui.actionBarSalir.triggered.connect(Eventos.Eventos.abrirVentanaSalir)
-        Var.ui.actionAcercaDe.triggered.connect(Eventos.Eventos.abrirAcercaDe)
-        Var.ui.actionCrear_Copia_Seguridad.triggered.connect(Eventos.Eventos.crearBackup)
+        Var.ui.btnBuscarDni.clicked.connect(Drivers.Drivers.buscarDriverLupa)  # todo: arreglar focus aqui
+        Var.ui.btnModificarDriver.clicked.connect(Drivers.Drivers.modifDri)  # todo: arreglar modificar driver
+        Var.ui.btnBajaDriver.clicked.connect(Drivers.Drivers.borraDriv)  # nota: metodo borrar driver
         Var.ui.actionRestaurar_Copia_Seguridad.triggered.connect(Eventos.Eventos.restaurarBackup)
 
         '''
@@ -89,11 +84,17 @@ class Main(QtWidgets.QMainWindow):
         Var.ui.txtSalario.editingFinished.connect(Eventos.Eventos.formatCajaTexto)
 
         '''
-        zona de eventos del toolbar
+        zona de eventos del menubar  nota: parte de arriba de la ventana donde hay desplegables (Archivo, Herramientas, Ayuda...)
         '''
         Var.ui.actionBarSalir.triggered.connect(Eventos.Eventos.abrirVentanaSalir)
-        Var.ui.actionLimpiarPanel.triggered.connect(Drivers.Drivers.limpiarPanel)
+        Var.ui.actionAcercaDe.triggered.connect(Eventos.Eventos.abrirAcercaDe)
+        Var.ui.actionCrear_Copia_Seguridad.triggered.connect(Eventos.Eventos.crearBackup)
 
+        '''
+        zona de eventos del toolbar   nota: parte de arriba de la ventana donde estan los iconos ejecutables (backups, limpiar, etc...)
+        '''
+        # Var.ui.actionBarSalir.triggered.connect(Eventos.Eventos.abrirVentanaSalir) -> codigo de ejemplo si fuera una accion diferente
+        Var.ui.actionLimpiarPanel.triggered.connect(Drivers.Drivers.limpiarPanel)
 
     def closeEvent(self, event):
         mbox = QtWidgets.QMessageBox.information(self, "Salir", "¿Estás seguro de que quieres salir?",

@@ -101,9 +101,8 @@ class Eventos():
             if Var.dlgAbrir.accept and file:
                 with zipfile.ZipFile(str(file), 'r') as bbdd:
                     bbdd.extractall(pwd=None)
-
                 bbdd.close()
-                #Conexion.Conexion.mostrarDrivers()
+                Conexion.Conexion.mostrarDrivers()
 
                 msg = QtWidgets.QMessageBox()
                 msg.setModal(True)

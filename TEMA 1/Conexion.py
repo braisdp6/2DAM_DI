@@ -18,7 +18,7 @@ class Conexion():
             print("Base de datos conectada")
             return True
 
-    def cargaProv(self=None):s
+    def cargaProv(self=None):
         try:
             Var.ui.cmbProvincia.clear()
             query = QtSql.QSqlQuery()

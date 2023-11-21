@@ -7,7 +7,6 @@ import Var
 
 
 class Drivers():
-
     def limpiarPanel(self):
         try:
             listaWidgets = [Var.ui.txtDni, Var.ui.txtFechaAlta, Var.ui.txtApel, Var.ui.txtNombre, Var.ui.txtDireccion,
@@ -126,13 +125,11 @@ class Drivers():
     def cargaDriver(self):
         try:
             Drivers.limpiarPanel(self)
-
             row = Var.ui.tabDrivers.selectedItems()
             fila = [dato.text() for dato in row]
             registro = Conexion.Conexion.oneDriver(fila[0])
             # LLAMAMOS AL METODO CARGARDATOS PARA NO COPIAR CODIGO
             Drivers.cargarDatos(registro)
-
             print(fila)
 
         except Exception as error:
@@ -140,10 +137,11 @@ class Drivers():
 
     def cargarDatos(registro):
         try:
+            # nota: cargar los datos cuando clickeamos encima de algun driver
             datos = [Var.ui.lblCodbd, Var.ui.txtDni, Var.ui.txtFechaAlta, Var.ui.txtApel, Var.ui.txtNombre,
                      Var.ui.txtDireccion, Var.ui.cmbProvincia, Var.ui.cmbLocalidad, Var.ui.txtMovil, Var.ui.txtSalario]
 
-            for i, dato in enumerate(datos):  # i es la posicion y dato es el contenido de datos
+            for i, dato in enumerate(datos):  # nota: i es la posicion y dato es el contenido de datos
                 if i == 6 or i == 7:
                     dato.setCurrentText(str(registro[i]))
                 else:
@@ -159,8 +157,8 @@ class Drivers():
         except Exception as error:
             print("Error al cargar datos: ", error)
 
-    # metodo para que te haga focus en la tabla que busques
-    def buscarDriverTabla(self):
+    # nota: metodo para que te haga focus en la tabla que busques
+    def buscarDriverLupa(self):# TODO: ahcer que cambie el historico a TODOS
         try:
             dni = Var.ui.txtDni.text()
             registro = Conexion.Conexion.codDri(dni)
@@ -170,7 +168,6 @@ class Drivers():
             codigo = Var.ui.lblCodbd.text()
             for fila in range(Var.ui.tabDrivers.rowCount()):
                 if Var.ui.tabDrivers.item(fila, 0).text() == str(codigo):
-                    # Var.ui.tabDrivers.selectRow(fila)
                     Var.ui.tabDrivers.scrollToItem(Var.ui.tabDrivers.item(fila, 0))
                     Var.ui.tabDrivers.setItem(fila, 0, QtWidgets.QTableWidgetItem(str(registro[0])))
                     Var.ui.tabDrivers.setItem(fila, 1, QtWidgets.QTableWidgetItem(str(registro[3])))
