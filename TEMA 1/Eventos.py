@@ -85,11 +85,29 @@ class Eventos():
                 msg.setIcon(QtWidgets.QMessageBox.Icon.Information)
                 msg.setText("Copia de Seguridad Creada.")
                 msg.exec()
-
-
         except Exception as error:
             msg = QtWidgets.QMessageBox()
             msg.setWindowTitle("Aviso")
             msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
-            msg.setText("Error en copia de seguridad.")
+            msg.setText("Error en copia de seguridad: ", error)
+            msg.exec()
+
+    def restaurarBackup(self):
+        try:
+            filename = Var.dlgAbrir.getOpenFileName(None, "Restaurar copia de seguridad", "", "*.zip;;All Files(*)")
+            if Var.dlgAbrir.accept and filename != "":
+                file = filename[0]
+                with zipfile.ZipFile(str(file), "r") as bbdd:
+                    bbdd.extractall(pwd=None)
+                bbdd.close()
+            msg = QtWidgets.QMessageBox()
+            msg.setWindowTitle("Aviso")
+            msg.setIcon(QtWidgets.QMessageBox.Icon.Information)
+            msg.setText("Copia de seguridad restaurada.")
+            msg.exec()
+        except Exception as error:
+            msg = QtWidgets.QMessageBox()
+            msg.setWindowTitle("Aviso")
+            msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+            msg.setText("Error restauracion de la copia de seguridad: ", error)
             msg.exec()
