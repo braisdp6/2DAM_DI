@@ -69,7 +69,7 @@ class Main(QtWidgets.QMainWindow):
         Var.ui.btnAltaDriver.clicked.connect(Drivers.Drivers.altaDriver)
         Var.ui.btnBuscarDni.clicked.connect(Drivers.Drivers.buscarDriverTabla)
         Var.ui.btnModificarDriver.clicked.connect(Drivers.Drivers.modifDri) # TODO: arreglar metodo
-        Var.ui.btnBajaDriver.clicked.connect(Drivers.Drivers.borraDriv)
+        Var.ui.btnBajaDriver.clicked.connect(Drivers.Drivers.borraDriv) # metodo borrar driver
 
         '''
         zona de eventos del menubar

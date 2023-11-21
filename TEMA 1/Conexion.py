@@ -95,8 +95,10 @@ class Conexion():
             Conexion.mostrarDrivers()
         except Exception as error:
             print("Error en alta conductor: ", error)
+
     # Metodo para mostrar los Drivers en la tabla
-    def mostrarDrivers(self = None):
+    @classmethod
+    def mostrarDrivers(self):
         try:
             registros = []
             query1 = QtSql.QSqlQuery()
@@ -107,7 +109,6 @@ class Conexion():
                     registros.append(row)
             Drivers.Drivers.cargarTablaDri(registros)
             print(registros)
-            return registros
         except Exception as error:
             print("Error mostrar drivers: ", error)
 
@@ -181,6 +182,7 @@ class Conexion():
             print("Error en metodo modifDriver: ", error)
 
     def borraDriv(dni):
+        global valor
         try:
             query1 = QtSql.QSqlQuery()
             query1.prepare("SELECT bajadri FROM drivers WHERE dnidri = :dni")

@@ -244,17 +244,17 @@ class Drivers():
             print('Error en modificar driver: ', error)
 
 
-    def borraDriv(self):
+    def borraDriv(self):# TODO: ERROR
         try:
             dni = Var.ui.txtDni.text()
             Conexion.Conexion.borraDriv(dni)
-            Drivers.cargarTablaDri(self)
+            Conexion.Conexion.mostrarDrivers()
 
         except Exception as error:
                 msg = QtWidgets.QMessageBox()
                 msg.setWindowTitle("Aviso")
                 msg.setIcon(QtWidgets.QMessageBox.Icon.Information)
-                msg.setText("El conductor no existe o no se puede borrar")
+                msg.setText("El conductor no existe o no se puede borrar: ", error)
                 msg.exec()
 
     # metodo para que cambie los datos segun los radio buttons de la tabla

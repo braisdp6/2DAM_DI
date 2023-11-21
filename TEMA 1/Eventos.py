@@ -5,6 +5,7 @@ from datetime import datetime
 
 from PyQt6 import QtWidgets
 
+import Conexion
 import Var
 import locale
 import sys
@@ -94,20 +95,25 @@ class Eventos():
 
     def restaurarBackup(self):
         try:
-            filename = Var.dlgAbrir.getOpenFileName(None, "Restaurar copia de seguridad", "", "*.zip;;All Files(*)")
-            if Var.dlgAbrir.accept and filename != "":
-                file = filename[0]
-                with zipfile.ZipFile(str(file), "r") as bbdd:
+            filename = Var.dlgAbrir.getOpenFileName(None, 'Restaurar Copia de Seguridad',
+                                                    '', '*.zip;;All Files(*)')
+            file = filename[0]
+            if Var.dlgAbrir.accept and file:
+                with zipfile.ZipFile(str(file), 'r') as bbdd:
                     bbdd.extractall(pwd=None)
+
                 bbdd.close()
-            msg = QtWidgets.QMessageBox()
-            msg.setWindowTitle("Aviso")
-            msg.setIcon(QtWidgets.QMessageBox.Icon.Information)
-            msg.setText("Copia de seguridad restaurada.")
-            msg.exec()
+                #Conexion.Conexion.mostrarDrivers()
+
+                msg = QtWidgets.QMessageBox()
+                msg.setModal(True)
+                msg.setWindowTitle('Aviso')
+                msg.setIcon(QtWidgets.QMessageBox.Icon.Information)
+                msg.setText('Copia de Seguridad Restaurada.')
+                msg.exec()
         except Exception as error:
             msg = QtWidgets.QMessageBox()
-            msg.setWindowTitle("Aviso")
+            msg.setWindowTitle('Aviso')
             msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
-            msg.setText("Error restauracion de la copia de seguridad: ", error)
+            msg.setText('Error en Restauracion Copia Seguridad: ', error)
             msg.exec()
