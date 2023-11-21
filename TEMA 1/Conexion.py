@@ -18,7 +18,7 @@ class Conexion():
             print("Base de datos conectada")
             return True
 
-    def cargaProv(self=None):
+    def cargaProv(self=None):s
         try:
             Var.ui.cmbProvincia.clear()
             query = QtSql.QSqlQuery()
@@ -148,8 +148,6 @@ class Conexion():
 
     def modifDriver(modifDriver):
         try:
-            print("MOSTRAR DATOS !!!!!!!!!!!!!!:")
-            print(modifDriver)
             query = QtSql.QSqlQuery()
             query.prepare("UPDATE drivers SET dnidri = :dni, altadri= :alta, apeldri = :apel, nombredri = :nombre, direcciondri = :direccion, provdri = :provincia, munidri = :municipio, movildri = :movil, salariodri = :salario, carnetdri = :carnet where codigo = :codigo")
 

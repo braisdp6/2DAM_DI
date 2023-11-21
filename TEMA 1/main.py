@@ -68,7 +68,7 @@ class Main(QtWidgets.QMainWindow):
         Var.ui.btnCalendar.clicked.connect(Eventos.Eventos.abrirCalendar)
         Var.ui.btnAltaDriver.clicked.connect(Drivers.Drivers.altaDriver)
         Var.ui.btnBuscarDni.clicked.connect(Drivers.Drivers.buscarDriverTabla)
-        Var.ui.btnModificarDriver.clicked.connect(Drivers.Drivers.modifDri) # TODO: arreglar metodo
+        Var.ui.btnModificarDriver.clicked.connect(Drivers.Drivers.modifDri)
         Var.ui.btnBajaDriver.clicked.connect(Drivers.Drivers.borraDriv) # metodo borrar driver
 
         '''

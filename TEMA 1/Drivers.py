@@ -1,5 +1,4 @@
 import re
-from idlelib import query
 
 from PyQt6 import QtWidgets, QtCore, QtGui
 
@@ -127,37 +126,17 @@ class Drivers():
     def cargaDriver(self):
         try:
             Drivers.limpiarPanel(self)
-            row = Var.ui.tabDrivers.selectedItems() # Recoge la fila donde se haga click
+
+            row = Var.ui.tabDrivers.selectedItems()
             fila = [dato.text() for dato in row]
             registro = Conexion.Conexion.oneDriver(fila[0])
-            datos = [Var.ui.lblCodbd, Var.ui.txtDni, Var.ui.txtFechaAlta, Var.ui.txtApel, Var.ui.txtNombre,
-                     Var.ui.txtDireccion, Var.ui.cmbProvincia, Var.ui.cmbLocalidad, Var.ui.txtMovil, Var.ui.txtSalario]
-
-            for i, dato in enumerate(datos):  # i es la posicion y dato es el contenido de datos
-                if i == 6 or i == 7:
-                    dato.setCurrentText(str(registro[i]))
-                else:
-                    dato.setText(str(registro[i]))
-
-            if "A" in registro[10]:
-                Var.ui.chkA.setChecked(True)
-            if "B" in registro[10]:
-                Var.ui.chkB.setChecked(True)
-            if "C" in registro[10]:
-                Var.ui.chkC.setChecked(True)
-            if "D" in registro[10]:
-                Var.ui.chkD.setChecked(True)
-            print(fila)
-        except Exception as error:
-            print("Error cargar datos de un cliente marcando en la tabla: ", error)
-
-    def buscarDni(self):# TODO: buscar utilidad
-        try:
-            dni = Var.ui.txtDni.text()
-            registro = Conexion.Conexion.codDri(dni)
+            # LLAMAMOS AL METODO CARGARDATOS PARA NO COPIAR CODIGO
             Drivers.cargarDatos(registro)
+
+            print(fila)
+
         except Exception as error:
-            print("Error al buscar por DNI: ", error)
+            print("Error al cargar los datos de un cliente: ", error)
 
     def cargarDatos(registro):
         try:
@@ -220,7 +199,7 @@ class Drivers():
 
             modifDriver = []
             for i in driver:
-                 modifDriver.append(i.text().title()) # TODO: ERROR AQUI EN MODFIF
+                modifDriver.append(i.text().title())  # TODO: ERROR AQUI EN MODFIF
             # for i in driver:
             #     if isinstance(i, QtWidgets.QComboBox):
             #         modifDriver.append(i.currentText())  # Usar currentText() para QComboBox
@@ -243,19 +222,18 @@ class Drivers():
         except Exception as error:
             print('Error en modificar driver: ', error)
 
-
-    def borraDriv(self):# TODO: ERROR
+    def borraDriv(self):  # TODO: ERROR
         try:
             dni = Var.ui.txtDni.text()
             Conexion.Conexion.borraDriv(dni)
             Conexion.Conexion.mostrarDrivers()
 
         except Exception as error:
-                msg = QtWidgets.QMessageBox()
-                msg.setWindowTitle("Aviso")
-                msg.setIcon(QtWidgets.QMessageBox.Icon.Information)
-                msg.setText("El conductor no existe o no se puede borrar: ", error)
-                msg.exec()
+            msg = QtWidgets.QMessageBox()
+            msg.setWindowTitle("Aviso")
+            msg.setIcon(QtWidgets.QMessageBox.Icon.Information)
+            msg.setText("El conductor no existe o no se puede borrar: ", error)
+            msg.exec()
 
     # metodo para que cambie los datos segun los radio buttons de la tabla
     # TODO: NO FUNCIONA TAMPOCO
