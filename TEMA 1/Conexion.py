@@ -56,7 +56,8 @@ class Conexion():
 
     def guardarDri(newDriver):
         try:  # comprobamos que no se añaden campos vacios
-            if (newDriver[0].strip() == "" or newDriver[1].strip() == "" or newDriver[2].strip() == "" or newDriver[3].strip() == "" or newDriver[7].strip() == ""):
+            if (newDriver[0].strip() == "" or newDriver[1].strip() == "" or newDriver[2].strip() == "" or newDriver[
+                3].strip() == "" or newDriver[7].strip() == ""):
                 mbox = QtWidgets.QMessageBox()
                 mbox.setWindowTitle("Aviso")
                 mbox.setWindowIcon(QtGui.QIcon("./img/warning.png"))
@@ -121,7 +122,7 @@ class Conexion():
             query.bindValue(":codigo", int(codigo))
             if query.exec():
                 while query.next():
-                    for i in range(12):# recorremos las columnas de la BBDD
+                    for i in range(12):  # recorremos las columnas de la BBDD
                         registro.append(str(query.value(i)))
             return registro
         except Exception as error:
@@ -149,7 +150,8 @@ class Conexion():
     def modifDriver(modifDriver):
         try:
             query = QtSql.QSqlQuery()
-            query.prepare("UPDATE drivers SET dnidri = :dni, altadri= :alta, apeldri = :apel, nombredri = :nombre, direcciondri = :direccion, provdri = :provincia, munidri = :municipio, movildri = :movil, salariodri = :salario, carnetdri = :carnet where codigo = :codigo")
+            query.prepare(
+                "UPDATE drivers SET dnidri = :dni, altadri= :alta, apeldri = :apel, nombredri = :nombre, direcciondri = :direccion, provdri = :provincia, munidri = :municipio, movildri = :movil, salariodri = :salario, carnetdri = :carnet where codigo = :codigo")
 
             query.bindValue(":codigo", int(modifDriver[0]))
             query.bindValue(":dni", str(modifDriver[1]))
@@ -215,14 +217,13 @@ class Conexion():
         except Exception as error:
             print("Error en baja driver en conexion: ", error)
 
-
-    def selectDrivers(estado):
+    def selectDrivers(estado): # NOTA: carga en la tabla segun su historico
         try:
-            registros=[]
+            registros = []
             if estado == 0:
                 query = QtSql.QSqlQuery()
                 query.prepare("select codigo, apeldri, nombredri, movildri, "
-                               "carnetdri, bajadri from drivers")
+                              "carnetdri, bajadri from drivers")
                 if query.exec():
                     while query.next():
                         row = [query.value(i) for i in range(query.record().count())]
@@ -248,3 +249,16 @@ class Conexion():
                 Drivers.Drivers.cargarTablaDri(registros)
         except Exception as error:
             print("Error al seleccionar los drivers", error)
+
+    def selectDriversTodos(self):  # NOTA: metodo para buscar todos los drivers
+        try:
+            registros = []
+            query = QtSql.QSqlQuery()
+            query.prepare("select * from drivers order by apeldri")
+            if query.exec():
+                while query.next():
+                    row = [query.value(i) for i in range(query.record().count())] #funcion lambda
+                    registros.append(row)
+            return registros
+        except Exception as error:
+            print("error devolver todos los drivers: ", error)

@@ -21,7 +21,7 @@
   </property>
   <property name="windowIcon">
    <iconset>
-    <normaloff>../img/taxi.ico</normaloff>../img/taxi.ico</iconset>
+    <normaloff>C:/Users/a19braisdp/.designer/img/taxi.ico</normaloff>C:/Users/a19braisdp/.designer/img/taxi.ico</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
    <property name="sizePolicy">
@@ -183,7 +183,7 @@
                   </property>
                   <property name="icon">
                    <iconset>
-                    <normaloff>../img/lupa.png</normaloff>../img/lupa.png</iconset>
+                    <normaloff>C:/Users/a19braisdp/.designer/img/lupa.png</normaloff>C:/Users/a19braisdp/.designer/img/lupa.png</iconset>
                   </property>
                  </widget>
                 </item>
@@ -265,7 +265,7 @@
                   </property>
                   <property name="icon">
                    <iconset>
-                    <normaloff>../img/calendar.ico</normaloff>../img/calendar.ico</iconset>
+                    <normaloff>C:/Users/a19braisdp/.designer/img/calendar.ico</normaloff>C:/Users/a19braisdp/.designer/img/calendar.ico</iconset>
                   </property>
                  </widget>
                 </item>
@@ -1012,6 +1012,8 @@ background-color:rgb(100,100,100);
     </property>
     <addaction name="actionCrear_Copia_Seguridad"/>
     <addaction name="actionRestaurar_Copia_Seguridad"/>
+    <addaction name="separator"/>
+    <addaction name="actionExportar_Datos_XLS"/>
    </widget>
    <addaction name="menuArchivo"/>
    <addaction name="menuHerramientas"/>
@@ -1048,7 +1050,7 @@ background-color:rgb(100,100,100);
   <action name="actionBarSalir">
    <property name="icon">
     <iconset>
-     <normaloff>../img/salir.ico</normaloff>../img/salir.ico</iconset>
+     <normaloff>C:/Users/a19braisdp/.designer/img/salir.ico</normaloff>C:/Users/a19braisdp/.designer/img/salir.ico</iconset>
    </property>
    <property name="text">
     <string>Salir</string>
@@ -1058,7 +1060,7 @@ background-color:rgb(100,100,100);
    <property name="icon">
     <iconset>
      <normaloff>C:/Users/a19braisdp/.designer/img/acercade.png</normaloff>
-     <normalon>../img/acercade.png</normalon>C:/Users/a19braisdp/.designer/img/acercade.png</iconset>
+     <normalon>C:/Users/a19braisdp/.designer/img/acercade.png</normalon>C:/Users/a19braisdp/.designer/img/acercade.png</iconset>
    </property>
    <property name="text">
     <string>Acerca de...</string>
@@ -1067,7 +1069,7 @@ background-color:rgb(100,100,100);
   <action name="actionLimpiarPanel">
    <property name="icon">
     <iconset>
-     <normaloff>../img/limpiar.ico</normaloff>../img/limpiar.ico</iconset>
+     <normaloff>C:/Users/a19braisdp/.designer/img/limpiar.ico</normaloff>C:/Users/a19braisdp/.designer/img/limpiar.ico</iconset>
    </property>
    <property name="text">
     <string>limpiarPanel</string>
@@ -1076,7 +1078,7 @@ background-color:rgb(100,100,100);
   <action name="actionCrear_Copia_Seguridad">
    <property name="icon">
     <iconset>
-     <normaloff>../img/add-backup.png</normaloff>../img/add-backup.png</iconset>
+     <normaloff>C:/Users/a19braisdp/.designer/img/add-backup.png</normaloff>C:/Users/a19braisdp/.designer/img/add-backup.png</iconset>
    </property>
    <property name="text">
     <string>Crear Copia Seguridad</string>
@@ -1088,13 +1090,18 @@ background-color:rgb(100,100,100);
   <action name="actionRestaurar_Copia_Seguridad">
    <property name="icon">
     <iconset>
-     <normaloff>../img/restaurar-backup.png</normaloff>../img/restaurar-backup.png</iconset>
+     <normaloff>C:/Users/a19braisdp/.designer/img/restaurar-backup.png</normaloff>C:/Users/a19braisdp/.designer/img/restaurar-backup.png</iconset>
    </property>
    <property name="text">
     <string>Restaurar Copia Seguridad</string>
    </property>
    <property name="shortcut">
     <string>Alt+R</string>
+   </property>
+  </action>
+  <action name="actionExportar_Datos_XLS">
+   <property name="text">
+    <string>Exportar Datos XLS</string>
    </property>
   </action>
  </widget>

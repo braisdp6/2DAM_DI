@@ -35,7 +35,7 @@ class Main(QtWidgets.QMainWindow):
             i.toggled.connect(Eventos.Eventos.selHistorico)
 
         '''
-        STATUS BAR      nota: parte de abajo de la ventana
+        STATUS BAR      NOTA: parte de abajo de la ventana
         '''
         # formateamos la fecha
         fechaActual = datetime.now()
@@ -59,7 +59,7 @@ class Main(QtWidgets.QMainWindow):
         # TODO: que quede el color amarillo guardado
 
         '''
-        zona de eventos de comboBox       nota: sirve para que cargue los datos en el comboBox
+        zona de eventos de comboBox       NOTA: sirve para que cargue los datos en el comboBox
         '''
         Var.ui.cmbProvincia.currentIndexChanged.connect(Conexion.Conexion.selMuni)
         Var.ui.rbtGroup.buttonClicked.connect(Drivers.Drivers.selEstado)
@@ -84,16 +84,16 @@ class Main(QtWidgets.QMainWindow):
         Var.ui.txtSalario.editingFinished.connect(Eventos.Eventos.formatCajaTexto)
 
         '''
-        zona de eventos del menubar  nota: parte de arriba de la ventana donde hay desplegables (Archivo, Herramientas, Ayuda...)
+        zona de eventos del menubar  NOTA: parte de arriba de la ventana donde hay desplegables (Archivo, Herramientas, Ayuda...)
         '''
         Var.ui.actionBarSalir.triggered.connect(Eventos.Eventos.abrirVentanaSalir)
         Var.ui.actionAcercaDe.triggered.connect(Eventos.Eventos.abrirAcercaDe)
         Var.ui.actionCrear_Copia_Seguridad.triggered.connect(Eventos.Eventos.crearBackup)
+        Var.ui.actionExportar_Datos_XLS.triggered.connect(Eventos.Eventos.exportarDatosXLS)
 
         '''
-        zona de eventos del toolbar   nota: parte de arriba de la ventana donde estan los iconos ejecutables (backups, limpiar, etc...)
+        zona de eventos del toolbar   NOTA: parte de arriba de la ventana donde estan los iconos ejecutables (backups, limpiar, etc...)
         '''
-        # Var.ui.actionBarSalir.triggered.connect(Eventos.Eventos.abrirVentanaSalir) -> codigo de ejemplo si fuera una accion diferente
         Var.ui.actionLimpiarPanel.triggered.connect(Drivers.Drivers.limpiarPanel)
 
     def closeEvent(self, event):
