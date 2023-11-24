@@ -77,10 +77,12 @@ class Drivers():
                 if i.isChecked():
                     licencias.append(i.text())
             driver.append("-".join(licencias))
+            
             print(driver)
             Conexion.Conexion.guardarDri(driver)
         except Exception as error:
             print("Error alta cliente ", error)
+
 
     def validarMovil(self=None):
         try:
@@ -158,7 +160,7 @@ class Drivers():
             print("Error al cargar datos: ", error)
 
     # nota: metodo para que te haga focus en la tabla que busques
-    def buscarDriverLupa(self):# TODO: ahcer que cambie el historico a TODOS
+    def buscarDriverLupa(self):
         try:
             dni = Var.ui.txtDni.text()
             registro = Conexion.Conexion.codDri(dni)
@@ -193,10 +195,10 @@ class Drivers():
         try:
             driver = [Var.ui.lblCodbd, Var.ui.txtDni, Var.ui.txtFechaAlta, Var.ui.txtApel, Var.ui.txtNombre,
                       Var.ui.txtDireccion, Var.ui.txtMovil, Var.ui.txtSalario]
-
-            modifDriver = []
+            modifDriver = [] # NOTA: array que va a contener todos los campos del driver
             for i in driver:
-                modifDriver.append(i.text().title())  # TODO: ERROR AQUI EN MODFIF
+                modifDriver.append(i.text().title())
+
             # for i in driver:
             #     if isinstance(i, QtWidgets.QComboBox):
             #         modifDriver.append(i.currentText())  # Usar currentText() para QComboBox

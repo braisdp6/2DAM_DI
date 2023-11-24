@@ -1,7 +1,6 @@
 import locale
 
 import Conexion
-import Drivers
 import Eventos
 
 locale.setlocale(locale.LC_TIME, "es_ES.UTF-8")
@@ -10,7 +9,7 @@ locale.setlocale(locale.LC_MONETARY, "es_ES.UTF-8")
 from WindowAux import *
 
 
-# TODO ALL: error al modificar empleados // error(no importante) cuando clickeo no resalta en amarillo
+# TODO ALL: error(no importante) cuando clickeo no resalta en amarillo // cuando das de baja algun driver que te cambie al historico baja
 
 class Main(QtWidgets.QMainWindow):
     def __init__(self):
@@ -55,7 +54,8 @@ class Main(QtWidgets.QMainWindow):
         zona de eventos de tablas
         '''
         Eventos.Eventos.resizeTabDrivers(self)
-        Var.ui.tabDrivers.clicked.connect(Drivers.Drivers.cargaDriver)  # nota: Metodo para cargar driver en la tabla cuando se haga click en el "tabDriver"
+        Var.ui.tabDrivers.clicked.connect(
+            Drivers.Drivers.cargaDriver)  # nota: Metodo para cargar driver en la tabla cuando se haga click en el "tabDriver"
         # TODO: que quede el color amarillo guardado
 
         '''
@@ -69,8 +69,8 @@ class Main(QtWidgets.QMainWindow):
         '''
         Var.ui.btnCalendar.clicked.connect(Eventos.Eventos.abrirCalendar)
         Var.ui.btnAltaDriver.clicked.connect(Drivers.Drivers.altaDriver)
-        Var.ui.btnBuscarDni.clicked.connect(Drivers.Drivers.buscarDriverLupa)  # todo: arreglar focus aqui
-        Var.ui.btnModificarDriver.clicked.connect(Drivers.Drivers.modifDri)  # todo: arreglar modificar driver
+        Var.ui.btnBuscarDni.clicked.connect(Drivers.Drivers.buscarDriverLupa)
+        Var.ui.btnModificarDriver.clicked.connect(Drivers.Drivers.modifDri)  # NOTA: metodo modificar driver
         Var.ui.btnBajaDriver.clicked.connect(Drivers.Drivers.borraDriv)  # nota: metodo borrar driver
         Var.ui.actionRestaurar_Copia_Seguridad.triggered.connect(Eventos.Eventos.restaurarBackup)
 

@@ -109,6 +109,13 @@ class Conexion():
                     row = [query1.value(i) for i in range(query1.record().count())]
                     registros.append(row)
             Drivers.Drivers.cargarTablaDri(registros)
+
+            # NOTA: si estan todos de baja debe mostrar la tabla de alta vacia
+            if registros:
+                Drivers.Drivers.cargarTablaDri(registros)
+            else:
+                Var.ui.tabDrivers.setCountRow(0)
+
             print(registros)
         except Exception as error:
             print("Error mostrar drivers: ", error)
@@ -159,8 +166,8 @@ class Conexion():
             query.bindValue(":apel", str(modifDriver[3]))
             query.bindValue(":nombre", str(modifDriver[4]))
             query.bindValue(":direccion", str(modifDriver[5]))
-            query.bindValue(":prov", str(modifDriver[6]))
-            query.bindValue(":muni", str(modifDriver[7]))
+            query.bindValue(":provincia", str(modifDriver[6]))
+            query.bindValue(":municipio", str(modifDriver[7]))
             query.bindValue(":movil", str(modifDriver[8]))
             query.bindValue(":salario", str(modifDriver[9]))
             query.bindValue(":carnet", str(modifDriver[10]))
@@ -171,7 +178,7 @@ class Conexion():
                 msg.setIcon(QtWidgets.QMessageBox.Icon.Information)
                 msg.setText("Datos Conductor Modificados")
                 msg.exec()
-                Conexion.mostrarDrivers(self=None)
+                Conexion.mostrarDrivers()
             else:
                 msg = QtWidgets.QMessageBox()
                 msg.setWindowTitle("Aviso")
