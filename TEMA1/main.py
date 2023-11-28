@@ -9,7 +9,7 @@ locale.setlocale(locale.LC_MONETARY, "es_ES.UTF-8")
 from WindowAux import *
 
 
-# TODO ALL: error(no importante) cuando clickeo no resalta en amarillo // cuando das de baja algun driver que te cambie al historico baja // cuando no hay ningun driver de baja, no carga el historico baja
+# TODO ALL: error(no importante) cuando clickeo no resalta en amarillo // cuando das de baja algun driver que te cambie al historico baja // cuando no hay ningun driver de baja, no carga el historico baja // importaciones
 
 class Main(QtWidgets.QMainWindow):
     def __init__(self):
@@ -90,7 +90,7 @@ class Main(QtWidgets.QMainWindow):
         Var.ui.actionAcercaDe.triggered.connect(Eventos.Eventos.abrirAcercaDe)
         Var.ui.actionCrear_Copia_Seguridad.triggered.connect(Eventos.Eventos.crearBackup)
         Var.ui.actionExportar_Datos_XLS.triggered.connect(Eventos.Eventos.exportarDatosXLS)
-        Var.ui.actionImportar_Datos_XLS.triggered.connect(Eventos.Eventos.importarDatosXLS)
+        Var.ui.actionImportar_Datos_XLS.triggered.connect(Eventos.Eventos.importarDatosXLS) # TODO: NO FUNCIONA
 
         '''
         zona de eventos del toolbar   NOTA: parte de arriba de la ventana donde estan los iconos ejecutables (backups, limpiar, etc...)

@@ -163,21 +163,26 @@ class Eventos():
 
     def importarDatosXLS(self):
         try:
-            fileName = Var.dlgAbrir.getOpenFileName(None, "Importar datos", "", ".xls;;All Files(*)")
+            fileName = Var.dlgAbrir.getOpenFileName(None, 'Importar datos', '', '*.xls;;All Files(*)')
             if Var.dlgAbrir.accept and fileName != "":
                 file = fileName[0]
                 documento = xlrd.open_workbook(file)
                 datos = documento.sheet_by_index(0)  # Nota: cogemos datos de la primera hoja del .xls
                 filas = datos.nrows
                 columnas = datos.ncols
+
                 for i in range(filas):
                     if i == 0:  # Nota: lee la primera fila donde estan las cabeceras (no las vamos a usar)
                         pass
                     else:
                         new = []  # Nota: le cargamos en el array todos los datos de las filas del .xls
-                        for j in range(columnas):
-                            new.append(str(datos.cell(i, j)))
-                            # if Drivers.Drivers.validarDNI(str(new[0])) checkeamos si existe el DNI (NOTA: se necesita hacer un metodo con sobrecarga, que no funciona todavia)
+                        for j in range(columnas): # TODO: ESTA RUINA NO FUNCIONA
+                            if j == 1:
+                                dato = xlrd.xldate_as_datetime(datos.cell_value(i,j), documento.datemode)
+                                dato = dato.strftime("%d/%m/%Y")
+                                new.append(str(dato))
+                            else:
+                                new.append(str(dato.cell(i, j).value))
                         Conexion.Conexion.guardarDri(new)
                     if i == filas -1:
                         mbox = QtWidgets.QMessageBox()
