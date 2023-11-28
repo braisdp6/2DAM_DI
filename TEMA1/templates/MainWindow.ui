@@ -21,7 +21,7 @@
   </property>
   <property name="windowIcon">
    <iconset>
-    <normaloff>C:/Users/a19braisdp/.designer/img/taxi.ico</normaloff>C:/Users/a19braisdp/.designer/img/taxi.ico</iconset>
+    <normaloff>../img/taxi.ico</normaloff>../img/taxi.ico</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
    <property name="sizePolicy">

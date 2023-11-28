@@ -34,6 +34,10 @@
   <property name="windowTitle">
    <string>Acerca de...</string>
   </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>../img/acercade.png</normaloff>../img/acercade.png</iconset>
+  </property>
   <property name="styleSheet">
    <string notr="true">background-color: white;</string>
   </property>

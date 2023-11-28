@@ -21,12 +21,20 @@ class Drivers():
             Var.ui.cmbProvincia.setCurrentText("")
             Var.ui.cmbLocalidad.setCurrentText("")
 
-            if Var.ui.rbtAlta.isChecked():
+            if Var.ui.rbtTodos.isChecked():
+                estado = 0
+                Conexion.Conexion.selectDrivers(estado)
+            elif Var.ui.rbtAlta.isChecked():
                 estado = 1
                 Conexion.Conexion.selectDrivers(estado)
-            else:
-                registros = Conexion.Conexion.mostrarDrivers(self)
-                Drivers.cargarTablaDri(registros)
+            elif Var.ui.rbtBaja.isChecked():
+                estado = 2
+                Conexion.Conexion.selectDrivers(estado)
+
+
+            # else:
+            #     registros = Conexion.Conexion.mostrarDrivers(self)
+            #     Drivers.cargarTablaDri(registros)
 
         except Exception as error:
             print("error limpiar panel driver: ", error)
@@ -165,7 +173,7 @@ class Drivers():
         except Exception as error:
             print("Error alta cliente ", error)
 
-    # Metodo para mostrar los datos en la tabla
+    # Metodo para cargar los datos en la tabla
     def cargarTablaDri(registros):
         try:
             Var.ui.tabDrivers.clearContents()
@@ -282,7 +290,8 @@ class Drivers():
         try:
             dni = Var.ui.txtDni.text()
             Conexion.Conexion.borraDriv(dni)
-            Conexion.Conexion.mostrarDrivers()
+            Conexion.Conexion.mostrarDrivers(self)
+            #Conexion.Conexion.selectDrivers(1)
 
         except Exception as error:
             msg = QtWidgets.QMessageBox()

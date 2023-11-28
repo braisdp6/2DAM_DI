@@ -81,7 +81,7 @@ class Conexion():
                 query.bindValue(":salario", str(newDriver[8]))
                 query.bindValue(":carnet", str(newDriver[9]))
 
-                if query.exec(): # Nota: se utiliza para mostrar los cuadros de dialogo de confimacion en Drivers.altaDriver()
+                if query.exec():  # Nota: se utiliza para mostrar los cuadros de dialogo de confimacion en Drivers.altaDriver()
                     return True
                 else:
                     return False
@@ -92,26 +92,20 @@ class Conexion():
 
     # Metodo para mostrar los Drivers en la tabla
     @staticmethod
-    def mostrarDrivers(self):
+    def mostrarDrivers(self): # Nota: no borrar el self
         try:
-            registros = []
-            if Var.ui.rbtAlta.isChecked():
+            if Var.ui.rbtTodos.isChecked():
+                estado = 0
+                Conexion.selectDrivers(
+                    estado)
+            elif Var.ui.rbtAlta.isChecked():
                 estado = 1
-                Conexion.selectDrivers(estado)
-            else:
-                query1 = QtSql.QSqlQuery()
-                query1.prepare("SELECT codigo, apeldri, nombredri, movildri, carnetdri, bajadri FROM drivers")
-                if query1.exec():
-                    while query1.next():
-                        row = [query1.value(i) for i in range(query1.record().count())]
-                        registros.append(row)
-
-            # NOTA: si estan todos de baja debe mostrar la tabla de alta vacia
-                if registros:
-                    Drivers.Drivers.cargarTablaDri(registros)
-                else:
-                    Var.ui.tabDrivers.setCountRow(0)
-
+                Conexion.selectDrivers(
+                    estado)
+            elif Var.ui.rbtBaja.isChecked():
+                estado = 2
+                Conexion.selectDrivers(
+                    estado)  # Nota: le pasamos el estado y que el metodo selectDrivers() cargue los drivers en la tabla
         except Exception as error:
             print("Error mostrar drivers: ", error)
 
