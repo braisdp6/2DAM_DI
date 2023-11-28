@@ -129,29 +129,8 @@ class Drivers():
                 if i.isChecked():
                     licencias.append(i.text())
             driver.append("-".join(licencias))
-
-            print(driver)
             Conexion.Conexion.guardarDri(driver)
-            # Nota: metodo para mostrar cuadro de dialogo en caso de que funcione el metodo
-            valor = Conexion.Conexion.guardarDri(driver)
-            if valor == True:
-                mbox = QtWidgets.QMessageBox()
-                mbox.setWindowTitle("Aviso")
-                mbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
-                mbox.setText("Empleado dado de alta")
-                mbox.exec()
-            else:
-                mbox = QtWidgets.QMessageBox()
-                mbox.setWindowTitle("Aviso")
-                mbox.setIcon(QtWidgets.QMessageBox.Icon.Warning)
-                mbox.setText("Asegúrese que el NIF no exista en la base de datos.")
-                mbox.exec()
 
-            mbox = QtWidgets.QMessageBox()
-            mbox.setWindowTitle("Aviso")
-            mbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
-            mbox.setText("Empleado dado de alta")
-            mbox.exec()
         except Exception as error:
             print("Error alta cliente ", error)
 
@@ -173,7 +152,7 @@ class Drivers():
         except Exception as error:
             print("Error alta cliente ", error)
 
-    # Metodo para cargar los datos en la tabla
+    # Metodo que carga los datos en la tabla, lo usa solo el metodo Conexion.selectDrivers()
     def cargarTablaDri(registros):
         try:
             Var.ui.tabDrivers.clearContents()
@@ -208,9 +187,9 @@ class Drivers():
         except Exception as error:
             print("Error al cargar los datos de un cliente: ", error)
 
+    # nota: cargar los datos cuando clickeamos encima de algun driver
     def cargarDatos(registro):
         try:
-            # nota: cargar los datos cuando clickeamos encima de algun driver
             datos = [Var.ui.lblCodbd, Var.ui.txtDni, Var.ui.txtFechaAlta, Var.ui.txtApel, Var.ui.txtNombre,
                      Var.ui.txtDireccion, Var.ui.cmbProvincia, Var.ui.cmbLocalidad, Var.ui.txtMovil, Var.ui.txtSalario]
 
@@ -219,14 +198,22 @@ class Drivers():
                     dato.setCurrentText(str(registro[i]))
                 else:
                     dato.setText(str(registro[i]))
-            if "A" in registro[10]:
+            if 'A' in registro[10]:
                 Var.ui.chkA.setChecked(True)
-            if "B" in registro[10]:
+            else:
+                Var.ui.chkA.setChecked(False)
+            if 'B' in registro[10]:
                 Var.ui.chkB.setChecked(True)
-            if "C" in registro[10]:
+            else:
+                Var.ui.chkB.setChecked(False)
+            if 'C' in registro[10]:
                 Var.ui.chkC.setChecked(True)
-            if "D" in registro[10]:
+            else:
+                Var.ui.chkC.setChecked(False)
+            if 'D' in registro[10]:
                 Var.ui.chkD.setChecked(True)
+            else:
+                Var.ui.chkD.setChecked(False)
         except Exception as error:
             print("Error al cargar datos: ", error)
 
@@ -236,6 +223,7 @@ class Drivers():
             dni = Var.ui.txtDni.text()
             registro = Conexion.Conexion.codDri(dni)
             Drivers.cargarDatos(registro)
+
             if Var.ui.rbtTodos.isChecked():
                 estado = 0
                 Conexion.Conexion.selectDrivers(estado)
@@ -260,27 +248,19 @@ class Drivers():
         try:
             driver = [Var.ui.lblCodbd, Var.ui.txtDni, Var.ui.txtFechaAlta, Var.ui.txtApel, Var.ui.txtNombre,
                       Var.ui.txtDireccion, Var.ui.txtMovil, Var.ui.txtSalario]
-            modifDriver = []  # NOTA: array que va a contener todos los campos del driver
+            modifDriver = [] # NOTA: array que va a contener todos los campos del driver
             for i in driver:
                 modifDriver.append(i.text().title())
-
-            # for i in driver:
-            #     if isinstance(i, QtWidgets.QComboBox):
-            #         modifDriver.append(i.currentText())  # Usar currentText() para QComboBox
-            #     else:
-            #         modifDriver.append(i.text().title())
-
             prov = Var.ui.cmbProvincia.currentText()
             modifDriver.insert(6, prov)
             muni = Var.ui.cmbLocalidad.currentText()
             modifDriver.insert(7, muni)
+
             licencias = []
             chkLicencia = [Var.ui.chkA, Var.ui.chkB, Var.ui.chkC, Var.ui.chkD]
-
             for i in chkLicencia:
                 if i.isChecked():
                     licencias.append(i.text())
-
             modifDriver.append("-".join(licencias))
             Conexion.Conexion.modifDriver(modifDriver)
         except Exception as error:
@@ -291,7 +271,7 @@ class Drivers():
             dni = Var.ui.txtDni.text()
             Conexion.Conexion.borraDriv(dni)
             Conexion.Conexion.mostrarDrivers(self)
-            #Conexion.Conexion.selectDrivers(1)
+            #Conexion.Conexion.selectDrivers(1) todo: es la forma que tiene juanca de hacerlo, es lo mismo pero con más vueltas
 
         except Exception as error:
             msg = QtWidgets.QMessageBox()

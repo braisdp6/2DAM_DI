@@ -53,11 +53,11 @@ class Conexion():
 
         except Exception as error:
             print("Error en la seleccion de municipios: ", error)
-
-    def guardarDri(newDriver):
+    @staticmethod
+    def guardarDri(driver):
         try:  # comprobamos que no se añaden campos vacios
-            if (newDriver[0].strip() == "" or newDriver[1].strip() == "" or newDriver[2].strip() == "" or newDriver[
-                3].strip() == "" or newDriver[7].strip() == ""):
+            if (driver[0].strip() == "" or driver[1].strip() == "" or driver[2].strip() == "" or driver[
+                3].strip() == "" or driver[7].strip() == ""):
                 mbox = QtWidgets.QMessageBox()
                 mbox.setWindowTitle("Aviso")
                 mbox.setWindowIcon(QtGui.QIcon("./img/warning.png"))
@@ -70,27 +70,37 @@ class Conexion():
                 query.prepare(
                     "INSERT INTO drivers (dnidri, altadri, apeldri, nombredri, direcciondri, provdri, munidri, movildri, salariodri, carnetdri) VALUES (:dni, :alta, :apel, :nombre, :direccion, :prov, :muni, :movil, :salario, :carnet)")
 
-                query.bindValue(":dni", str(newDriver[0]))
-                query.bindValue(":alta", str(newDriver[1]))
-                query.bindValue(":apel", str(newDriver[2]))
-                query.bindValue(":nombre", str(newDriver[3]))
-                query.bindValue(":direccion", str(newDriver[4]))
-                query.bindValue(":prov", str(newDriver[5]))
-                query.bindValue(":muni", str(newDriver[6]))
-                query.bindValue(":movil", str(newDriver[7]))
-                query.bindValue(":salario", str(newDriver[8]))
-                query.bindValue(":carnet", str(newDriver[9]))
+                query.bindValue(":dni", str(driver[0]))
+                query.bindValue(":alta", str(driver[1]))
+                query.bindValue(":apel", str(driver[2]))
+                query.bindValue(":nombre", str(driver[3]))
+                query.bindValue(":direccion", str(driver[4]))
+                query.bindValue(":prov", str(driver[5]))
+                query.bindValue(":muni", str(driver[6]))
+                query.bindValue(":movil", str(driver[7]))
+                query.bindValue(":salario", str(driver[8]))
+                query.bindValue(":carnet", str(driver[9]))
 
                 if query.exec():  # Nota: se utiliza para mostrar los cuadros de dialogo de confimacion en Drivers.altaDriver()
-                    return True
+                    mbox = QtWidgets.QMessageBox()
+                    mbox.setWindowTitle('Aviso')
+                    mbox.setWindowIcon(QtGui.QIcon('./img/logo.ico'))
+                    mbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
+                    mbox.setText("Empleado dado de alta.")
+                    mbox.exec()
                 else:
-                    return False
+                    mbox = QtWidgets.QMessageBox()
+                    mbox.setWindowTitle('Aviso')
+                    mbox.setWindowIcon(QtGui.QIcon('./img/logo.ico'))
+                    mbox.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+                    mbox.setText("Asegúrese de que el conductor no existe.")
+                    mbox.exec()
             # select datos de conductores de la base de datos
-            Conexion.mostrarDrivers()
+            Conexion.mostrarDrivers(self=None)
         except Exception as error:
             print("Error en alta conductor: ", error)
 
-    # Metodo para mostrar los Drivers en la tabla
+    # Metodo que pasa la posicion del historico, para luego mostrar los Drivers en la tabla por otros metodos
     @staticmethod
     def mostrarDrivers(self): # Nota: no borrar el self
         try:
@@ -215,7 +225,7 @@ class Conexion():
         except Exception as error:
             print("Error en baja driver en conexion: ", error)
 
-    def selectDrivers(estado):  # NOTA: carga en la tabla segun su historico
+    def selectDrivers(estado):  # NOTA: recibe por parametro la posicion del histórico y luego a traves de Drivers.cargarTablaDri() carga los datos en la tabla
         try:
             registros = []
             if estado == 0:

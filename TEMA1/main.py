@@ -9,8 +9,7 @@ locale.setlocale(locale.LC_MONETARY, "es_ES.UTF-8")
 from WindowAux import *
 
 
-# TODO ALL: error(no importante) cuando clickeo no resalta en amarillo // cuando das de baja algun driver que te cambie al historico baja // cuando no hay ningun driver de baja, no carga el historico baja
-
+# TODO ALL: dar de alta drivers que estén de baja // error al dar de alta, sale siempre cuadro de alta y de error // modificar para que la textBox direccion tenga capitalizacion
 class Main(QtWidgets.QMainWindow):
     def __init__(self):
         super(Main, self).__init__()
@@ -19,7 +18,6 @@ class Main(QtWidgets.QMainWindow):
         Var.calendar = Calendar()
         Var.acercaDe = AcercaDe()
         Var.dlgAbrir = FileDialogAbrir()
-        #Var.ventanaSalir = VentanaSalir() todo: pendiente si es necesario o borrar
         Conexion.Conexion.conexion()
         Conexion.Conexion.cargaProv()
         estado = 1
