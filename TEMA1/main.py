@@ -9,7 +9,7 @@ locale.setlocale(locale.LC_MONETARY, "es_ES.UTF-8")
 from WindowAux import *
 
 
-# TODO ALL: error(no importante) cuando clickeo no resalta en amarillo // cuando das de baja algun driver que te cambie al historico baja // cuando no hay ningun driver de baja, no carga el historico baja // importaciones
+# TODO ALL: error(no importante) cuando clickeo no resalta en amarillo // cuando das de baja algun driver que te cambie al historico baja // cuando no hay ningun driver de baja, no carga el historico baja
 
 class Main(QtWidgets.QMainWindow):
     def __init__(self):
@@ -17,12 +17,11 @@ class Main(QtWidgets.QMainWindow):
         Var.ui = Ui_MainWindow()
         Var.ui.setupUi(self)  # encargado de generar la interfaz
         Var.calendar = Calendar()
-        Var.ventanaSalir = VentanaSalir()
         Var.acercaDe = AcercaDe()
         Var.dlgAbrir = FileDialogAbrir()
+        #Var.ventanaSalir = VentanaSalir() todo: pendiente si es necesario o borrar
         Conexion.Conexion.conexion()
         Conexion.Conexion.cargaProv()
-        Conexion.Conexion.mostrarDrivers()
         estado = 1
         Conexion.Conexion.selectDrivers(estado)  # funcionamiento mostrar Histórico
 
@@ -54,9 +53,8 @@ class Main(QtWidgets.QMainWindow):
         zona de eventos de tablas
         '''
         Eventos.Eventos.resizeTabDrivers(self)
-        Var.ui.tabDrivers.clicked.connect(
-            Drivers.Drivers.cargaDriver)  # nota: Metodo para cargar driver en la tabla cuando se haga click en el "tabDriver"
-        # TODO: que quede el color amarillo guardado
+        Var.ui.tabDrivers.clicked.connect(Drivers.Drivers.cargaDriver)  # nota: Metodo para cargar driver en la tabla cuando se haga click en el "tabDriver"
+
 
         '''
         zona de eventos de comboBox       NOTA: sirve para que cargue los datos en el comboBox
@@ -90,7 +88,7 @@ class Main(QtWidgets.QMainWindow):
         Var.ui.actionAcercaDe.triggered.connect(Eventos.Eventos.abrirAcercaDe)
         Var.ui.actionCrear_Copia_Seguridad.triggered.connect(Eventos.Eventos.crearBackup)
         Var.ui.actionExportar_Datos_XLS.triggered.connect(Eventos.Eventos.exportarDatosXLS)
-        Var.ui.actionImportar_Datos_XLS.triggered.connect(Eventos.Eventos.importarDatosXLS) # TODO: NO FUNCIONA
+        Var.ui.actionImportar_Datos_XLS.triggered.connect(Eventos.Eventos.importarDatosXLS)
 
         '''
         zona de eventos del toolbar   NOTA: parte de arriba de la ventana donde estan los iconos ejecutables (backups, limpiar, etc...)

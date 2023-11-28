@@ -91,25 +91,27 @@ class Conexion():
             print("Error en alta conductor: ", error)
 
     # Metodo para mostrar los Drivers en la tabla
-    @classmethod
+    @staticmethod
     def mostrarDrivers(self):
         try:
             registros = []
-            query1 = QtSql.QSqlQuery()
-            query1.prepare("SELECT codigo, apeldri, nombredri, movildri, carnetdri, bajadri FROM drivers")
-            if query1.exec():
-                while query1.next():
-                    row = [query1.value(i) for i in range(query1.record().count())]
-                    registros.append(row)
-            Drivers.Drivers.cargarTablaDri(registros)
+            if Var.ui.rbtAlta.isChecked():
+                estado = 1
+                Conexion.selectDrivers(estado)
+            else:
+                query1 = QtSql.QSqlQuery()
+                query1.prepare("SELECT codigo, apeldri, nombredri, movildri, carnetdri, bajadri FROM drivers")
+                if query1.exec():
+                    while query1.next():
+                        row = [query1.value(i) for i in range(query1.record().count())]
+                        registros.append(row)
 
             # NOTA: si estan todos de baja debe mostrar la tabla de alta vacia
-            if registros:
-                Drivers.Drivers.cargarTablaDri(registros)
-            else:
-                Var.ui.tabDrivers.setCountRow(0)
+                if registros:
+                    Drivers.Drivers.cargarTablaDri(registros)
+                else:
+                    Var.ui.tabDrivers.setCountRow(0)
 
-            print(registros)
         except Exception as error:
             print("Error mostrar drivers: ", error)
 
@@ -136,16 +138,16 @@ class Conexion():
             if query.exec():
                 while query.next():
                     codigo = query.value(0)
+                if codigo is not None:
                     registro = Conexion.oneDriver(codigo)
                     return registro
-
-                mbox = QtWidgets.QMessageBox()
-                mbox.setWindowTitle("Aviso")
-                mbox.setIcon(QtWidgets.QMessageBox.Icon.Warning)
-                mbox.setText("El conductor no existe.")
-                mbox.exec()
         except Exception as error:
             print("Error en busca de codigo de un conductor: ", error)
+            mbox = QtWidgets.QMessageBox()
+            mbox.setWindowTitle("Aviso")
+            mbox.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+            mbox.setText('El conductor no existe o error de búsqueda')
+            mbox.exec()
 
     def modifDriver(modifDriver):
         try:

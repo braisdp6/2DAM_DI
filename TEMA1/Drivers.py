@@ -7,6 +7,7 @@ import Var
 
 
 class Drivers():
+    @staticmethod
     def limpiarPanel(self):
         try:
             listaWidgets = [Var.ui.txtDni, Var.ui.txtFechaAlta, Var.ui.txtApel, Var.ui.txtNombre, Var.ui.txtDireccion,
@@ -19,6 +20,14 @@ class Drivers():
                 i.setChecked(False)
             Var.ui.cmbProvincia.setCurrentText("")
             Var.ui.cmbLocalidad.setCurrentText("")
+
+            if Var.ui.rbtAlta.isChecked():
+                estado = 1
+                Conexion.Conexion.selectDrivers(estado)
+            else:
+                registros = Conexion.Conexion.mostrarDrivers(self)
+                Drivers.cargarTablaDri(registros)
+
         except Exception as error:
             print("error limpiar panel driver: ", error)
 
@@ -112,7 +121,7 @@ class Drivers():
                 if i.isChecked():
                     licencias.append(i.text())
             driver.append("-".join(licencias))
-            
+
             print(driver)
             Conexion.Conexion.guardarDri(driver)
             # Nota: metodo para mostrar cuadro de dialogo en caso de que funcione el metodo
@@ -138,7 +147,6 @@ class Drivers():
         except Exception as error:
             print("Error alta cliente ", error)
 
-
     def validarMovil(self=None):
         try:
             regex = r'^\d{9}$'
@@ -160,6 +168,7 @@ class Drivers():
     # Metodo para mostrar los datos en la tabla
     def cargarTablaDri(registros):
         try:
+            Var.ui.tabDrivers.clearContents()
             index = 0
             for registro in registros:
                 Var.ui.tabDrivers.setRowCount(index + 1)
@@ -179,15 +188,14 @@ class Drivers():
             print("Error carga tabla drivers: ", error)
 
     # Metodo para cargar driver cuando se haga click en el "tabDriver"
-    def cargaDriver(self):
+    def cargaDriver(self=None):
         try:
-            Drivers.limpiarPanel(self)
-            row = Var.ui.tabDrivers.selectedItems()
-            fila = [dato.text() for dato in row]
-            registro = Conexion.Conexion.oneDriver(fila[0])
+            # Drivers.limpiarPanel(self)
+            fila = Var.ui.tabDrivers.selectedItems()
+            row = [dato.text() for dato in fila]
+            registro = Conexion.Conexion.oneDriver(row[0])
             # LLAMAMOS AL METODO CARGARDATOS PARA NO COPIAR CODIGO
             Drivers.cargarDatos(registro)
-            print(fila)
 
         except Exception as error:
             print("Error al cargar los datos de un cliente: ", error)
@@ -220,29 +228,23 @@ class Drivers():
             dni = Var.ui.txtDni.text()
             registro = Conexion.Conexion.codDri(dni)
             Drivers.cargarDatos(registro)
-            registros = Conexion.Conexion.mostrarDrivers()
-            Drivers.cargarTablaDri(registros)
+            if Var.ui.rbtTodos.isChecked():
+                estado = 0
+                Conexion.Conexion.selectDrivers(estado)
+            elif Var.ui.rbtAlta.isChecked():
+                estado = 1
+                Conexion.Conexion.selectDrivers(estado)
+            elif Var.ui.rbtBaja.isChecked():
+                estado = 2
+                Conexion.Conexion.selectDrivers(estado)
+
             codigo = Var.ui.lblCodbd.text()
             for fila in range(Var.ui.tabDrivers.rowCount()):
                 if Var.ui.tabDrivers.item(fila, 0).text() == str(codigo):
-                    Var.ui.tabDrivers.scrollToItem(Var.ui.tabDrivers.item(fila, 0))
-                    Var.ui.tabDrivers.setItem(fila, 0, QtWidgets.QTableWidgetItem(str(registro[0])))
-                    Var.ui.tabDrivers.setItem(fila, 1, QtWidgets.QTableWidgetItem(str(registro[3])))
-                    Var.ui.tabDrivers.setItem(fila, 2, QtWidgets.QTableWidgetItem(str(registro[4])))
-                    Var.ui.tabDrivers.setItem(fila, 3, QtWidgets.QTableWidgetItem(str(registro[8])))
-                    Var.ui.tabDrivers.setItem(fila, 4, QtWidgets.QTableWidgetItem(str(registro[10])))
-                    Var.ui.tabDrivers.setItem(fila, 5, QtWidgets.QTableWidgetItem(str(registro[11])))
-                    Var.ui.tabDrivers.item(fila, 0).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-                    Var.ui.tabDrivers.item(fila, 3).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-                    Var.ui.tabDrivers.item(fila, 4).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-                    Var.ui.tabDrivers.item(fila, 5).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-                    Var.ui.tabDrivers.item(fila, 0).setBackground(QtGui.QColor(255, 241, 150))
-                    Var.ui.tabDrivers.item(fila, 1).setBackground(QtGui.QColor(255, 241, 150))
-                    Var.ui.tabDrivers.item(fila, 2).setBackground(QtGui.QColor(255, 241, 150))
-                    Var.ui.tabDrivers.item(fila, 3).setBackground(QtGui.QColor(255, 241, 150))
-                    Var.ui.tabDrivers.item(fila, 4).setBackground(QtGui.QColor(255, 241, 150))
-                    Var.ui.tabDrivers.item(fila, 5).setBackground(QtGui.QColor(255, 241, 150))
-                    break
+                    for columna in range(Var.ui.tabDrivers.columnCount()):
+                        item = Var.ui.tabDrivers.item(fila, columna)
+                        if item is not None:
+                            item.setBackground(QtGui.QColor(255, 241, 150))
         except Exception as error:
             print(error, "en busca de datos de un conductor")
 
@@ -250,7 +252,7 @@ class Drivers():
         try:
             driver = [Var.ui.lblCodbd, Var.ui.txtDni, Var.ui.txtFechaAlta, Var.ui.txtApel, Var.ui.txtNombre,
                       Var.ui.txtDireccion, Var.ui.txtMovil, Var.ui.txtSalario]
-            modifDriver = [] # NOTA: array que va a contener todos los campos del driver
+            modifDriver = []  # NOTA: array que va a contener todos los campos del driver
             for i in driver:
                 modifDriver.append(i.text().title())
 
