@@ -9,7 +9,7 @@ locale.setlocale(locale.LC_MONETARY, "es_ES.UTF-8")
 from WindowAux import *
 
 
-# TODO ALL: error(no importante) cuando clickeo no resalta en amarillo // cuando das de baja algun driver que te cambie al historico baja
+# TODO ALL: error(no importante) cuando clickeo no resalta en amarillo // cuando das de baja algun driver que te cambie al historico baja // cuando no hay ningun driver de baja, no carga el historico baja
 
 class Main(QtWidgets.QMainWindow):
     def __init__(self):

@@ -80,18 +80,11 @@ class Conexion():
                 query.bindValue(":movil", str(newDriver[7]))
                 query.bindValue(":salario", str(newDriver[8]))
                 query.bindValue(":carnet", str(newDriver[9]))
-                if query.exec():
-                    mbox = QtWidgets.QMessageBox()
-                    mbox.setWindowTitle("Aviso")
-                    mbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
-                    mbox.setText("Empleado dado de alta")
-                    mbox.exec()
+
+                if query.exec(): # Nota: se utiliza para mostrar los cuadros de dialogo de confimacion en Drivers.altaDriver()
+                    return True
                 else:
-                    mbox = QtWidgets.QMessageBox()
-                    mbox.setWindowTitle("Aviso")
-                    mbox.setIcon(QtWidgets.QMessageBox.Icon.Warning)
-                    mbox.setText("Asegúrese que el NIF no exista en la base de datos.")
-                    mbox.exec()
+                    return False
             # select datos de conductores de la base de datos
             Conexion.mostrarDrivers()
         except Exception as error:
@@ -158,7 +151,9 @@ class Conexion():
         try:
             query = QtSql.QSqlQuery()
             query.prepare(
-                "UPDATE drivers SET dnidri = :dni, altadri= :alta, apeldri = :apel, nombredri = :nombre, direcciondri = :direccion, provdri = :provincia, munidri = :municipio, movildri = :movil, salariodri = :salario, carnetdri = :carnet where codigo = :codigo")
+                "UPDATE drivers SET dnidri = :dni, altadri= :alta, apeldri = :apel, nombredri = :nombre, direcciondri "
+                "= :direccion, provdri = :provincia, munidri = :municipio, movildri = :movil, salariodri = :salario, "
+                "carnetdri = :carnet where codigo = :codigo")
 
             query.bindValue(":codigo", int(modifDriver[0]))
             query.bindValue(":dni", str(modifDriver[1]))
@@ -224,7 +219,7 @@ class Conexion():
         except Exception as error:
             print("Error en baja driver en conexion: ", error)
 
-    def selectDrivers(estado): # NOTA: carga en la tabla segun su historico
+    def selectDrivers(estado):  # NOTA: carga en la tabla segun su historico
         try:
             registros = []
             if estado == 0:
@@ -264,7 +259,7 @@ class Conexion():
             query.prepare("select * from drivers order by apeldri")
             if query.exec():
                 while query.next():
-                    row = [query.value(i) for i in range(query.record().count())] #funcion lambda
+                    row = [query.value(i) for i in range(query.record().count())]  # funcion lambda
                     registros.append(row)
             return registros
         except Exception as error:

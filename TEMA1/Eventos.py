@@ -3,10 +3,12 @@ import shutil
 import zipfile
 from datetime import datetime
 
+import xlrd
 import xlwt
 from PyQt6 import QtWidgets, QtSql
 
 import Conexion
+import Drivers
 import Var
 import locale
 import sys
@@ -158,3 +160,37 @@ class Eventos():
             mbox.setIcon(QtWidgets.QMessageBox.Icon.Warning)
             mbox.setText("Error exportar datos en hoja de calculo", error)
             mbox.exec()
+
+    def importarDatos(self):
+        try:
+            fileName = Var.dlgAbrir.getOpenFileName(None, "Importar datos", "", ".xls;;All Files(*)")
+            if Var.dlgAbrir.accept and fileName != "":
+                file = fileName[0]
+                documento = xlrd.open_workbook(file)
+                datos = documento.sheet_by_index(0)  # Nota: cogemos datos de la primera hoja del .xls
+                filas = datos.nrows
+                columnas = datos.ncols
+                for i in range(filas):
+                    if i == 0:  # Nota: lee la primera fila donde estan las cabeceras (no las vamos a usar)
+                        pass
+                    else:
+                        new = []  # Nota: le cargamos en el array todos los datos de las filas del .xls
+                        for j in range(columnas):
+                            new.append(str(datos.cell(i, j)))
+                            # if Drivers.Drivers.validarDNI(str(new[0])) checkeamos si existe el DNI (NOTA: se necesita hacer un metodo con sobrecarga, que no funciona todavia)
+                        Conexion.Conexion.guardarDri(new)
+                    if i == filas -1:
+                        mbox = QtWidgets.QMessageBox()
+                        mbox.setModal(True)
+                        mbox.setWindowTitle("Aviso")
+                        mbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
+                        mbox.setText("Importación de Datos Realizada")
+                        mbox.exec()
+                Conexion.Conexion.selectDrivers(1)
+                
+        except Exception as error:
+            msg = QtWidgets.QMessageBox()
+            msg.setWindowTitle('Aviso')
+            msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+            msg.setText('Error en importar datos: ', error)
+            msg.exec()
