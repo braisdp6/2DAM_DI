@@ -161,7 +161,7 @@ class Eventos():
             mbox.setText("Error exportar datos en hoja de calculo", error)
             mbox.exec()
 
-    def importarDatos(self):
+    def importarDatosXLS(self):
         try:
             fileName = Var.dlgAbrir.getOpenFileName(None, "Importar datos", "", ".xls;;All Files(*)")
             if Var.dlgAbrir.accept and fileName != "":
@@ -187,7 +187,7 @@ class Eventos():
                         mbox.setText("Importación de Datos Realizada")
                         mbox.exec()
                 Conexion.Conexion.selectDrivers(1)
-                
+
         except Exception as error:
             msg = QtWidgets.QMessageBox()
             msg.setWindowTitle('Aviso')

@@ -1014,6 +1014,7 @@ background-color:rgb(100,100,100);
     <addaction name="actionRestaurar_Copia_Seguridad"/>
     <addaction name="separator"/>
     <addaction name="actionExportar_Datos_XLS"/>
+    <addaction name="actionImportar_Datos_XLS"/>
    </widget>
    <addaction name="menuArchivo"/>
    <addaction name="menuHerramientas"/>
@@ -1102,6 +1103,11 @@ background-color:rgb(100,100,100);
   <action name="actionExportar_Datos_XLS">
    <property name="text">
     <string>Exportar Datos XLS</string>
+   </property>
+  </action>
+  <action name="actionImportar_Datos_XLS">
+   <property name="text">
+    <string>Importar Datos XLS</string>
    </property>
   </action>
  </widget>
