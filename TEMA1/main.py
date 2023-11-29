@@ -9,7 +9,7 @@ locale.setlocale(locale.LC_MONETARY, "es_ES.UTF-8")
 from WindowAux import *
 
 
-# TODO ALL: dar de alta drivers que estén de baja // error al dar de alta, sale siempre cuadro de alta y de error // modificar para que la textBox direccion tenga capitalizacion
+# TODO ALL: dar de alta drivers que estén de baja // error al dar de alta, sale siempre cuadro de alta y de error
 class Main(QtWidgets.QMainWindow):
     def __init__(self):
         super(Main, self).__init__()
@@ -51,8 +51,8 @@ class Main(QtWidgets.QMainWindow):
         zona de eventos de tablas
         '''
         Eventos.Eventos.resizeTabDrivers(self)
-        Var.ui.tabDrivers.clicked.connect(Drivers.Drivers.cargaDriver)  # nota: Metodo para cargar driver en la tabla cuando se haga click en el "tabDriver"
-
+        Var.ui.tabDrivers.clicked.connect(
+            Drivers.Drivers.cargaDriver)  # nota: Metodo para cargar driver en la tabla cuando se haga click en el "tabDriver"
 
         '''
         zona de eventos de comboBox       NOTA: sirve para que cargue los datos en el comboBox
@@ -78,6 +78,7 @@ class Main(QtWidgets.QMainWindow):
         Var.ui.txtNombre.editingFinished.connect(Eventos.Eventos.formatCajaTexto)
         Var.ui.txtApel.editingFinished.connect(Eventos.Eventos.formatCajaTexto)
         Var.ui.txtSalario.editingFinished.connect(Eventos.Eventos.formatCajaTexto)
+        Var.ui.txtDireccion.editingFinished.connect(Eventos.Eventos.formatCajaTexto)
 
         '''
         zona de eventos del menubar  NOTA: parte de arriba de la ventana donde hay desplegables (Archivo, Herramientas, Ayuda...)

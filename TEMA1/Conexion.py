@@ -179,7 +179,7 @@ class Conexion():
                 msg.setIcon(QtWidgets.QMessageBox.Icon.Information)
                 msg.setText("Datos Conductor Modificados")
                 msg.exec()
-                Conexion.mostrarDrivers()
+                Conexion.mostrarDrivers(self=None)
             else:
                 msg = QtWidgets.QMessageBox()
                 msg.setWindowTitle("Aviso")

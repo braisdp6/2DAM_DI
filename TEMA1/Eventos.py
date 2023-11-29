@@ -68,6 +68,7 @@ class Eventos():
         try:
             Var.ui.txtApel.setText(Var.ui.txtApel.text().title())
             Var.ui.txtNombre.setText(Var.ui.txtNombre.text().title())
+            Var.ui.txtDireccion.setText(Var.ui.txtDireccion.text().title())
 
             Var.ui.txtSalario.setText(str(locale.currency(float(Var.ui.txtSalario.text()))))
         except Exception as error:
