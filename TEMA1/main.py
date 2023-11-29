@@ -9,7 +9,7 @@ locale.setlocale(locale.LC_MONETARY, "es_ES.UTF-8")
 from WindowAux import *
 
 
-# TODO ALL: dar de alta drivers que estén de baja // error al dar de alta, sale siempre cuadro de alta y de error
+# TODO ALL: dar de alta drivers que estén de baja
 class Main(QtWidgets.QMainWindow):
     def __init__(self):
         super(Main, self).__init__()

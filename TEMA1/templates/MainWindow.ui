@@ -1079,7 +1079,7 @@ background-color:rgb(100,100,100);
      <normaloff>../img/limpiar.ico</normaloff>../img/limpiar.ico</iconset>
    </property>
    <property name="text">
-    <string>limpiarPanel</string>
+    <string>Limpiar Panel</string>
    </property>
   </action>
   <action name="actionCrear_Copia_Seguridad">
