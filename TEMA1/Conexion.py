@@ -155,41 +155,81 @@ class Conexion():
             mbox.setText('El conductor no existe o error de búsqueda')
             mbox.exec()
 
-    def modifDriver(modifDriver):
+    def modifDriver(modifDriver): # Nota: "modifDriver" es un array que contiene todos los datos del driver
         try:
-            query = QtSql.QSqlQuery()
-            query.prepare(
-                "UPDATE drivers SET dnidri = :dni, altadri= :alta, apeldri = :apel, nombredri = :nombre, direcciondri "
-                "= :direccion, provdri = :provincia, munidri = :municipio, movildri = :movil, salariodri = :salario, "
-                "carnetdri = :carnet where codigo = :codigo")
+            registro = Conexion.oneDriver(int(modifDriver[0]))
+            if modifDriver == registro[:-1]:
+                query = QtSql.QSqlQuery()
+                query.prepare(
+                    "UPDATE drivers SET dnidri = :dni, altadri= :alta, apeldri = :apel, nombredri = :nombre, direcciondri "
+                    "= :direccion, provdri = :provincia, munidri = :municipio, movildri = :movil, salariodri = :salario, "
+                    "carnetdri = :carnet where codigo = :codigo")
 
-            query.bindValue(":codigo", int(modifDriver[0]))
-            query.bindValue(":dni", str(modifDriver[1]))
-            query.bindValue(":alta", str(modifDriver[2]))
-            query.bindValue(":apel", str(modifDriver[3]))
-            query.bindValue(":nombre", str(modifDriver[4]))
-            query.bindValue(":direccion", str(modifDriver[5]))
-            query.bindValue(":provincia", str(modifDriver[6]))
-            query.bindValue(":municipio", str(modifDriver[7]))
-            query.bindValue(":movil", str(modifDriver[8]))
-            query.bindValue(":salario", str(modifDriver[9]))
-            query.bindValue(":carnet", str(modifDriver[10]))
+                query.bindValue(":codigo", int(modifDriver[0]))
+                query.bindValue(":dni", str(modifDriver[1]))
+                query.bindValue(":alta", str(modifDriver[2]))
+                query.bindValue(":apel", str(modifDriver[3]))
+                query.bindValue(":nombre", str(modifDriver[4]))
+                query.bindValue(":direccion", str(modifDriver[5]))
+                query.bindValue(":provincia", str(modifDriver[6]))
+                query.bindValue(":municipio", str(modifDriver[7]))
+                query.bindValue(":movil", str(modifDriver[8]))
+                query.bindValue(":salario", str(modifDriver[9]))
+                query.bindValue(":carnet", str(modifDriver[10]))
 
-            if query.exec():
-                msg = QtWidgets.QMessageBox()
-                msg.setWindowTitle("Aviso")
-                msg.setIcon(QtWidgets.QMessageBox.Icon.Information)
-                msg.setText("Datos Conductor Modificados")
-                msg.exec()
-                Conexion.mostrarDrivers(self=None)
-            else:
-                msg = QtWidgets.QMessageBox()
-                msg.setWindowTitle("Aviso")
-                msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
-                msg.setText(query.lastError().text())
-                msg.exec()
+                if query.exec():
+                    msg = QtWidgets.QMessageBox()
+                    msg.setWindowTitle("Aviso")
+                    msg.setIcon(QtWidgets.QMessageBox.Icon.Information)
+                    msg.setText("Datos Conductor Modificados")
+                    msg.exec()
+                    Conexion.mostrarDrivers(self=None)
+                else:
+                    msg = QtWidgets.QMessageBox()
+                    msg.setWindowTitle("Aviso")
+                    msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+                    msg.setText(query.lastError().text())
+                    msg.exec()
+
+
         except Exception as error:
             print("Error en metodo modifDriver: ", error)
+
+    # def modifDriver(modifDriver):
+    #     try:
+    #         query = QtSql.QSqlQuery()
+    #         query.prepare(
+    #             "UPDATE drivers SET dnidri = :dni, altadri= :alta, apeldri = :apel, nombredri = :nombre, direcciondri "
+    #             "= :direccion, provdri = :provincia, munidri = :municipio, movildri = :movil, salariodri = :salario, "
+    #             "carnetdri = :carnet where codigo = :codigo")
+    #
+    #         query.bindValue(":codigo", int(modifDriver[0]))
+    #         query.bindValue(":dni", str(modifDriver[1]))
+    #         query.bindValue(":alta", str(modifDriver[2]))
+    #         query.bindValue(":apel", str(modifDriver[3]))
+    #         query.bindValue(":nombre", str(modifDriver[4]))
+    #         query.bindValue(":direccion", str(modifDriver[5]))
+    #         query.bindValue(":provincia", str(modifDriver[6]))
+    #         query.bindValue(":municipio", str(modifDriver[7]))
+    #         query.bindValue(":movil", str(modifDriver[8]))
+    #         query.bindValue(":salario", str(modifDriver[9]))
+    #         query.bindValue(":carnet", str(modifDriver[10]))
+    #
+    #         if query.exec():
+    #             msg = QtWidgets.QMessageBox()
+    #             msg.setWindowTitle("Aviso")
+    #             msg.setIcon(QtWidgets.QMessageBox.Icon.Information)
+    #             msg.setText("Datos Conductor Modificados")
+    #             msg.exec()
+    #             Conexion.mostrarDrivers(self=None)
+    #         else:
+    #             msg = QtWidgets.QMessageBox()
+    #             msg.setWindowTitle("Aviso")
+    #             msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+    #             msg.setText(query.lastError().text())
+    #             msg.exec()
+    #     except Exception as error:
+    #         print("Error en metodo modifDriver: ", error)
 
     def borraDriv(dni):
         global valor
@@ -227,7 +267,8 @@ class Conexion():
         except Exception as error:
             print("Error en baja driver en conexion: ", error)
 
-    def selectDrivers(estado):  # NOTA: recibe por parametro la posicion del histórico y luego a traves de Drivers.cargarTablaDri() carga los datos en la tabla
+    def selectDrivers(
+            estado):  # NOTA: recibe por parametro la posicion del histórico y luego a traves de Drivers.cargarTablaDri() carga los datos en la tabla
         try:
             registros = []
             if estado == 0:

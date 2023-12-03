@@ -10,7 +10,7 @@ locale.setlocale(locale.LC_MONETARY, "es_ES.UTF-8")
 from WindowAux import *
 
 
-# TODO ALL: dar de alta drivers que estén de baja // importar xls no funciona peta en la fecha
+# TODO ALL: dar de alta drivers que estén de baja -> luego implementar para que el modificar tambien incluya el campo baja y que setee el contedido que ocupa en el textbox de fecha baja // importar xls no funciona peta en la fecha
 class Main(QtWidgets.QMainWindow):
     def __init__(self):
         super(Main, self).__init__()
