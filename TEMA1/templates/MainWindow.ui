@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>752</width>
+    <width>766</width>
     <height>530</height>
    </rect>
   </property>
@@ -87,6 +87,12 @@
                <layout class="QHBoxLayout" name="horizontalLayout">
                 <item>
                  <widget class="QLabel" name="lblCod">
+                  <property name="minimumSize">
+                   <size>
+                    <width>60</width>
+                    <height>0</height>
+                   </size>
+                  </property>
                   <property name="font">
                    <font>
                     <family>Segoe UI</family>
@@ -256,6 +262,12 @@
                     <height>20</height>
                    </size>
                   </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>120</width>
+                    <height>16777215</height>
+                   </size>
+                  </property>
                  </widget>
                 </item>
                 <item>
@@ -335,6 +347,12 @@
                 </item>
                 <item>
                  <widget class="QLabel" name="lblNombre">
+                  <property name="minimumSize">
+                   <size>
+                    <width>50</width>
+                    <height>0</height>
+                   </size>
+                  </property>
                   <property name="font">
                    <font>
                     <family>Segoe UI</family>
@@ -354,8 +372,14 @@
                  <widget class="QLineEdit" name="txtNombre">
                   <property name="minimumSize">
                    <size>
-                    <width>120</width>
+                    <width>130</width>
                     <height>20</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>130</width>
+                    <height>16777215</height>
                    </size>
                   </property>
                  </widget>
@@ -402,6 +426,12 @@
                    <size>
                     <width>120</width>
                     <height>20</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>120</width>
+                    <height>16777215</height>
                    </size>
                   </property>
                  </widget>
@@ -517,7 +547,7 @@
                   </property>
                   <property name="maximumSize">
                    <size>
-                    <width>16777215</width>
+                    <width>130</width>
                     <height>20</height>
                    </size>
                   </property>
@@ -662,7 +692,7 @@
                  <widget class="QLabel" name="lblSalario">
                   <property name="minimumSize">
                    <size>
-                    <width>40</width>
+                    <width>50</width>
                     <height>20</height>
                    </size>
                   </property>
@@ -691,8 +721,14 @@
                  <widget class="QLineEdit" name="txtSalario">
                   <property name="minimumSize">
                    <size>
-                    <width>120</width>
+                    <width>130</width>
                     <height>20</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>130</width>
+                    <height>16777215</height>
                    </size>
                   </property>
                   <property name="alignment">
@@ -1093,7 +1129,7 @@ background-color:rgb(100,100,100);
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>752</width>
+     <width>766</width>
      <height>21</height>
     </rect>
    </property>

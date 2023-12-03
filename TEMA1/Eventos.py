@@ -5,7 +5,7 @@ from datetime import datetime
 
 import xlrd
 import xlwt
-from PyQt6 import QtWidgets, QtSql
+from PyQt6 import QtWidgets, QtSql, QtCore, QtGui
 
 import Conexion
 import Drivers
@@ -106,7 +106,7 @@ class Eventos():
                 with zipfile.ZipFile(str(file), 'r') as bbdd:
                     bbdd.extractall(pwd=None)
                 bbdd.close()
-                Conexion.Conexion.mostrarDrivers()
+                Conexion.Conexion.mostrarDrivers(self)
 
                 msg = QtWidgets.QMessageBox()
                 msg.setModal(True)
@@ -141,12 +141,10 @@ class Eventos():
                 sheet1.write(0, 8, 'Movil')
                 sheet1.write(0, 9, 'Salario')
                 sheet1.write(0, 10, 'Licencias')
-                sheet1.write(0, 11, 'Fecha baja')
-                registros = Conexion.Conexion.selectDriversTodos(self)
-
-                for j, registro in enumerate(registros, 1):
+                registros = Conexion.Conexion.selectDriversTodos()
+                for fila, registro in enumerate(registros, 1):
                     for i, valor in enumerate(registro[:-1]):
-                        sheet1.write(j, i, valor)
+                        sheet1.write(fila, i, str(valor))
                 wb.save(directorio)
                 mbox = QtWidgets.QMessageBox()
                 mbox.setModal(True)
@@ -159,44 +157,58 @@ class Eventos():
             mbox = QtWidgets.QMessageBox()
             mbox.setWindowTitle('Aviso')
             mbox.setIcon(QtWidgets.QMessageBox.Icon.Warning)
-            mbox.setText("Error exportar datos en hoja de calculo", error)
+            mbox.setText("Error exportar datos en hoja de calculo: ", error)
             mbox.exec()
 
-    def importarDatosXLS(self):
+    def importarDatosXLS(self):  # TODO: NO FUNCIONA
         try:
-            fileName = Var.dlgAbrir.getOpenFileName(None, 'Importar datos', '', '*.xls;;All Files(*)')
-            if Var.dlgAbrir.accept and fileName != "":
-                file = fileName[0]
+            estado = 0
+            filename, _ = Var.dlgAbrir.getOpenFileName(None, 'Importar datos', '', '*.xls;;All Files (*)')
+            if filename:
+                file = filename
                 documento = xlrd.open_workbook(file)
-                datos = documento.sheet_by_index(0)  # Nota: cogemos datos de la primera hoja del .xls
+                datos = documento.sheet_by_index(0)
                 filas = datos.nrows
                 columnas = datos.ncols
-
                 for i in range(filas):
-                    if i == 0:  # Nota: lee la primera fila donde estan las cabeceras (no las vamos a usar)
+                    if i == 0:  # Nota: Asi nos saltamos la cabecera
                         pass
                     else:
-                        new = []  # Nota: le cargamos en el array todos los datos de las filas del .xls
-                        for j in range(columnas): # TODO: ESTA RUINA NO FUNCIONA
-                            if j == 1:
-                                dato = xlrd.xldate_as_datetime(datos.cell_value(i,j), documento.datemode)
-                                dato = dato.strftime("%d/%m/%Y")
-                                new.append(str(dato))
+                        new = []
+                        for j in range(columnas):
+                            if j == 2:  # Nota: cogemos la columna fecha que es la 2, y la formateamos
+                                try:
+                                    dato = xlrd.xldate_as_datetime(int(datos.cell_value(i, j)), documento.datemode)
+                                    dato = dato.strftime('%d/%m/%Y')
+                                    new.append(str(dato))
+                                except ValueError:
+                                    print("Error en parsear la fecha")
                             else:
-                                new.append(str(dato.cell(i, j).value))
-                        Conexion.Conexion.guardarDri(new)
-                    if i == filas -1:
-                        mbox = QtWidgets.QMessageBox()
-                        mbox.setModal(True)
-                        mbox.setWindowTitle("Aviso")
-                        mbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
-                        mbox.setText("Importación de Datos Realizada")
-                        mbox.exec()
-                Conexion.Conexion.selectDrivers(1)
+                                new.append(str(datos.cell_value(i, j)))
+                        if Drivers.Drivers.validarDNI(str(new[0])):
+                            Conexion.Conexion.guardarDri(new)
+                            print("Driver importado.")
+                        elif estado == 0:
+                            estado = 1
+                            msg = QtWidgets.QMessageBox()
+                            msg.setModal(True)
+                            msg.setWindowTitle('Aviso')
+                            msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+                            msg.setText('Hay DNI incorrectos')
+                            msg.exec()
 
+                msg = QtWidgets.QMessageBox()
+                msg.setModal(True)
+                msg.setWindowTitle('Aviso')
+                msg.setIcon(QtWidgets.QMessageBox.Icon.Information)
+                msg.setText('Importación de Datos Realizada')
+                msg.exec()
+
+            Conexion.Conexion.selectDrivers(1)
+            Drivers.Drivers.limpiarPanel(self)
         except Exception as error:
             msg = QtWidgets.QMessageBox()
             msg.setWindowTitle('Aviso')
             msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
-            msg.setText('Error en importar datos: ', error)
+            msg.setText('Error en importar datos: ' + str(error))
             msg.exec()

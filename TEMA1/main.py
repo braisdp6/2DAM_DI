@@ -3,20 +3,21 @@ import locale
 import Conexion
 import Eventos
 
+# Establecer la configuración regional en español
 locale.setlocale(locale.LC_TIME, "es_ES.UTF-8")
 locale.setlocale(locale.LC_MONETARY, "es_ES.UTF-8")
 
 from WindowAux import *
 
 
-# TODO ALL: dar de alta drivers que estén de baja
+# TODO ALL: dar de alta drivers que estén de baja // importar xls no funciona peta en la fecha
 class Main(QtWidgets.QMainWindow):
     def __init__(self):
         super(Main, self).__init__()
         Var.ui = Ui_MainWindow()
         Var.ui.setupUi(self)  # encargado de generar la interfaz
-        Var.calendar = Calendar()
-        Var.acercaDe = AcercaDe()
+        Var.calendar = Calendar()  # Nota: instancia de la clase "calendar"
+        Var.acercaDe = AcercaDe()  # Nota: instancia de la clase "acercaDe"
         Var.dlgAbrir = FileDialogAbrir()
         Conexion.Conexion.conexion()
         Conexion.Conexion.cargaProv()
@@ -68,12 +69,11 @@ class Main(QtWidgets.QMainWindow):
         Var.ui.btnBuscarDni.clicked.connect(Drivers.Drivers.buscarDriverLupa)
         Var.ui.btnModificarDriver.clicked.connect(Drivers.Drivers.modifDri)  # NOTA: metodo modificar driver
         Var.ui.btnBajaDriver.clicked.connect(Drivers.Drivers.borraDriv)  # nota: metodo borrar driver
-        Var.ui.actionRestaurar_Copia_Seguridad.triggered.connect(Eventos.Eventos.restaurarBackup)
 
         '''
         zona de eventos de las cajas de texto
         '''
-        Var.ui.txtDni.editingFinished.connect(Drivers.Drivers.validarDNI)
+        Var.ui.txtDni.editingFinished.connect(lambda: Drivers.Drivers.validarDNI(Var.ui.txtDni.displayText()))
         Var.ui.txtMovil.editingFinished.connect(Drivers.Drivers.validarMovil)
         Var.ui.txtNombre.editingFinished.connect(Eventos.Eventos.formatCajaTexto)
         Var.ui.txtApel.editingFinished.connect(Eventos.Eventos.formatCajaTexto)
@@ -86,8 +86,9 @@ class Main(QtWidgets.QMainWindow):
         Var.ui.actionBarSalir.triggered.connect(Eventos.Eventos.abrirVentanaSalir)
         Var.ui.actionAcercaDe.triggered.connect(Eventos.Eventos.abrirAcercaDe)
         Var.ui.actionCrear_Copia_Seguridad.triggered.connect(Eventos.Eventos.crearBackup)
+        Var.ui.actionRestaurar_Copia_Seguridad.triggered.connect(Eventos.Eventos.restaurarBackup)
         Var.ui.actionExportar_Datos_XLS.triggered.connect(Eventos.Eventos.exportarDatosXLS)
-        Var.ui.actionImportar_Datos_XLS.triggered.connect(Eventos.Eventos.importarDatosXLS)
+        Var.ui.actionImportar_Datos_XLS.triggered.connect(Eventos.Eventos.importarDatosXLS)  # TODO: NO FUNCIONA
 
         '''
         zona de eventos del toolbar   NOTA: parte de arriba de la ventana donde estan los iconos ejecutables (backups, limpiar, etc...)

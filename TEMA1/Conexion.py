@@ -53,6 +53,7 @@ class Conexion():
 
         except Exception as error:
             print("Error en la seleccion de municipios: ", error)
+
     @staticmethod
     def guardarDri(driver):
         try:  # comprobamos que no se añaden campos vacios
@@ -102,7 +103,7 @@ class Conexion():
 
     # Metodo que pasa la posicion del historico, para luego mostrar los Drivers en la tabla por otros metodos
     @staticmethod
-    def mostrarDrivers(self): # Nota: no borrar el self
+    def mostrarDrivers(self):  # Nota: no borrar el self
         try:
             if Var.ui.rbtTodos.isChecked():
                 estado = 0
@@ -134,6 +135,7 @@ class Conexion():
         except Exception as error:
             print("Error en fichero conexion datos de 1 driver: ", error)
 
+    # Metodo buscar el codigo del driver segun su dni, para después recuperar el driver segun su codigo
     def codDri(dni):
         try:
             query = QtSql.QSqlQuery()
@@ -258,7 +260,8 @@ class Conexion():
         except Exception as error:
             print("Error al seleccionar los drivers", error)
 
-    def selectDriversTodos(self):  # NOTA: metodo para buscar todos los drivers
+    @staticmethod
+    def selectDriversTodos():  # NOTA: metodo para buscar todos los drivers
         try:
             registros = []
             query = QtSql.QSqlQuery()

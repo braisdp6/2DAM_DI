@@ -31,7 +31,6 @@ class Drivers():
                 estado = 2
                 Conexion.Conexion.selectDrivers(estado)
 
-
             # else:
             #     registros = Conexion.Conexion.mostrarDrivers(self)
             #     Drivers.cargarTablaDri(registros)
@@ -48,75 +47,36 @@ class Drivers():
         except Exception as error:
             print("error en cargar fecha: ", error)
 
-    def validarDNI(self=None):
+    @staticmethod
+    def validarDNI(dni):
         try:
-            dni = Var.ui.txtDni.text()
-            dni = dni.upper()
-            Var.ui.txtDni.setText(dni)
+            dni = str(dni).upper()
             tabla = "TRWAGMYFPDXBNJZSQVHLCKE"
             dig_ext = "XYZ"
-            reemp_dig_ext = {"X": "0", "Y": "1", "Z": "2"}
+            reemp_dig_ext = {'X': '0', 'Y': '1', 'Z': '2'}
             numeros = "1234567890"
-
-            if len(dni) == 9:  # comprueba que son nueve
-                dig_control = dni[8]  # tomo la letra del dni
-                dni = dni[:8]  # tomo los numeros del dni
-
-                if dni[0] in dig_ext:  # reemplazas la letra por el numero correspondiente
+            print(dni)
+            if len(dni) == 9:
+                dig_control = dni[8]
+                dni = dni[:8]
+                if dni[0] in dig_ext:
                     dni = dni.replace(dni[0], reemp_dig_ext[dni[0]])
-                    # comprueba que no haya letras en el medio
-
                 if len(dni) == len([n for n in dni if n in numeros]) and tabla[int(dni) % 23] == dig_control:
-                    Var.ui.lblValidarDni.setStyleSheet("color:green;")
-                    Var.ui.lblValidarDni.setText("V")
+                    Var.ui.lblValidarDni.setStyleSheet('color:green;')  # si es válido se pone una V en color verde
+                    Var.ui.lblValidarDni.setText('V')
+                    return True
                 else:
-                    Var.ui.lblValidarDni.setStyleSheet("color:red;")
-                    Var.ui.lblValidarDni.setText("X")
-                    Var.ui.txtDni.setText("")
+                    Var.ui.lblValidarDni.setStyleSheet('color:red;')  # y si no un aspa en color rojo
+                    Var.ui.lblValidarDni.setText('X')
+                    Var.ui.txtDni.setText(None)
                     Var.ui.txtDni.setFocus()
-
             else:
-                Var.ui.lblValidarDni.setStyleSheet("color:red;")
-                Var.ui.lblValidarDni.setText("X")
-                Var.ui.txtDni.setText("")
+                Var.ui.lblValidarDni.setStyleSheet('color:red;')
+                Var.ui.lblValidarDni.setText('X')
+                Var.ui.txtDni.setText(None)
                 Var.ui.txtDni.setFocus()
         except Exception as error:
-            print("error en validar dni: ", error)
-
-    def validarDNI(self=None):
-        try:
-            dni = Var.ui.txtDni.text()
-            dni = dni.upper()
-            Var.ui.txtDni.setText(dni)
-            tabla = "TRWAGMYFPDXBNJZSQVHLCKE"
-            dig_ext = "XYZ"
-            reemp_dig_ext = {"X": "0", "Y": "1", "Z": "2"}
-            numeros = "1234567890"
-
-            if len(dni) == 9:  # comprueba que son nueve
-                dig_control = dni[8]  # tomo la letra del dni
-                dni = dni[:8]  # tomo los numeros del dni
-
-                if dni[0] in dig_ext:  # reemplazas la letra por el numero correspondiente
-                    dni = dni.replace(dni[0], reemp_dig_ext[dni[0]])
-                    # comprueba que no haya letras en el medio
-
-                if len(dni) == len([n for n in dni if n in numeros]) and tabla[int(dni) % 23] == dig_control:
-                    Var.ui.lblValidarDni.setStyleSheet("color:green;")
-                    Var.ui.lblValidarDni.setText("V")
-                else:
-                    Var.ui.lblValidarDni.setStyleSheet("color:red;")
-                    Var.ui.lblValidarDni.setText("X")
-                    Var.ui.txtDni.setText("")
-                    Var.ui.txtDni.setFocus()
-
-            else:
-                Var.ui.lblValidarDni.setStyleSheet("color:red;")
-                Var.ui.lblValidarDni.setText("X")
-                Var.ui.txtDni.setText("")
-                Var.ui.txtDni.setFocus()
-        except Exception as error:
-            print("error en validar dni: ", error)
+            print("error en validar dni ", error)
 
     def altaDriver(self):
         try:
@@ -224,15 +184,13 @@ class Drivers():
             registro = Conexion.Conexion.codDri(dni)
             Drivers.cargarDatos(registro)
 
-            if Var.ui.rbtTodos.isChecked():
-                estado = 0
-                Conexion.Conexion.selectDrivers(estado)
-            elif Var.ui.rbtAlta.isChecked():
-                estado = 1
-                Conexion.Conexion.selectDrivers(estado)
-            elif Var.ui.rbtBaja.isChecked():
-                estado = 2
-                Conexion.Conexion.selectDrivers(estado)
+            # Nota: de esta forma cambiamos el historico y lo cargamos
+            if registro[11] == "":
+                Var.ui.rbtAlta.setChecked(True)
+                Conexion.Conexion.selectDrivers(1)
+            else:
+                Var.ui.rbtBaja.setChecked(True)
+                Conexion.Conexion.selectDrivers(2)
 
             codigo = Var.ui.lblCodbd.text()
             for fila in range(Var.ui.tabDrivers.rowCount()):
@@ -241,14 +199,41 @@ class Drivers():
                         item = Var.ui.tabDrivers.item(fila, columna)
                         if item is not None:
                             item.setBackground(QtGui.QColor(255, 241, 150))
+                            Var.ui.tabDrivers.scrollToItem(item)
         except Exception as error:
             print(error, "en busca de datos de un conductor")
+
+    # def buscarDriverLupa(self):
+    #     try:
+    #         dni = Var.ui.txtDni.text()
+    #         registro = Conexion.Conexion.codDri(dni)
+    #         Drivers.cargarDatos(registro)
+    #
+    #         if Var.ui.rbtTodos.isChecked():
+    #             estado = 0
+    #             Conexion.Conexion.selectDrivers(estado)
+    #         elif Var.ui.rbtAlta.isChecked():
+    #             estado = 1
+    #             Conexion.Conexion.selectDrivers(estado)
+    #         elif Var.ui.rbtBaja.isChecked():
+    #             estado = 2
+    #             Conexion.Conexion.selectDrivers(estado)
+    #
+    #         codigo = Var.ui.lblCodbd.text()
+    #         for fila in range(Var.ui.tabDrivers.rowCount()):
+    #             if Var.ui.tabDrivers.item(fila, 0).text() == str(codigo):
+    #                 for columna in range(Var.ui.tabDrivers.columnCount()):
+    #                     item = Var.ui.tabDrivers.item(fila, columna)
+    #                     if item is not None:
+    #                         item.setBackground(QtGui.QColor(255, 241, 150))
+    #     except Exception as error:
+    #         print(error, "en busca de datos de un conductor")
 
     def modifDri(self):
         try:
             driver = [Var.ui.lblCodbd, Var.ui.txtDni, Var.ui.txtFechaAlta, Var.ui.txtApel, Var.ui.txtNombre,
                       Var.ui.txtDireccion, Var.ui.txtMovil, Var.ui.txtSalario]
-            modifDriver = [] # NOTA: array que va a contener todos los campos del driver
+            modifDriver = []  # NOTA: array que va a contener todos los campos del driver
             for i in driver:
                 modifDriver.append(i.text().title())
             prov = Var.ui.cmbProvincia.currentText()
@@ -271,7 +256,7 @@ class Drivers():
             dni = Var.ui.txtDni.text()
             Conexion.Conexion.borraDriv(dni)
             Conexion.Conexion.mostrarDrivers(self)
-            #Conexion.Conexion.selectDrivers(1) todo: es la forma que tiene juanca de hacerlo, es lo mismo pero con más vueltas
+            # Conexion.Conexion.selectDrivers(1) todo: es la forma que tiene juanca de hacerlo, es lo mismo pero con más vueltas
 
         except Exception as error:
             msg = QtWidgets.QMessageBox()
