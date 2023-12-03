@@ -25,11 +25,17 @@ class Eventos():
         except Exception as error:
             print(error, "en modulo eventos")
 
-    def abrirCalendar(self):
+    def abrirCalendarAlta(self):
         try:
-            Var.calendar.show()
+            Var.calendarAlta.show()
         except Exception as error:
-            print("Error en abrir calendar: ", error)
+            print("Error en abrir calendar alta: ", error)
+
+    def abrirCalendarBaja(self):
+        try:
+            Var.calendarBaja.show()
+        except Exception as error:
+            print("Error en abrir calendar baja: ", error)
 
     def abrirVentanaSalir(self):
         try:

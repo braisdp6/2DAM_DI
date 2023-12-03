@@ -9,17 +9,27 @@ import Var
 import Drivers
 
 
-class Calendar(QtWidgets.QDialog):
+class CalendarAlta(QtWidgets.QDialog):
     def __init__(self):
-        super(Calendar, self).__init__()
-        Var.calendar = Ui_ventanaCalendario()
-        Var.calendar.setupUi(self)
+        super(CalendarAlta, self).__init__()
+        Var.calendarAlta = Ui_ventanaCalendario()
+        Var.calendarAlta.setupUi(self)
         dia = datetime.now().day
         mes = datetime.now().month
         ano = datetime.now().year
-        Var.calendar.calendario.setSelectedDate(QtCore.QDate(ano, mes, dia))
-        Var.calendar.calendario.clicked.connect(Drivers.Drivers.cargaFecha)
+        Var.calendarAlta.calendario.setSelectedDate(QtCore.QDate(ano, mes, dia))
+        Var.calendarAlta.calendario.clicked.connect(Drivers.Drivers.cargaFechaAlta)
 
+class CalendarBaja(QtWidgets.QDialog):
+    def __init__(self):
+        super(CalendarBaja, self).__init__()
+        Var.calendarBaja = Ui_ventanaCalendario()
+        Var.calendarBaja.setupUi(self)
+        dia = datetime.now().day
+        mes = datetime.now().month
+        ano = datetime.now().year
+        Var.calendarBaja.calendario.setSelectedDate(QtCore.QDate(ano, mes, dia))
+        Var.calendarBaja.calendario.clicked.connect(Drivers.Drivers.cargaFechaBaja)
 
 class VentanaSalir(QtWidgets.QDialog):
     def __init__(self):

@@ -16,20 +16,14 @@ class Main(QtWidgets.QMainWindow):
         super(Main, self).__init__()
         Var.ui = Ui_MainWindow()
         Var.ui.setupUi(self)  # encargado de generar la interfaz
-        Var.calendar = Calendar()  # Nota: instancia de la clase "calendar"
+        Var.calendarAlta = CalendarAlta()  # Nota: instancia de la clase "calendar"
+        Var.calendarBaja = CalendarBaja()  # Nota: instancia de la clase "calendar"
         Var.acercaDe = AcercaDe()  # Nota: instancia de la clase "acercaDe"
         Var.dlgAbrir = FileDialogAbrir()
         Conexion.Conexion.conexion()
         Conexion.Conexion.cargaProv()
         estado = 1
         Conexion.Conexion.selectDrivers(estado)  # funcionamiento mostrar Histórico
-
-        '''
-        ejecucion de diferentes al ejecutar la aplicacion
-        '''
-        rbtDriver = [Var.ui.rbtTodos, Var.ui.rbtAlta, Var.ui.rbtBaja]
-        for i in rbtDriver:
-            i.toggled.connect(Eventos.Eventos.selHistorico)
 
         '''
         STATUS BAR      NOTA: parte de abajo de la ventana
@@ -64,7 +58,8 @@ class Main(QtWidgets.QMainWindow):
         '''
         zona de eventos de botones
         '''
-        Var.ui.btnCalendar.clicked.connect(Eventos.Eventos.abrirCalendar)
+        Var.ui.btnCalendarAlta.clicked.connect(Eventos.Eventos.abrirCalendarAlta)
+        Var.ui.btnCalendarBaja.clicked.connect(Eventos.Eventos.abrirCalendarBaja)
         Var.ui.btnAltaDriver.clicked.connect(Drivers.Drivers.altaDriver)
         Var.ui.btnBuscarDni.clicked.connect(Drivers.Drivers.buscarDriverLupa)
         Var.ui.btnModificarDriver.clicked.connect(Drivers.Drivers.modifDri)  # NOTA: metodo modificar driver

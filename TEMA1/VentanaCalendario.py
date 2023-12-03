@@ -22,7 +22,7 @@ class Ui_ventanaCalendario(object):
         ventanaCalendario.setMinimumSize(QtCore.QSize(400, 300))
         ventanaCalendario.setMaximumSize(QtCore.QSize(400, 300))
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap(".\\templates\\img/calendar.ico"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon.addPixmap(QtGui.QPixmap(".\\templates\\../img/calendar.ico"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         ventanaCalendario.setWindowIcon(icon)
         ventanaCalendario.setModal(True)
         self.calendario = QtWidgets.QCalendarWidget(parent=ventanaCalendario)

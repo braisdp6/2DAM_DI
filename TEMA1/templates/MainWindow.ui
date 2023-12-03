@@ -271,7 +271,7 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QPushButton" name="btnCalendar">
+                 <widget class="QPushButton" name="btnCalendarAlta">
                   <property name="text">
                    <string/>
                   </property>
@@ -307,6 +307,12 @@
                     <height>20</height>
                    </size>
                   </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>16777215</width>
+                    <height>20</height>
+                   </size>
+                  </property>
                   <property name="font">
                    <font>
                     <family>Segoe UI</family>
@@ -322,6 +328,12 @@
                 <item>
                  <widget class="QLineEdit" name="txtApel">
                   <property name="minimumSize">
+                   <size>
+                    <width>150</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
                    <size>
                     <width>150</width>
                     <height>20</height>
@@ -353,6 +365,12 @@
                     <height>0</height>
                    </size>
                   </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>16777215</width>
+                    <height>20</height>
+                   </size>
+                  </property>
                   <property name="font">
                    <font>
                     <family>Segoe UI</family>
@@ -379,7 +397,7 @@
                   <property name="maximumSize">
                    <size>
                     <width>130</width>
-                    <height>16777215</height>
+                    <height>20</height>
                    </size>
                   </property>
                  </widget>
@@ -408,6 +426,12 @@
                     <verstretch>0</verstretch>
                    </sizepolicy>
                   </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>16777215</width>
+                    <height>20</height>
+                   </size>
+                  </property>
                   <property name="font">
                    <font>
                     <family>Segoe UI</family>
@@ -431,13 +455,13 @@
                   <property name="maximumSize">
                    <size>
                     <width>120</width>
-                    <height>16777215</height>
+                    <height>20</height>
                    </size>
                   </property>
                  </widget>
                 </item>
                 <item>
-                 <widget class="QPushButton" name="pushButton">
+                 <widget class="QPushButton" name="btnCalendarBaja">
                   <property name="text">
                    <string/>
                   </property>
@@ -1254,7 +1278,7 @@ background-color:rgb(100,100,100);
   <tabstop>panelPrincipal</tabstop>
   <tabstop>txtDni</tabstop>
   <tabstop>txtFechaAlta</tabstop>
-  <tabstop>btnCalendar</tabstop>
+  <tabstop>btnCalendarAlta</tabstop>
   <tabstop>txtApel</tabstop>
   <tabstop>txtNombre</tabstop>
   <tabstop>txtDireccion</tabstop>

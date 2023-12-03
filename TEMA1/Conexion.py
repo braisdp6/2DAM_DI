@@ -231,6 +231,9 @@ class Conexion():
         try:
             registros = []
             if estado == 0:
+                Var.ui.lblFechaBaja.hide()
+                Var.ui.txtFechaBaja.hide()
+                Var.ui.btnCalendarBaja.hide()
                 query = QtSql.QSqlQuery()
                 query.prepare("select codigo, apeldri, nombredri, movildri, "
                               "carnetdri, bajadri from drivers")
@@ -240,6 +243,9 @@ class Conexion():
                         registros.append(row)
                 Drivers.Drivers.cargarTablaDri(registros)
             elif estado == 1:
+                Var.ui.lblFechaBaja.hide()
+                Var.ui.txtFechaBaja.hide()
+                Var.ui.btnCalendarBaja.hide()
                 query = QtSql.QSqlQuery()
                 query.prepare("select codigo, apeldri, nombredri, movildri, "
                               "carnetdri, bajadri from drivers where bajadri is null")
@@ -249,6 +255,9 @@ class Conexion():
                         registros.append(row)
                 Drivers.Drivers.cargarTablaDri(registros)
             elif estado == 2:
+                Var.ui.lblFechaBaja.show()
+                Var.ui.txtFechaBaja.show()
+                Var.ui.btnCalendarBaja.show()
                 query = QtSql.QSqlQuery()
                 query.prepare("select codigo, apeldri, nombredri, movildri, "
                               "carnetdri, bajadri from drivers where bajadri is not null")

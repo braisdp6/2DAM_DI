@@ -38,14 +38,21 @@ class Drivers():
         except Exception as error:
             print("error limpiar panel driver: ", error)
 
-    def cargaFecha(qDate):
+    def cargaFechaAlta(qDate):
         try:
-            # data = ("{0}/{1}/{2}".format(qDate.day(), qDate.month(), qDate.year()))
             data = ("{:02d}/{:02d}/{:4d}".format(qDate.day(), qDate.month(), qDate.year()))
             Var.ui.txtFechaAlta.setText(str(data))
-            Var.calendar.hide()
+            Var.calendarAlta.hide()
         except Exception as error:
-            print("error en cargar fecha: ", error)
+            print("error en cargar fecha alta: ", error)
+
+    def cargaFechaBaja(qDate):
+        try:
+            data = ("{:02d}/{:02d}/{:4d}".format(qDate.day(), qDate.month(), qDate.year()))
+            Var.ui.txtFechaBaja.setText(str(data))
+            Var.calendarBaja.hide()
+        except Exception as error:
+            print("error en cargar fecha baja: ", error)
 
     @staticmethod
     def validarDNI(dni):
@@ -162,14 +169,17 @@ class Drivers():
                 Var.ui.chkA.setChecked(True)
             else:
                 Var.ui.chkA.setChecked(False)
+
             if 'B' in registro[10]:
                 Var.ui.chkB.setChecked(True)
             else:
                 Var.ui.chkB.setChecked(False)
+
             if 'C' in registro[10]:
                 Var.ui.chkC.setChecked(True)
             else:
                 Var.ui.chkC.setChecked(False)
+
             if 'D' in registro[10]:
                 Var.ui.chkD.setChecked(True)
             else:
@@ -202,32 +212,6 @@ class Drivers():
                             Var.ui.tabDrivers.scrollToItem(item)
         except Exception as error:
             print(error, "en busca de datos de un conductor")
-
-    # def buscarDriverLupa(self):
-    #     try:
-    #         dni = Var.ui.txtDni.text()
-    #         registro = Conexion.Conexion.codDri(dni)
-    #         Drivers.cargarDatos(registro)
-    #
-    #         if Var.ui.rbtTodos.isChecked():
-    #             estado = 0
-    #             Conexion.Conexion.selectDrivers(estado)
-    #         elif Var.ui.rbtAlta.isChecked():
-    #             estado = 1
-    #             Conexion.Conexion.selectDrivers(estado)
-    #         elif Var.ui.rbtBaja.isChecked():
-    #             estado = 2
-    #             Conexion.Conexion.selectDrivers(estado)
-    #
-    #         codigo = Var.ui.lblCodbd.text()
-    #         for fila in range(Var.ui.tabDrivers.rowCount()):
-    #             if Var.ui.tabDrivers.item(fila, 0).text() == str(codigo):
-    #                 for columna in range(Var.ui.tabDrivers.columnCount()):
-    #                     item = Var.ui.tabDrivers.item(fila, columna)
-    #                     if item is not None:
-    #                         item.setBackground(QtGui.QColor(255, 241, 150))
-    #     except Exception as error:
-    #         print(error, "en busca de datos de un conductor")
 
     def modifDri(self):
         try:
