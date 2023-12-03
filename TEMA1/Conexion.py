@@ -158,12 +158,12 @@ class Conexion():
     def modifDriver(modifDriver): # Nota: "modifDriver" es un array que contiene todos los datos del driver
         try:
             registro = Conexion.oneDriver(int(modifDriver[0]))
-            if modifDriver == registro[:-1]:
+            if modifDriver[1] == registro[1]: # Nota: aquí comprobamos que el driver existe en la base de datos previamente, para no modificar empleados que no existan
                 query = QtSql.QSqlQuery()
                 query.prepare(
                     "UPDATE drivers SET dnidri = :dni, altadri= :alta, apeldri = :apel, nombredri = :nombre, direcciondri "
                     "= :direccion, provdri = :provincia, munidri = :municipio, movildri = :movil, salariodri = :salario, "
-                    "carnetdri = :carnet where codigo = :codigo")
+                    "carnetdri = :carnet, bajadri = :baja where codigo = :codigo")
 
                 query.bindValue(":codigo", int(modifDriver[0]))
                 query.bindValue(":dni", str(modifDriver[1]))
@@ -176,6 +176,10 @@ class Conexion():
                 query.bindValue(":movil", str(modifDriver[8]))
                 query.bindValue(":salario", str(modifDriver[9]))
                 query.bindValue(":carnet", str(modifDriver[10]))
+                if str(modifDriver[11]) == '':
+                    query.bindValue(":baja", None)
+                else:
+                    query.bindValue(":baja", str(modifDriver[11]))
 
                 if query.exec():
                     msg = QtWidgets.QMessageBox()
@@ -190,7 +194,12 @@ class Conexion():
                     msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
                     msg.setText(query.lastError().text())
                     msg.exec()
-
+            else:
+                msg = QtWidgets.QMessageBox()
+                msg.setWindowTitle("Aviso")
+                msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+                msg.setText("No existe el conductor a modificar.")
+                msg.exec()
 
         except Exception as error:
             print("Error en metodo modifDriver: ", error)

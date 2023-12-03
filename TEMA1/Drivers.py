@@ -215,23 +215,18 @@ class Drivers():
 
     def modifDri(self):
         try:
-            driver = [Var.ui.lblCodbd, Var.ui.txtDni, Var.ui.txtFechaAlta, Var.ui.txtApel, Var.ui.txtNombre,
-                      Var.ui.txtDireccion, Var.ui.txtMovil, Var.ui.txtSalario]
-            modifDriver = []  # NOTA: array que va a contener todos los campos del driver
-            for i in driver:
-                modifDriver.append(i.text().title())
-            prov = Var.ui.cmbProvincia.currentText()
-            modifDriver.insert(6, prov)
-            muni = Var.ui.cmbLocalidad.currentText()
-            modifDriver.insert(7, muni)
-
+            driver = [Var.ui.lblCodbd.text().title(), Var.ui.txtDni.text().title(), Var.ui.txtFechaAlta.text().title(), Var.ui.txtApel.text().title(), Var.ui.txtNombre.text().title(),
+                      Var.ui.txtDireccion.text().title(), Var.ui.cmbProvincia.currentText(), Var.ui.cmbLocalidad.currentText(),
+                      Var.ui.txtMovil.text().title(), Var.ui.txtSalario.text().title()]
             licencias = []
             chkLicencia = [Var.ui.chkA, Var.ui.chkB, Var.ui.chkC, Var.ui.chkD]
             for i in chkLicencia:
                 if i.isChecked():
                     licencias.append(i.text())
-            modifDriver.append("-".join(licencias))
-            Conexion.Conexion.modifDriver(modifDriver)
+            driver.append("-".join(licencias))
+            driver.append(Var.ui.txtFechaBaja.text().title())
+
+            Conexion.Conexion.modifDriver(driver)
         except Exception as error:
             print('Error en modificar driver: ', error)
 
