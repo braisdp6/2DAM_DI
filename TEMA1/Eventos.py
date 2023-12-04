@@ -166,7 +166,7 @@ class Eventos():
             mbox.setText("Error exportar datos en hoja de calculo: ", error)
             mbox.exec()
 
-    def importarDatosXLS(self):  # TODO: NO FUNCIONA
+    def importarDatosXLS(self):
         try:
             estado = 0
             filename, _ = Var.dlgAbrir.getOpenFileName(None, 'Importar datos', '', '*.xls;;All Files (*)')
@@ -181,7 +181,7 @@ class Eventos():
                     if i == 0:  # Nota: Asi nos saltamos la cabecera
                         pass
                     else:
-                        new = []  # TODO: error aqui (Error en importar datos: list index out of range)
+                        new = []
                         for j in range(columnas):
                             print("Columna: ", j)
                             if j == 0:  # Nota: Asi nos saltamos el id
@@ -201,19 +201,17 @@ class Eventos():
                                     new.append(str(datos.cell_value(i, j)))
                                     print(str(new[0]))
 
-                        print("antes de validar dni: ", str(new[0]))
                         if Drivers.Drivers.validarDNI(str(new[0])):
                             Conexion.Conexion.guardarDri(new)
-                            print(f"Driver {i} importado.")
-                        else:
-                            if estado == 0:
-                                msg = QtWidgets.QMessageBox()
-                                msg.setModal(True)
-                                msg.setWindowTitle('Aviso')
-                                msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
-                                msg.setText('Hay DNI incorrectos')
-                                msg.exec()
-                                estado = 1
+                            print(f"Driver {i}, con dni {str(new[0])} importado.")
+                        elif estado == 0:
+                            estado = 1
+                            msg = QtWidgets.QMessageBox()
+                            msg.setModal(True)
+                            msg.setWindowTitle('Aviso')
+                            msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+                            msg.setText('Hay DNI incorrectos')
+                            msg.exec()
 
                 msg = QtWidgets.QMessageBox()
                 msg.setModal(True)
@@ -221,10 +219,8 @@ class Eventos():
                 msg.setIcon(QtWidgets.QMessageBox.Icon.Information)
                 msg.setText('Importación de Datos Realizada')
                 msg.exec()
-                print("3")
 
             Conexion.Conexion.selectDrivers(1)
-            print("4")
             Drivers.Drivers.limpiarPanel(self)
         except Exception as error:
             msg = QtWidgets.QMessageBox()

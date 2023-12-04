@@ -238,7 +238,6 @@ class Drivers():
             dni = Var.ui.txtDni.text()
             Conexion.Conexion.borraDriv(dni)
             Conexion.Conexion.mostrarDrivers(self)
-            # Conexion.Conexion.selectDrivers(1) todo: es la forma que tiene juanca de hacerlo, es lo mismo pero con más vueltas
 
         except Exception as error:
             msg = QtWidgets.QMessageBox()

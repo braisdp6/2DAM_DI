@@ -69,7 +69,7 @@ class Conexion():
             else:
                 query = QtSql.QSqlQuery()
                 query.prepare(
-                    "INSERT INTO drivers (dnidri, altadri, apeldri, nombredri, direcciondri, provdri, munidri, movildri, salariodri, carnetdri, bajadri) VALUES (:dni, :alta, :apel, :nombre, :direccion, :prov, :muni, :movil, :salario, :carnet, :baja)")
+                    "INSERT INTO drivers (dnidri, altadri, apeldri, nombredri, direcciondri, provdri, munidri, movildri, salariodri, carnetdri) VALUES (:dni, :alta, :apel, :nombre, :direccion, :prov, :muni, :movil, :salario, :carnet)")
 
                 query.bindValue(":dni", str(driver[0]))
                 query.bindValue(":alta", str(driver[1]))
@@ -81,25 +81,22 @@ class Conexion():
                 query.bindValue(":movil", str(driver[7]))
                 query.bindValue(":salario", str(driver[8]))
                 query.bindValue(":carnet", str(driver[9]))
-                if str(driver[10]) == '':
-                    query.bindValue(":baja", None)
-                else:
-                    query.bindValue(":baja", str(driver[10]))
+                query.exec()
 
-                if query.exec():  # Nota: se utiliza para mostrar los cuadros de dialogo de confimacion en Drivers.altaDriver()
-                    mbox = QtWidgets.QMessageBox()
-                    mbox.setWindowTitle('Aviso')
-                    mbox.setWindowIcon(QtGui.QIcon('./img/logo.ico'))
-                    mbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
-                    mbox.setText("Empleado dado de alta.")
-                    mbox.exec()
-                else:
-                    mbox = QtWidgets.QMessageBox()
-                    mbox.setWindowTitle('Aviso')
-                    mbox.setWindowIcon(QtGui.QIcon('./img/logo.ico'))
-                    mbox.setIcon(QtWidgets.QMessageBox.Icon.Warning)
-                    mbox.setText("Asegúrese de que el conductor no existe.")
-                    mbox.exec()
+                # if query.exec():  # Nota: se utiliza para mostrar los cuadros de dialogo de confimacion en Drivers.altaDriver()
+                #     mbox = QtWidgets.QMessageBox()
+                #     mbox.setWindowTitle('Aviso')
+                #     mbox.setWindowIcon(QtGui.QIcon('./img/logo.ico'))
+                #     mbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
+                #     mbox.setText("Empleado dado de alta.")
+                #     mbox.exec()
+                # else:
+                #     mbox = QtWidgets.QMessageBox()
+                #     mbox.setWindowTitle('Aviso')
+                #     mbox.setWindowIcon(QtGui.QIcon('./img/logo.ico'))
+                #     mbox.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+                #     mbox.setText("Asegúrese de que el conductor no existe.")
+                #     mbox.exec()
             # select datos de conductores de la base de datos
             Conexion.mostrarDrivers(self=None)
         except Exception as error:
