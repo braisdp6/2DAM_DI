@@ -69,7 +69,7 @@ class Conexion():
             else:
                 query = QtSql.QSqlQuery()
                 query.prepare(
-                    "INSERT INTO drivers (dnidri, altadri, apeldri, nombredri, direcciondri, provdri, munidri, movildri, salariodri, carnetdri) VALUES (:dni, :alta, :apel, :nombre, :direccion, :prov, :muni, :movil, :salario, :carnet)")
+                    "INSERT INTO drivers (dnidri, altadri, apeldri, nombredri, direcciondri, provdri, munidri, movildri, salariodri, carnetdri, bajadri) VALUES (:dni, :alta, :apel, :nombre, :direccion, :prov, :muni, :movil, :salario, :carnet, :baja)")
 
                 query.bindValue(":dni", str(driver[0]))
                 query.bindValue(":alta", str(driver[1]))
@@ -81,6 +81,10 @@ class Conexion():
                 query.bindValue(":movil", str(driver[7]))
                 query.bindValue(":salario", str(driver[8]))
                 query.bindValue(":carnet", str(driver[9]))
+                if str(driver[10]) == '':
+                    query.bindValue(":baja", None)
+                else:
+                    query.bindValue(":baja", str(driver[10]))
 
                 if query.exec():  # Nota: se utiliza para mostrar los cuadros de dialogo de confimacion en Drivers.altaDriver()
                     mbox = QtWidgets.QMessageBox()
@@ -155,10 +159,11 @@ class Conexion():
             mbox.setText('El conductor no existe o error de búsqueda')
             mbox.exec()
 
-    def modifDriver(modifDriver): # Nota: "modifDriver" es un array que contiene todos los datos del driver
+    def modifDriver(modifDriver):  # Nota: "modifDriver" es un array que contiene todos los datos del driver
         try:
             registro = Conexion.oneDriver(int(modifDriver[0]))
-            if modifDriver[1] == registro[1]: # Nota: aquí comprobamos que el driver existe en la base de datos previamente, para no modificar empleados que no existan
+            if modifDriver[1] == registro[
+                1]:  # Nota: aquí comprobamos que el driver existe en la base de datos previamente, para no modificar empleados que no existan
                 query = QtSql.QSqlQuery()
                 query.prepare(
                     "UPDATE drivers SET dnidri = :dni, altadri= :alta, apeldri = :apel, nombredri = :nombre, direcciondri "

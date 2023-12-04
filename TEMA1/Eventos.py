@@ -177,36 +177,43 @@ class Eventos():
                 filas = datos.nrows
                 columnas = datos.ncols
                 for i in range(filas):
+                    print("Fila: ", i)
                     if i == 0:  # Nota: Asi nos saltamos la cabecera
                         pass
                     else:
+                        new = []  # TODO: error aqui (Error en importar datos: list index out of range)
                         for j in range(columnas):
-                            new = []
-                            if j == 0: # Nota: Asi nos saltamos el id
+                            print("Columna: ", j)
+                            if j == 0:  # Nota: Asi nos saltamos el id
                                 pass
                             else:
                                 if j == 2:  # Nota: cogemos la columna fecha que es la 2, y la formateamos
                                     try:
-                                        dato = xlrd.xldate_as_datetime(int(datos.cell_value(i, j)), documento.datemode)
-                                        dato = dato.strftime('%d/%m/%Y')
+                                        dato = datos.cell_value(i, j)
+                                        if isinstance(dato, float):
+                                            dato = xlrd.xldate_as_datetime(int(dato), documento.datemode)
+                                            dato = dato.strftime('%d/%m/%Y')
                                         new.append(str(dato))
-                                    except ValueError:
-                                        print("Error en parsear la fecha")
+                                        print(dato)
+                                    except ValueError as error:
+                                        print("Error en parsear la fecha:", error)
                                 else:
                                     new.append(str(datos.cell_value(i, j)))
-                                    print("1")
-                            if Drivers.Drivers.validarDNI(str(new[0])):
-                                Conexion.Conexion.guardarDri(new)
-                                print("Driver importado.")
-                            elif estado == 0:
-                                estado = 1
+                                    print(str(new[0]))
+
+                        print("antes de validar dni: ", str(new[0]))
+                        if Drivers.Drivers.validarDNI(str(new[0])):
+                            Conexion.Conexion.guardarDri(new)
+                            print(f"Driver {i} importado.")
+                        else:
+                            if estado == 0:
                                 msg = QtWidgets.QMessageBox()
                                 msg.setModal(True)
                                 msg.setWindowTitle('Aviso')
                                 msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
                                 msg.setText('Hay DNI incorrectos')
                                 msg.exec()
-                                print("2")
+                                estado = 1
 
                 msg = QtWidgets.QMessageBox()
                 msg.setModal(True)
