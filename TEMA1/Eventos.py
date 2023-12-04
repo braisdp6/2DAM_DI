@@ -180,28 +180,33 @@ class Eventos():
                     if i == 0:  # Nota: Asi nos saltamos la cabecera
                         pass
                     else:
-                        new = []
                         for j in range(columnas):
-                            if j == 2:  # Nota: cogemos la columna fecha que es la 2, y la formateamos
-                                try:
-                                    dato = xlrd.xldate_as_datetime(int(datos.cell_value(i, j)), documento.datemode)
-                                    dato = dato.strftime('%d/%m/%Y')
-                                    new.append(str(dato))
-                                except ValueError:
-                                    print("Error en parsear la fecha")
+                            new = []
+                            if j == 0: # Nota: Asi nos saltamos el id
+                                pass
                             else:
-                                new.append(str(datos.cell_value(i, j)))
-                        if Drivers.Drivers.validarDNI(str(new[0])):
-                            Conexion.Conexion.guardarDri(new)
-                            print("Driver importado.")
-                        elif estado == 0:
-                            estado = 1
-                            msg = QtWidgets.QMessageBox()
-                            msg.setModal(True)
-                            msg.setWindowTitle('Aviso')
-                            msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
-                            msg.setText('Hay DNI incorrectos')
-                            msg.exec()
+                                if j == 2:  # Nota: cogemos la columna fecha que es la 2, y la formateamos
+                                    try:
+                                        dato = xlrd.xldate_as_datetime(int(datos.cell_value(i, j)), documento.datemode)
+                                        dato = dato.strftime('%d/%m/%Y')
+                                        new.append(str(dato))
+                                    except ValueError:
+                                        print("Error en parsear la fecha")
+                                else:
+                                    new.append(str(datos.cell_value(i, j)))
+                                    print("1")
+                            if Drivers.Drivers.validarDNI(str(new[0])):
+                                Conexion.Conexion.guardarDri(new)
+                                print("Driver importado.")
+                            elif estado == 0:
+                                estado = 1
+                                msg = QtWidgets.QMessageBox()
+                                msg.setModal(True)
+                                msg.setWindowTitle('Aviso')
+                                msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+                                msg.setText('Hay DNI incorrectos')
+                                msg.exec()
+                                print("2")
 
                 msg = QtWidgets.QMessageBox()
                 msg.setModal(True)
@@ -209,8 +214,10 @@ class Eventos():
                 msg.setIcon(QtWidgets.QMessageBox.Icon.Information)
                 msg.setText('Importación de Datos Realizada')
                 msg.exec()
+                print("3")
 
             Conexion.Conexion.selectDrivers(1)
+            print("4")
             Drivers.Drivers.limpiarPanel(self)
         except Exception as error:
             msg = QtWidgets.QMessageBox()

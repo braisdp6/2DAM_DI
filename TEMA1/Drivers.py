@@ -184,6 +184,9 @@ class Drivers():
                 Var.ui.chkD.setChecked(True)
             else:
                 Var.ui.chkD.setChecked(False)
+
+            Var.ui.txtFechaBaja.setText(str(registro[11]))
+
         except Exception as error:
             print("Error al cargar datos: ", error)
 
