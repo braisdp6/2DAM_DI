@@ -1,7 +1,8 @@
 from datetime import datetime
 
-from PyQt6 import QtSql, QtWidgets, QtCore, QtGui
+from PyQt6 import QtSql, QtWidgets, QtGui
 
+import Clientes
 import Drivers
 import Var
 
@@ -31,11 +32,24 @@ class Conexion():
         except Exception as error:
             print("Error en la carga del combo prov: ", error)
 
+    def cargaProvCli(self=None):
+        try:
+            Var.ui.cmbProvCliente.clear()
+            query = QtSql.QSqlQuery()
+            query.prepare("select provincia from provincias")
+            if query.exec():
+                Var.ui.cmbProvCliente.addItem("")
+                while query.next():
+                    Var.ui.cmbProvCliente.addItem(query.value(0))
+        except Exception as error:
+            print("Error en la carga del combo provCli: ", error)
+
     def selMuni(self=None):
         try:
             Var.ui.cmbLocalidad.clear()
             id = 0
             prov = Var.ui.cmbProvincia.currentText()
+            print("as")
             query = QtSql.QSqlQuery()
             query.prepare("select idprov from provincias where provincia = :prov")
             query.bindValue(":prov", prov)
@@ -53,6 +67,28 @@ class Conexion():
 
         except Exception as error:
             print("Error en la seleccion de municipios: ", error)
+
+    def selMuniCli(self):
+        try:
+            Var.ui.cmbMuniCliente.clear()
+            id = 0
+            prov = Var.ui.cmbProvCliente.currentText()
+            query = QtSql.QSqlQuery()
+            query.prepare("select idprov from provincias where provincia = :prov")
+            query.bindValue(":prov", prov)
+            if query.exec():
+                while query.next():
+                    id = query.value(0)
+
+            query1 = QtSql.QSqlQuery()
+            query1.prepare("select municipio from municipios where idprov = :id")
+            query1.bindValue(":id", int(id))
+            if query1.exec():
+                Var.ui.cmbMuniCliente.addItem("")
+                while query1.next():
+                    Var.ui.cmbMuniCliente.addItem(query1.value(0))
+        except Exception as error:
+            print("Error en la seleccion de municipios en pestaña clientes: ", error)
 
     @staticmethod
     def guardarDri(driver):
@@ -81,26 +117,69 @@ class Conexion():
                 query.bindValue(":movil", str(driver[7]))
                 query.bindValue(":salario", str(driver[8]))
                 query.bindValue(":carnet", str(driver[9]))
-                query.exec()
 
-                # if query.exec():  # Nota: se utiliza para mostrar los cuadros de dialogo de confimacion en Drivers.altaDriver()
-                #     mbox = QtWidgets.QMessageBox()
-                #     mbox.setWindowTitle('Aviso')
-                #     mbox.setWindowIcon(QtGui.QIcon('./img/logo.ico'))
-                #     mbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
-                #     mbox.setText("Empleado dado de alta.")
-                #     mbox.exec()
-                # else:
-                #     mbox = QtWidgets.QMessageBox()
-                #     mbox.setWindowTitle('Aviso')
-                #     mbox.setWindowIcon(QtGui.QIcon('./img/logo.ico'))
-                #     mbox.setIcon(QtWidgets.QMessageBox.Icon.Warning)
-                #     mbox.setText("Asegúrese de que el conductor no existe.")
-                #     mbox.exec()
+                if query.exec():  # Nota: se utiliza para mostrar los cuadros de dialogo de confimacion en Drivers.altaDriver()
+                    mbox = QtWidgets.QMessageBox()
+                    mbox.setWindowTitle('Aviso')
+                    mbox.setWindowIcon(QtGui.QIcon('./img/logo.ico'))
+                    mbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
+                    mbox.setText("Empleado dado de alta.")
+                    mbox.exec()
+                else:
+                    mbox = QtWidgets.QMessageBox()
+                    mbox.setWindowTitle('Aviso')
+                    mbox.setWindowIcon(QtGui.QIcon('./img/logo.ico'))
+                    mbox.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+                    mbox.setText("Asegúrese de que el conductor no existe.")
+                    mbox.exec()
             # select datos de conductores de la base de datos
             Conexion.mostrarDrivers(self=None)
         except Exception as error:
             print("Error en alta conductor: ", error)
+
+
+    @staticmethod
+    def guardarCli(cliente):
+        try:  # comprobamos que no se añaden campos vacios
+            if (cliente[0].strip() == "" or cliente[1].strip() == "" or cliente[2].strip() == "" or cliente[
+                3].strip() == "" or cliente[4].strip() == "" or cliente[5].strip() == ""):
+                mbox = QtWidgets.QMessageBox()
+                mbox.setWindowTitle("Aviso")
+                mbox.setWindowIcon(QtGui.QIcon("./img/warning.png"))
+                mbox.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+                mensaje = "Faltan DATOS. Debe llenar todos los campos."
+                mbox.setText(mensaje)
+                mbox.exec()
+            else:
+                query = QtSql.QSqlQuery()
+                query.prepare(
+                    "INSERT INTO clientes (dnicli, rscli, direccioncli, telefonocli, provcli, municli) VALUES (:dni, :rs, :direccion, :telefono, :prov, :muni)")
+
+                query.bindValue(":dni", str(cliente[0]))
+                query.bindValue(":rs", str(cliente[1]))
+                query.bindValue(":direccion", str(cliente[2]))
+                query.bindValue(":telefono", str(cliente[3]))
+                query.bindValue(":prov", str(cliente[4]))
+                query.bindValue(":muni", str(cliente[5]))
+
+                if query.exec():  # Nota: se utiliza para mostrar los cuadros de dialogo de confimacion en Drivers.altaDriver()
+                    mbox = QtWidgets.QMessageBox()
+                    mbox.setWindowTitle('Aviso')
+                    mbox.setWindowIcon(QtGui.QIcon('./img/logo.ico'))
+                    mbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
+                    mbox.setText("Empleado dado de alta.")
+                    mbox.exec()
+                else:
+                    mbox = QtWidgets.QMessageBox()
+                    mbox.setWindowTitle('Aviso')
+                    mbox.setWindowIcon(QtGui.QIcon('./img/logo.ico'))
+                    mbox.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+                    mbox.setText("Asegúrese de que el conductor no existe.")
+                    mbox.exec()
+            # select datos de conductores de la base de datos
+            Conexion.mostrarClientes(self=None)
+        except Exception as error:
+            print("Error en alta cliente: ", error)
 
     # Metodo que pasa la posicion del historico, para luego mostrar los Drivers en la tabla por otros metodos
     @staticmethod
@@ -121,6 +200,24 @@ class Conexion():
         except Exception as error:
             print("Error mostrar drivers: ", error)
 
+    @staticmethod
+    def mostrarClientes(self):  # Nota: no borrar el self
+        try:
+            if Var.ui.rbtTodosCliente.isChecked():
+                estado = 0
+                Conexion.selectClientes(
+                    estado)
+            elif Var.ui.rbtAltaCliente.isChecked():
+                estado = 1
+                Conexion.selectClientes(
+                    estado)
+            elif Var.ui.rbtBajaCliente.isChecked():
+                estado = 2
+                Conexion.selectClientes(
+                    estado)  # Nota: le pasamos el estado y que el metodo selectDrivers() cargue los drivers en la tabla
+        except Exception as error:
+            print("Error mostrar clientes: ", error)
+
     # buscamos un conductor segun su codigo en la BBDD
     def oneDriver(codigo):
         try:
@@ -135,6 +232,21 @@ class Conexion():
             return registro
         except Exception as error:
             print("Error en fichero conexion datos de 1 driver: ", error)
+
+    # buscamos un conductor segun su codigo en la BBDD
+    def oneCliente(codigo):
+        try:
+            registro = []
+            query = QtSql.QSqlQuery()
+            query.prepare("SELECT * FROM clientes WHERE codigocli = :codigo")
+            query.bindValue(":codigo", int(codigo))
+            if query.exec():
+                while query.next():
+                    for i in range(8):  # recorremos las columnas de la BBDD
+                        registro.append(str(query.value(i)))
+            return registro
+        except Exception as error:
+            print("Error en fichero conexion datos de 1 cliente: ", error)
 
     # Metodo buscar el codigo del driver segun su dni, para después recuperar el driver segun su codigo
     def codDri(dni):
@@ -206,41 +318,49 @@ class Conexion():
         except Exception as error:
             print("Error en metodo modifDriver: ", error)
 
-    # def modifDriver(modifDriver):
-    #     try:
-    #         query = QtSql.QSqlQuery()
-    #         query.prepare(
-    #             "UPDATE drivers SET dnidri = :dni, altadri= :alta, apeldri = :apel, nombredri = :nombre, direcciondri "
-    #             "= :direccion, provdri = :provincia, munidri = :municipio, movildri = :movil, salariodri = :salario, "
-    #             "carnetdri = :carnet where codigo = :codigo")
-    #
-    #         query.bindValue(":codigo", int(modifDriver[0]))
-    #         query.bindValue(":dni", str(modifDriver[1]))
-    #         query.bindValue(":alta", str(modifDriver[2]))
-    #         query.bindValue(":apel", str(modifDriver[3]))
-    #         query.bindValue(":nombre", str(modifDriver[4]))
-    #         query.bindValue(":direccion", str(modifDriver[5]))
-    #         query.bindValue(":provincia", str(modifDriver[6]))
-    #         query.bindValue(":municipio", str(modifDriver[7]))
-    #         query.bindValue(":movil", str(modifDriver[8]))
-    #         query.bindValue(":salario", str(modifDriver[9]))
-    #         query.bindValue(":carnet", str(modifDriver[10]))
-    #
-    #         if query.exec():
-    #             msg = QtWidgets.QMessageBox()
-    #             msg.setWindowTitle("Aviso")
-    #             msg.setIcon(QtWidgets.QMessageBox.Icon.Information)
-    #             msg.setText("Datos Conductor Modificados")
-    #             msg.exec()
-    #             Conexion.mostrarDrivers(self=None)
-    #         else:
-    #             msg = QtWidgets.QMessageBox()
-    #             msg.setWindowTitle("Aviso")
-    #             msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
-    #             msg.setText(query.lastError().text())
-    #             msg.exec()
-    #     except Exception as error:
-    #         print("Error en metodo modifDriver: ", error)
+
+    def modifCliente(modifCliente):
+        try:
+            registro = Conexion.oneCliente(int(modifCliente[0]))
+            if modifCliente[0] == registro[0]:
+                query = QtSql.QSqlQuery()
+                query.prepare(
+                    "UPDATE clientes SET dnicli = :dni, rscli = :rs, direccioncli = :direccion,  telefonocli = :telefono, provcli = :prov, municli = :muni, bajacli = :baja where codigocli = :codigo")
+
+                query.bindValue(":codigo", int(modifCliente[0]))
+                query.bindValue(":dni", str(modifCliente[1]))
+                query.bindValue(":rs", str(modifCliente[2]))
+                query.bindValue(":direccion", str(modifCliente[3]))
+                query.bindValue(":telefono", str(modifCliente[4]))
+                query.bindValue(":prov", str(modifCliente[5]))
+                query.bindValue(":muni", str(modifCliente[6]))
+                if str(modifCliente[7]) == '':
+                    query.bindValue(":baja", None)
+                else:
+                    query.bindValue(":baja", str(modifCliente[7]))
+
+                if query.exec():
+                    msg = QtWidgets.QMessageBox()
+                    msg.setWindowTitle("Aviso")
+                    msg.setIcon(QtWidgets.QMessageBox.Icon.Information)
+                    msg.setText("Datos Cliente Modificados")
+                    msg.exec()
+                    Conexion.mostrarClientes(self=None)
+                else:
+                    msg = QtWidgets.QMessageBox()
+                    msg.setWindowTitle("Aviso")
+                    msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+                    msg.setText(query.lastError().text())
+                    msg.exec()
+            else:
+                msg = QtWidgets.QMessageBox()
+                msg.setWindowTitle("Aviso")
+                msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+                msg.setText("No existe el cliente a modificar.")
+                msg.exec()
+
+        except Exception as error:
+            print("Error en metodo modifCliente: ", error)
 
     def borraDriv(dni):
         global valor
@@ -277,6 +397,42 @@ class Conexion():
                 msg.exec()
         except Exception as error:
             print("Error en baja driver en conexion: ", error)
+
+    def borrarCliente(dni):
+        global valor1
+        try:
+            query1 = QtSql.QSqlQuery()
+            query1.prepare("SELECT bajacli FROM clientes WHERE dnicli = :dni")
+            query1.bindValue(":dni", str(dni))
+
+            if query1.exec():
+                while query1.next():
+                    valor1 = query1.value(0)
+
+            if valor1 == "":
+                # comprobar fecha
+                fecha = datetime.today()
+                fecha = fecha.strftime("%d/%m/%Y")
+
+                query = QtSql.QSqlQuery()
+                query.prepare("UPDATE clientes SET bajacli = :fechabaja WHERE dnicli = :dni")
+                query.bindValue(":fechabaja", str(fecha))
+                query.bindValue(":dni", str(dni))
+
+                if query.exec():
+                    msg = QtWidgets.QMessageBox()
+                    msg.setWindowTitle("Aviso")
+                    msg.setIcon(QtWidgets.QMessageBox.Icon.Information)
+                    msg.setText("Cliente dado de baja.")
+                    msg.exec()
+            else:
+                msg = QtWidgets.QMessageBox()
+                msg.setWindowTitle("Aviso")
+                msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+                msg.setText("No existe cliente dado de baja anteriormente.")
+                msg.exec()
+        except Exception as error:
+            print("Error en baja cliente en conexion: ", error)
 
     def selectDrivers(
             estado):  # NOTA: recibe por parametro la posicion del histórico y luego a traves de Drivers.cargarTablaDri() carga los datos en la tabla
@@ -321,6 +477,46 @@ class Conexion():
         except Exception as error:
             print("Error al seleccionar los drivers", error)
 
+    def selectClientes(
+            estado):  # NOTA: recibe por parametro la posicion del histórico y luego a traves de Drivers.cargarTablaDri() carga los datos en la tabla
+        try:
+            registros = []
+            if estado == 0:
+                Var.ui.lblFechaBCliente.hide()
+                Var.ui.txtFechaBCliente.hide()
+                Var.ui.btnCalendarBajaCli.hide()
+                query = QtSql.QSqlQuery()
+                query.prepare("select codigocli, rscli, telefonocli, provcli from clientes")
+                if query.exec():
+                    while query.next():
+                        row = [query.value(i) for i in range(query.record().count())]
+                        registros.append(row)
+                Clientes.Clientes.cargarTablaCli(registros)
+            elif estado == 1:
+                Var.ui.lblFechaBCliente.hide()
+                Var.ui.txtFechaBCliente.hide()
+                Var.ui.btnCalendarBajaCli.hide()
+                query = QtSql.QSqlQuery()
+                query.prepare("select codigocli, rscli, telefonocli, provcli from clientes where bajacli is null")
+                if query.exec():
+                    while query.next():
+                        row = [query.value(i) for i in range(query.record().count())]
+                        registros.append(row)
+                Clientes.Clientes.cargarTablaCli(registros)
+            elif estado == 2:
+                Var.ui.lblFechaBCliente.show()
+                Var.ui.txtFechaBCliente.show()
+                Var.ui.btnCalendarBajaCli.show()
+                query = QtSql.QSqlQuery()
+                query.prepare("select codigocli, rscli, telefonocli, provcli from clientes where bajacli is not null")
+                if query.exec():
+                    while query.next():
+                        row = [query.value(i) for i in range(query.record().count())]
+                        registros.append(row)
+                Clientes.Clientes.cargarTablaCli(registros)
+        except Exception as error:
+            print("Error al seleccionar los clientes", error)
+
     @staticmethod
     def selectDriversTodos():  # NOTA: metodo para buscar todos los drivers
         try:
@@ -334,3 +530,7 @@ class Conexion():
             return registros
         except Exception as error:
             print("error devolver todos los drivers: ", error)
+
+
+
+

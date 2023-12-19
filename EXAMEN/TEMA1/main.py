@@ -11,7 +11,7 @@ locale.setlocale(locale.LC_MONETARY, "es_ES.UTF-8")
 from WindowAux import *
 
 
-# TODO ALL:
+# TODO ALL: resize the tab to copy the older format // 
 class Main(QtWidgets.QMainWindow):
     def __init__(self):
         super(Main, self).__init__()
@@ -96,7 +96,7 @@ class Main(QtWidgets.QMainWindow):
 
 
         '''
-        ***************************************************** ZONA DE EXAMEN 05/12/2023 *****************************************************
+        ***************************************************** ZONA DE CLIENTES 05/12/2023 *****************************************************
         '''
 
         '''
@@ -104,7 +104,6 @@ class Main(QtWidgets.QMainWindow):
         '''
         Eventos.Eventos.resizeTabClientes(self)
         Var.ui.tabClientes.clicked.connect(Clientes.Clientes.cargaClientes)
-        Var.ui.tabDrivers.clicked.connect(Drivers.Drivers.cargaDriver)
 
         '''
         zona de eventos de las cajas de texto
@@ -128,15 +127,6 @@ class Main(QtWidgets.QMainWindow):
         zona de eventos del menubar  NOTA: parte de arriba de la ventana donde hay desplegables (Archivo, Herramientas, Ayuda...)
         '''
         Var.ui.actionImportar_Datos_Cliente_XLS.triggered.connect(Eventos.Eventos.importarDatosXLSClientes)
-
-
-
-
-
-
-
-
-
 
 
 

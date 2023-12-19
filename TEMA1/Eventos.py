@@ -7,6 +7,7 @@ import xlrd
 import xlwt
 from PyQt6 import QtWidgets, QtSql, QtCore, QtGui
 
+import Clientes
 import Conexion
 import Drivers
 import Var
@@ -68,6 +69,17 @@ class Eventos():
                     header.setSectionResizeMode(i, QtWidgets.QHeaderView.ResizeMode.Stretch)
         except Exception as error:
             print("Error a la hora de redimensionar en tabDrivers ", error)
+
+    def resizeTabClientes(self):
+        try:
+            header = Var.ui.tabClientes.horizontalHeader()
+            for i in range(4):
+                if i == 0 or i == 2:
+                    header.setSectionResizeMode(i, QtWidgets.QHeaderView.ResizeMode.ResizeToContents)
+                elif i == 1 or i == 3:
+                    header.setSectionResizeMode(i, QtWidgets.QHeaderView.ResizeMode.Stretch)
+        except Exception as error:
+            print("Error a la hora de redimensionar en tabClientes ", error)
 
     @staticmethod
     def formatCajaTexto():
@@ -222,6 +234,55 @@ class Eventos():
 
             Conexion.Conexion.selectDrivers(1)
             Drivers.Drivers.limpiarPanel(self)
+        except Exception as error:
+            msg = QtWidgets.QMessageBox()
+            msg.setWindowTitle('Aviso')
+            msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+            msg.setText('Error en importar datos: ' + str(error))
+            msg.exec()
+
+
+    def importarDatosXLSClientes(self):
+        try:
+            estado = 0
+            filename, _ = Var.dlgAbrir.getOpenFileName(None, 'Importar datos', '', '*.xls;;All Files (*)')
+            if filename:
+                file = filename
+                documento = xlrd.open_workbook(file)
+                datos = documento.sheet_by_index(0)
+                filas = datos.nrows
+                columnas = datos.ncols
+                for i in range(filas):
+                    print("Fila: ", i)
+                    if i == 0:  # Nota: Asi nos saltamos la cabecera
+                        pass
+                    else:
+                        new = []
+                        for j in range(columnas):
+                            print("Columna: ", j)
+                            new.append(str(datos.cell_value(i, j)))
+
+                        if Clientes.Clientes.validarDNI(str(new[0])):
+                            Conexion.Conexion.guardarCli(new)
+                            print(f"Driver {i}, con dni {str(new[0])} importado.")
+                        elif estado == 0:
+                            estado = 1
+                            msg = QtWidgets.QMessageBox()
+                            msg.setModal(True)
+                            msg.setWindowTitle('Aviso')
+                            msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+                            msg.setText('Hay DNI incorrectos')
+                            msg.exec()
+
+                msg = QtWidgets.QMessageBox()
+                msg.setModal(True)
+                msg.setWindowTitle('Aviso')
+                msg.setIcon(QtWidgets.QMessageBox.Icon.Information)
+                msg.setText('Importación de Datos Realizada')
+                msg.exec()
+
+            Conexion.Conexion.selectClientes(1)
+            #Drivers.Drivers.limpiarPanel(self)
         except Exception as error:
             msg = QtWidgets.QMessageBox()
             msg.setWindowTitle('Aviso')

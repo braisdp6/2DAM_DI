@@ -141,6 +141,8 @@ class Drivers():
         except Exception as error:
             print("Error carga tabla drivers: ", error)
 
+
+
     # Metodo para cargar driver cuando se haga click en el "tabDriver"
     def cargaDriver(self=None):
         try:
