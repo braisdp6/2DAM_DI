@@ -14,7 +14,7 @@ from WindowAux import *
 
 # TODO ALL: resize the tabClientes to copy the older format -> tiene pinta de que tengo que borrar la tabla en qtDesigner para que sea del mismo tipo que tabDrivers (ya que así puede usar un layout y que se expanda automaticamente) (opcion 2: copiar y pegar la estructura de la otra tabla y hacer modificaciones en vez de construir desde cero)
 # TODO ALL: al buscar en la lupa en clientes, que salga subrayado en amarillo
-# TODO ALL: cuando ejecutas listado clientes, te abre todos los pdf que existen
+# TODO ALL: informes para drivers
 # TODO ALL:
 class Main(QtWidgets.QMainWindow):
     def __init__(self):
@@ -101,6 +101,7 @@ class Main(QtWidgets.QMainWindow):
         Var.ui.actionImportar_Datos_XLS.triggered.connect(Eventos.Eventos.importarDatosXLS)
         Var.ui.actionImportar_Datos_Cliente_XLS.triggered.connect(Eventos.Eventos.importarDatosXLSClientes)
         Var.ui.actionListado_Clientes.triggered.connect(Informes.Informes.reportClientes)
+        Var.ui.actionListado_Conductores.triggered.connect(Informes.Informes.reportDrivers)
 
 
         '''
