@@ -48,7 +48,7 @@ class Informes:
 
     def footInforme(titulo):
         try:
-            Var.report.line(50, 800, 525, 50)
+            Var.report.line(50, 50, 525, 50)
             fecha = datetime.today()
             fecha = fecha.strftime('%d-%m-%Y %H:%M:%S')
             Var.report.setFont("Helvetica-Oblique", size=7)
