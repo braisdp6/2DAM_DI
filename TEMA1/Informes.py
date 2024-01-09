@@ -86,15 +86,78 @@ class Informes:
             titulo = 'LISTADO DRIVERS'
             Informes.topInforme(titulo)
             Informes.footInforme(titulo)
-            Var.report.drawString(250, 250, 'Mi primer informe')
+
+            items = ['Código', 'APELLIDOS', 'NOMBRE', 'TELÉFONO', 'LICENCIAS', 'FECHA BAJA']
+            Var.report.setFont('Helvetica-Bold', size=10)
+            Var.report.drawString(55, 675, str(items[0]))
+            Var.report.drawString(115, 675, str(items[1]))
+            Var.report.drawString(205, 675, str(items[2]))
+            Var.report.drawString(285, 675, str(items[3]))
+            Var.report.drawString(375, 675, str(items[4]))
+            Var.report.drawString(460, 675, str(items[5]))
+            Var.report.line(50, 670, 525, 670)  # Ajusta la longitud de la línea
+
+            # obtencion datos de la base de datos
+            query = QtSql.QSqlQuery()
+            query.prepare(
+                'SELECT codigo, apeldri, nombredri, movildri, carnetdri, bajadri FROM drivers ORDER BY apeldri')
+            Var.report.setFont('Helvetica', size=9)
+
+            if query.exec():
+                i = 55
+                j = 655
+                while query.next():
+                    if j <= 80:
+                        Var.report.drawString(450, 75, 'Página siguiente...')
+                        Var.report.showPage()  # crea una pagina nueva
+                        Informes.topInforme(titulo)
+                        Informes.footInforme(titulo)
+                        Var.report.setFont('Helvetica-Bold', size=10)
+                        Var.report.drawString(55, 675, str(items[0]))
+                        Var.report.drawString(115, 675, str(items[1]))
+                        Var.report.drawString(205, 675, str(items[2]))
+                        Var.report.drawString(285, 675, str(items[3]))
+                        Var.report.drawString(375, 675, str(items[4]))
+                        Var.report.drawString(460, 675, str(items[5]))
+                        Var.report.line(50, 670, 525, 670)  # Ajusta la longitud de la línea
+                        i = 55
+                        j = 655
+                    Var.report.setFont('Helvetica', size=9)
+
+                    Var.report.drawString(i + 15, j, str(query.value(0)))
+                    Var.report.drawString(i + 60, j, str(query.value(1)))
+                    Var.report.drawString(i + 150, j, str(query.value(2)))
+                    Var.report.drawString(i + 230, j, str(query.value(3)))
+                    Var.report.drawString(i + 320, j, str(query.value(4)))
+                    Var.report.drawString(i + 410, j, str(query.value(5)))
+                    j = j - 25
+
             Var.report.save()
             rootPath = '.\\informes'
             for file in os.listdir(rootPath):
                 if file.endswith(nombre):
-                    os.startfile('%s\\%s' % (rootPath, file))
-
+                    os.startfile(os.path.join(rootPath, file))
+                    # os.startfile('%s\\%s' % (rootPath, file))
         except Exception as error:
             print('Error LISTADO DRIVERS: ', error)
+
+    # def reportDrivers(self):
+    #     try:
+    #         fecha = datetime.today()
+    #         fecha = fecha.strftime('%Y_%m_%d_%H_%M_%S')
+    #         nombre = fecha + '_listadodrivers.pdf'
+    #         Var.report = canvas.Canvas('informes/' + nombre)
+    #         titulo = 'LISTADO DRIVERS'
+    #         Informes.topInforme(titulo)
+    #         Informes.footInforme(titulo)
+    #         Var.report.drawString(250, 250, 'Mi primer informe')
+    #         Var.report.save()
+    #         rootPath = '.\\informes'
+    #         for file in os.listdir(rootPath):
+    #             if file.endswith(nombre):
+    #                 os.startfile('%s\\%s' % (rootPath, file))
+    #     except Exception as error:
+    #         print('Error LISTADO DRIVERS: ', error)
 
     def topInforme(titulo):
         try:
